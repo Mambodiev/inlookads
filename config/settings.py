@@ -20,6 +20,8 @@ DJANGO_APPS = [
     "django.contrib.admin",
     "django.forms",
     'storages',
+    'tailwind',
+    'theme',
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -33,6 +35,7 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     'django_filters',
     'widget_tweaks',
+    'django_browser_reload',
 ]
 
 LOCAL_APPS = [
@@ -43,6 +46,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -136,6 +140,8 @@ CKEDITOR_CONFIGS = {
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SITE_ID = 1
+
+TAILWIND_APP_NAME = 'theme'
 
 AWS_S3_ACCESS_KEY_ID=env('AWS_S3_ACCESS_KEY_ID')
 AWS_S3_SECRET_ACCESS_KEY=env('AWS_S3_SECRET_ACCESS_KEY')

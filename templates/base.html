@@ -1,4 +1,7 @@
-{% load static i18n %}<!DOCTYPE html>
+{% load static i18n %}
+{% load tailwind_tags %}
+
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -7,17 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This is a video membership site built with Django">
     <meta name="author" content="Matthew Freire">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
-
     {% block css %}
-    {% comment %} <link href="{% static 'css/tailwind.min.css' %}" rel="stylesheet"> {% endcomment %}
-    <link href="{% static 'css/custom.css' %}">    
+     {% tailwind_css %}
     {% endblock %}
     <style>
 
@@ -80,8 +75,6 @@
   
       
     </style>
-    <script src="{% static 'js/tailwindcss.js' %}"></script>
-
   </head>
 
   <body>
@@ -100,10 +93,7 @@
     </div>
 
     {% block modal %}{% endblock modal %}
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
+    
     {% block javascript %}
     {% endblock javascript %}
   </body>

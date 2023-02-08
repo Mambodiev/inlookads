@@ -18,6 +18,10 @@ urlpatterns = [
     path("courses/", include("content.urls", namespace="content")),
     # path("payment/", include("payment.urls", namespace="payment")),
 
+    # tailwind
+    path("__reload__/", include("django_browser_reload.urls")),
+
+
     # User management
     path("users/", include("users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
