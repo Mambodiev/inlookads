@@ -18,10 +18,6 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
     "django.contrib.admin",
-    "django.forms",
-    'storages',
-    'tailwind',
-    'theme',
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
@@ -36,6 +32,14 @@ THIRD_PARTY_APPS = [
     'django_filters',
     'widget_tweaks',
     'django_browser_reload',
+    "django.forms",
+    'storages',
+    'tailwind',
+    'theme',
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 LOCAL_APPS = [
