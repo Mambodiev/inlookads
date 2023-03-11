@@ -1,5 +1,6 @@
 {% load static i18n %}
 {% load static tailwind_tags %}
+{% load tailwind_filters %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -72,8 +73,11 @@
           color: #000;
           /*Set to match the Tailwind colour you want the active one to be */
       }
-  
-  
+    {% comment %} mobile profile toogleuser {% endcomment %}
+    #menu-toggle:checked + #menu_profile {
+        display: block;
+    }
+    {% comment %} mobile profile toogleuser {% endcomment %}
       
     </style>
     <script>

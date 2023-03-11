@@ -20,7 +20,9 @@ urlpatterns = [
 
     # tailwind
     path("__reload__/", include("django_browser_reload.urls")),
-
+    
+    # ckeditor 
+    path('_ckeditor/', include('ckeditor_uploader.urls')),
 
     # User management
     path("users/", include("users.urls", namespace="users")),

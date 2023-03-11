@@ -2,142 +2,295 @@
 
 {% block content %}
 
-{% comment %} <section class="text-gray-700 body-font">
-  <div class="py-16 mx-auto">
-    <div class="flex flex-wrap -m-4">
-        {% for course in object_list %}
-        <div class="p-4 md:w-1/3">
-            <div class="h-full border-2 border-gray-200 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="{{ course.thumbnail.url }}" alt="{{ course.name }}">
-            <div class="p-6">
-                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">CATEGORY</h2>
-                <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ course.name }}</h1>
-                <p class="leading-relaxed mb-3">{{ course.description}}</p>
-                <div class="flex items-center flex-wrap ">
-                <a class="text-teal-500 inline-flex items-center md:mb-2 lg:mb-0" href="{{ course.get_absolute_url }}">Go to course
-                    <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-                <span class="text-gray-600 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
-                    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                    <circle cx="12" cy="12" r="3"></circle>
-                    </svg>1.2K
-                </span>
-                <span class="text-gray-600 inline-flex items-center leading-none text-sm">
-                    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                    </svg>6
-                </span>
-                </div>
-            </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-  </div>
-</section> {% endcomment %}
+<div class="mx-auto max-w-screen-xl px-4 sm:pt-24 pt-16 sm:px-6 lg:px-8">
+    <div class="mt-2 sm:flex sm:items-center sm:justify-between">
+        <div class="block sm:hidden">
+            <button
+            class="flex cursor-pointer items-center gap-2  pb-1 text-gray-900 transition"
+            >
+            <span class="text-sm text-gray-900 dark:text-white"> Filters & Sorting </span>
 
-{% comment %} <section class="bg-white">
-    <div class="container px-6 py-10 mx-auto">
-        <div class="flex items-center justify-between">
-            <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">recent posts </h1>
-
-            <button class="focus:outline-none">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600 transition-colors duration-300 transform dark:text-gray-400 hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="h-4 w-4"
+            >
+                <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+            </svg>
             </button>
         </div>
 
-        <hr class="my-8 border-gray-200 dark:border-gray-700">
+        <div class="hiddden sm:flex sm:gap-4">
+            <div class="relative">
+            <details class="group [&_summary::-webkit-details-marker]:hidden">
+                <summary
+                class="flex cursor-pointer items-center gap-2  pb-1 text-gray-900 transition hover:border-gray-600"
+                >
+                <span class="text-sm text-gray-900 dark:text-white"> Availability </span>
 
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {% for course in object_list %}
-                <div>
-                    <img class="object-cover object-center w-full h-64 rounded-lg lg:h-80" src="{{ course.thumbnail.url }}" alt="">
+                <span class="transition group-open:-rotate-180 text-gray-900 dark:text-white">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-4 w-4"
+                    >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                    </svg>
+                </span>
+                </summary>
 
-                    <div class="mt-8">
-                        <span class="text-blue-500 uppercase">category</span>
+                <div
+                class="z-50 group-open:absolute group-open:top-auto group-open:mt-2 ltr:group-open:left-0"
+                >
+                <div class="w-96 rounded border border-gray-200 bg-white">
+                    <header class="flex items-center justify-between p-4">
+                    <span class="text-sm text-gray-900 dark:text-white"> 0 Selected </span>
 
-                        <h1 class="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
-                            What do you want to know about UI
-                        </h1>
+                    <button
+                        type="button"
+                        class="text-sm text-gray-900 dark:text-white underline underline-offset-4"
+                    >
+                        Reset
+                    </button>
+                    </header>
 
-                        <p class="mt-2 text-gray-500 dark:text-gray-400">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam est asperiores vel, ab animi
-                            recusandae nulla veritatis id tempore sapiente
-                        </p>
+                    <ul class="space-y-1 border-t border-gray-200 p-4">
+                    <li>
+                        <label
+                        for="FilterInStock"
+                        class="inline-flex items-center gap-2"
+                        >
+                        <input
+                            type="checkbox"
+                            id="FilterInStock"
+                            class="h-5 w-5 rounded border-gray-300"
+                        />
 
-                        <div class="flex items-center justify-between mt-4">
-                            <div>
-                                <a href="#" class="text-lg font-medium text-gray-700 dark:text-gray-300 hover:underline hover:text-gray-500">
-                                    John snow
-                                </a>
+                        <span class="text-sm font-medium text-gray-900 dark:text-white">
+                            In Stock (5+)
+                        </span>
+                        </label>
+                    </li>
 
-                                <p class="text-sm text-gray-500 dark:text-gray-400">February 1, 2022</p>
-                            </div>
+                    <li>
+                        <label
+                        for="FilterPreOrder"
+                        class="inline-flex items-center gap-2"
+                        >
+                        <input
+                            type="checkbox"
+                            id="FilterPreOrder"
+                            class="h-5 w-5 rounded border-gray-300"
+                        />
 
-                            <a href="#" class="inline-block text-blue-500 underline hover:text-blue-400">Read more</a>
-                        </div>
+                        <span class="text-sm font-medium text-gray-900 dark:text-white">
+                            Pre Order (3+)
+                        </span>
+                        </label>
+                    </li>
 
+                    <li>
+                        <label
+                        for="FilterOutOfStock"
+                        class="inline-flex items-center gap-2"
+                        >
+                        <input
+                            type="checkbox"
+                            id="FilterOutOfStock"
+                            class="h-5 w-5 rounded border-gray-300"
+                        />
+
+                        <span class="text-sm text-gray-900 dark:text-white">
+                            Out of Stock (10+)
+                        </span>
+                        </label>
+                    </li>
+                    </ul>
+                </div>
+                </div>
+            </details>
+            </div>
+
+            <div class="relative">
+            <details class="group [&_summary::-webkit-details-marker]:hidden">
+                <summary
+                class="flex cursor-pointer items-center gap-2 pb-1 text-gray-900 transition hover:border-gray-600"
+                >
+                <span class="text-sm text-gray-900 dark:text-white"> Price </span>
+
+                <span class="transition group-open:-rotate-180 text-gray-900 dark:text-white">
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-4 w-4"
+                    >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                    />
+                    </svg>
+                </span>
+                </summary>
+
+                <div
+                class="z-50 group-open:absolute group-open:top-auto group-open:mt-2 ltr:group-open:left-0"
+                >
+                <div class="w-96 rounded border border-gray-200 bg-white">
+                    <header class="flex items-center justify-between p-4">
+                    <span class="text-sm text-gray-900 dark:text-white">
+                        The highest price is $600
+                    </span>
+
+                    <button
+                        type="button"
+                        class="text-sm text-gray-900 dark:text-white underline underline-offset-4"
+                    >
+                        Reset
+                    </button>
+                    </header>
+
+                    <div class="border-t border-gray-200 p-4">
+                    <div class="flex justify-between gap-4">
+                        <label
+                        for="FilterPriceFrom"
+                        class="flex items-center gap-2"
+                        >
+                        <span class="text-sm text-gray-900 dark:text-white">$</span>
+
+                        <input
+                            type="number"
+                            id="FilterPriceFrom"
+                            placeholder="From"
+                            class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        />
+                        </label>
+
+                        <label for="FilterPriceTo" class="flex items-center gap-2">
+                        <span class="text-sm text-gray-900 dark:text-white">$</span>
+
+                        <input
+                            type="number"
+                            id="FilterPriceTo"
+                            placeholder="To"
+                            class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                        />
+                        </label>
+                    </div>
                     </div>
                 </div>
-            {% endfor %}
+                </div>
+            </details>
+            </div>
+        </div>
+
+        <div class="hidden sm:block">
+            <label for="SortBy" class="sr-only">SortBy</label>
+
+            <select id="SortBy" class="h-10 rounded dark:bg-gray-900 dark:border-gray-900 dark:text-white border-white text-sm">
+            <option>Sort By</option>
+            <option value="Title, DESC">Title, DESC</option>
+            <option value="Title, ASC">Title, ASC</option>
+            <option value="Price, DESC">Price, DESC</option>
+            <option value="Price, ASC">Price, ASC</option>
+            </select>
         </div>
     </div>
-</section> {% endcomment %}
-
-<div class="mx-auto max-w-2xl py-6 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-    <h2 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">Product</h2>
-
-    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-    {% for course in object_list %}
-        <div class="group relative">
-            <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:aspect-none">
-                <img src="{{ course.thumbnail.url }}" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
-            </div>
-            {% comment %} <div class="mt-4 flex justify-between">
-                <div>
-                    <h3 class="text-sm text-gray-700">
-                    <a href="{{ course.get_absolute_url }}">
-                        <span aria-hidden="true" class="absolute inset-0"></span>
-                        {{ course.name }}
-                    </a>
-                    </h3>
-                    <p class="mt-1 text-sm text-gray-500">Black</p>
+    <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
+         lg:grid-cols-3  xl:gap-x-8">
+        {% for course in object_list %}
+        <a href="#" class="group relative block overflow-hidden shadow-lg shadow-green-500/50  rounded-md hover:border-t-8 hover:border-r-8 hover:border-green-500">
+            <div class="flex items-center justify-between p-3">
+                <div class="flex items-center space-x-2">
+                    <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-8 h-8 rounded-md shadow-sm dark:bg-gray-500 dark:border-gray-700">
+                    <div class="-space-y-1">
+                        <h2 class="text-sm font-semibold leading-none text-gray-900 dark:text-white">leroy_jenkins72</h2>
+                        <span class="inline-block text-xs leading-none text-gray-900 dark:text-white">Somewhere</span>
+                    </div>
                 </div>
-                <p class="text-sm font-medium text-gray-900">$35</p>
-            </div> {% endcomment %}
-            <div class="">
-                <h1 class="title-font text-lg font-medium text-gray-900 dark:text-white my-3">{{ course.name }}</h1>
-                <p class="leading-relaxed mb-3 text-gray-900 dark:text-white">{{ course.description}}</p>
-                <div class="flex items-center flex-wrap ">
-                    <a class="text-gray-900 dark:text-white inline-flex items-center md:mb-2 lg:mb-0" href="{{ course.get_absolute_url }}">Go to course
-                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14"></path>
-                        <path d="M12 5l7 7-7 7"></path>
-                        </svg>
-                    </a>
-                    <span class="text-gray-900 dark:text-white mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-300">
-                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                        </svg>1.2K
-                    </span>
-                    <span class="text-gray-900 dark:text-white inline-flex items-center leading-none text-sm">
-                        <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                        </svg>6
-                    </span>
+                
+                <div class="flex items-center space-x-3">
+                    <button type="button" title="Like post" class="flex items-center justify-center dark:text-white
+                    hover:bg-white hover:text-blue-500 hover:border hover:rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-facebook mt-1" viewBox="0 0 16 16">
+                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                            </svg>
+                    </button>
+                    
+                    <button type="button" title="Share post" class="flex items-center justify-center mt-2 text-gray-900 dark:text-white hover:bg-blue-500 hover:text-white hover:border hover:rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
+                            </svg>
+                    </button>
+                </div>
+
+
+
+
+            </div>
+            
+            <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden  lg:aspect-none">
+                <img
+                src="{{ course.thumbnail.url }}"
+                alt=""
+                class="aspect-square rounded-xl px-2 w-full object-cover transition duration-500 group-hover:scale-105 "
+                />
+            </div>
+            <div class="relative p-3">
+                <h1 class="text-2xl font-base text-gray-900 dark:text-white mt-2">
+                    {{ course.name|title|truncatechars:26  }}
+                </h1>
+            
+                
+            
+                <div class="flex flex-wrap justify-between mt-2">
+                <div class="flex items-center text-sm text-gray-900 dark:text-white">
+                    <span>Since : 6 min ago</span>
+                </div>
+
+                <div class="flex space-x-2 text-sm text-gray-900 dark:text-white">
+                    <button type="button" class="flex items-center p-1 space-x-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
+                            <path d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1H4.98zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374L3.81.563zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
+                            </svg>
+                        <span class='ml-2'>$30k</span>
+                    </button>
+                    <span class='border-r-2 border-gray-300' ></span>
+                    <button type="button" class="flex items-center p-1 space-x-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                            <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                            </svg>
+                        <span class='ml-2'>28k</span>
+                    </button>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+            </div>
+        </a> 
+        {% endfor %}  
     </div>
 </div>
-  
+
+
+
+
+
+
 
 {% endblock content %}

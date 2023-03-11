@@ -21,6 +21,7 @@ DJANGO_APPS = [
 ]
 THIRD_PARTY_APPS = [
     "crispy_forms",
+    "crispy_tailwind", 
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -161,3 +162,4 @@ AWS_DEFAULT_ACL=None
 # local
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # end local
+TAILWIND_MODE='watch'

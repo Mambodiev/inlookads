@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.db.models.signals import pre_save, post_save
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
 from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
@@ -34,7 +35,8 @@ class Course(models.Model):
     name = models.CharField(max_length=100)
     slug = models.SlugField(unique=True)
     thumbnail = models.ImageField(upload_to="thumbnails/")
-    description = models.TextField()
+    call_to_action = RichTextUploadingField(blank=True, null=True,)
+    description = RichTextUploadingField(blank=True, null=True,)
 
     def __str__(self):
         return self.name
@@ -48,7 +50,8 @@ class Video(models.Model):
     vimeo_id = models.CharField(max_length=50)
     title = models.CharField(max_length=150)
     slug = models.SlugField(unique=True)
-    description = models.TextField()
+    call_to_action = RichTextUploadingField(blank=True, null=True,)
+    description = RichTextUploadingField(blank=True, null=True,)
     order = models.IntegerField(default=1)
 
     class Meta:
