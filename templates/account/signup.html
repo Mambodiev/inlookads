@@ -8,17 +8,17 @@
 <div class="flex items-center justify-center px-4 py-12 my-4 sm:px-6 lg:px-8">
   <div class="w-full max-w-md space-y-8">
     <div>
-        <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900">
+        <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900 dark:text-white">
             {% trans "Create your account" %}
         </h2>
-        <p class="mt-2 text-sm text-center text-indigo-900">
+        <p class="mt-2 text-sm text-center text-green-500">
           Or
-          <a href="{% url 'account_login' %}" class="font-medium text-white-600 hover:text-white-500">
+          <a href="{% url 'account_login' %}" class="font-medium text-green-600 hover:text-green-700">
               login if you have one already.
           </a>
       </p>
     </div>
-    <form class="mt-8 space-y-6" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    <form class="mt-8 space-y-6 text-gray-900  dark:text-white" id="signup_form" method="post" action="{% url 'account_signup' %}">
       {% csrf_token %}
 
       {{ form|crispy }}
@@ -29,7 +29,7 @@
 
       <div>
           <button type="submit"
-                  class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-900 border border-transparent border-solid rounded-md group hover:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900">
+                  class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-green-500 border border-transparent border-solid rounded-md group hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
               <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg class="w-5 h-5 text-white-500 group-hover:text-white-400"
                         xmlns="http://www.w3.org/2000/svg"

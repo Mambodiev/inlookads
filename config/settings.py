@@ -146,6 +146,10 @@ AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SITE_ID = 1
 
+CRISPY_TEMPLATE_PACK = "tailwind"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+
 TAILWIND_APP_NAME = 'theme'
 
 AWS_S3_ACCESS_KEY_ID=env('AWS_S3_ACCESS_KEY_ID')

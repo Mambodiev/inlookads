@@ -216,7 +216,7 @@
     <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
          lg:grid-cols-3  xl:gap-x-8">
         {% for course in object_list %}
-        <a href="#" class="group relative block overflow-hidden shadow-lg shadow-green-500/50  rounded-md hover:border-t-8 hover:border-r-8 hover:border-green-500">
+        <div class="group relative block overflow-hidden shadow-lg shadow-green-500/50  rounded-md hover:border-t-8 hover:border-r-8 hover:border-green-500">
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
                     <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-8 h-8 rounded-md shadow-sm dark:bg-gray-500 dark:border-gray-700">
@@ -240,26 +240,20 @@
                             </svg>
                     </button>
                 </div>
-
-
-
-
             </div>
-            
             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden  lg:aspect-none">
                 <img
                 src="{{ course.thumbnail.url }}"
                 alt=""
-                class="aspect-square rounded-xl px-2 w-full object-cover transition duration-500 group-hover:scale-105 "
+                class="aspect-square rounded-xl  w-full object-cover transition duration-500 group-hover:scale-105 "
                 />
             </div>
             <div class="relative p-3">
-                <h1 class="text-2xl font-base text-gray-900 dark:text-white mt-2">
-                    {{ course.name|title|truncatechars:26  }}
-                </h1>
-            
-                
-            
+                <a class="" href="{{ course.get_absolute_url }}">
+                    <h1 class="text-2xl font-base text-gray-900 dark:text-white mt-2">
+                        {{ course.name|title|truncatechars:26  }}
+                    </h1>
+                </a>
                 <div class="flex flex-wrap justify-between mt-2">
                 <div class="flex items-center text-sm text-gray-900 dark:text-white">
                     <span>Since : 6 min ago</span>
@@ -282,7 +276,7 @@
                 </div>
             </div>
             </div>
-        </a> 
+        </div> 
         {% endfor %}  
     </div>
 </div>
