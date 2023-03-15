@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="mx-auto max-w-screen-xl px-4 sm:pt-24 pt-16 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-screen-xl px-6 pt-32">
     <div class="mt-2 sm:flex sm:items-center sm:justify-between">
         <div class="block sm:hidden">
             <button
@@ -221,8 +221,9 @@
                 <div class="flex items-center space-x-2">
                     <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-8 h-8 rounded-md shadow-sm dark:bg-gray-500 dark:border-gray-700">
                     <div class="-space-y-1">
-                        <h2 class="text-sm font-semibold leading-none text-gray-900 dark:text-white">leroy_jenkins72</h2>
-                        <span class="inline-block text-xs leading-none text-gray-900 dark:text-white">Somewhere</span>
+                        <h2 class="text-lg text-gray-900 dark:text-white">leroy_jenkins72</h2>
+                        {% comment %} <span class="inline-block text-xs leading-none text-gray-900 dark:text-white">Somewhere</span> {% endcomment %}
+                        <span class='text-base text-gray-900 dark:text-white'>Since : 6 min ago</span>
                     </div>
                 </div>
                 
@@ -235,8 +236,8 @@
                     </button>
                     
                     <button type="button" title="Share post" class="flex items-center justify-center mt-2 text-gray-900 dark:text-white hover:bg-blue-500 hover:text-white hover:border hover:rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bookmark-plus-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zm6.5-11a.5.5 0 0 0-1 0V6H6a.5.5 0 0 0 0 1h1.5v1.5a.5.5 0 0 0 1 0V7H10a.5.5 0 0 0 0-1H8.5V4.5z"/>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                             </svg>
                     </button>
                 </div>
@@ -248,38 +249,42 @@
                 class="aspect-square rounded-xl  w-full object-cover transition duration-500 group-hover:scale-105 "
                 />
             </div>
-            <div class="relative p-3">
+            <div class="relative p-3 text-center ">
                 <a class="" href="{{ course.get_absolute_url }}">
                     <h1 class="text-2xl font-base text-gray-900 dark:text-white mt-2">
                         {{ course.name|title|truncatechars:26  }}
                     </h1>
                 </a>
-                <div class="flex flex-wrap justify-between mt-2">
-                <div class="flex items-center text-sm text-gray-900 dark:text-white">
-                    <span>Since : 6 min ago</span>
-                </div>
+                {% comment %} <div class="flex flex-wrap justify-between mt-2">
+                    <div class="flex items-center text-sm text-gray-900 dark:text-white">
+                        <span class='text-lg'>Since : 6 min ago</span>
+                    </div>
+                    <div class="flex space-x-2 text-sm text-gray-900 dark:text-white">
+                         <span class='ml-2 text-lg p-1 space-x-1.5'>Sales $30k</span>
+                        <span class='border-r-2 border-gray-300' ></span>
+                        <span class='ml-2 text-lg p-1 space-x-1.5'>Likes 28k</span>
+                     </div>
+                </div> {% endcomment %}
 
-                <div class="flex space-x-2 text-sm text-gray-900 dark:text-white">
-                    <button type="button" class="flex items-center p-1 space-x-1.5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-inboxes-fill" viewBox="0 0 16 16">
-                            <path d="M4.98 1a.5.5 0 0 0-.39.188L1.54 5H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0A.5.5 0 0 1 10 5h4.46l-3.05-3.812A.5.5 0 0 0 11.02 1H4.98zM3.81.563A1.5 1.5 0 0 1 4.98 0h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 10H1.883A1.5 1.5 0 0 1 .394 8.686l-.39-3.124a.5.5 0 0 1 .106-.374L3.81.563zM.125 11.17A.5.5 0 0 1 .5 11H6a.5.5 0 0 1 .5.5 1.5 1.5 0 0 0 3 0 .5.5 0 0 1 .5-.5h5.5a.5.5 0 0 1 .496.562l-.39 3.124A1.5 1.5 0 0 1 14.117 16H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .121-.393z"/>
-                            </svg>
-                        <span class='ml-2'>$30k</span>
-                    </button>
-                    <span class='border-r-2 border-gray-300' ></span>
-                    <button type="button" class="flex items-center p-1 space-x-1.5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                            <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
-                            </svg>
-                        <span class='ml-2'>28k</span>
-                    </button>
-                </div>
-            </div>
+                    <div class="mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-3 text-gray-900 dark:text-white">
+                        <div class="flex flex-col justify-start m-2">
+                            <p class="text-xl">50k</p>
+                            <p class="text-sm sm:text-base">Likes</p>
+                        </div>
+                        <div class="flex flex-col justify-start m-2">
+                            <p class="text-xl">3k</p>
+                            <p class="text-sm sm:text-base">Views</p>
+                        </div>
+                        <div class="flex flex-col justify-start m-2">
+                            <p class="text-xl">$89K</p>
+                            <p class="text-sm sm:text-base">Sales</p>
+                        </div>
+                    </div>
             </div>
         </div> 
         {% endfor %}  
     </div>
-</div>
+ </div>
 
 
 
