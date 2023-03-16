@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div class="mx-auto max-w-screen-xl px-6 pt-32">
-    <div class="mt-2 sm:flex sm:items-center sm:justify-between">
+<div class="mx-auto max-w-screen-xl px-2 pt-24">
+    <div class="sm:flex sm:items-center sm:justify-between">
         <div class="block sm:hidden">
             <button
             class="flex cursor-pointer items-center gap-2  pb-1 text-gray-900 transition"
@@ -33,7 +33,7 @@
                 <summary
                 class="flex cursor-pointer items-center gap-2  pb-1 text-gray-900 transition hover:border-gray-600"
                 >
-                <span class="text-sm text-gray-900 dark:text-white"> Availability </span>
+                <span class=" text-gray-900 dark:text-white"> Availability </span>
 
                 <span class="transition group-open:-rotate-180 text-gray-900 dark:text-white">
                     <svg
@@ -58,11 +58,11 @@
                 >
                 <div class="w-96 rounded border border-gray-200 bg-white">
                     <header class="flex items-center justify-between p-4">
-                    <span class="text-sm text-gray-900 dark:text-white"> 0 Selected </span>
+                    <span class=" text-gray-900 dark:text-white"> 0 Selected </span>
 
                     <button
                         type="button"
-                        class="text-sm text-gray-900 dark:text-white underline underline-offset-4"
+                        class=" text-gray-900 dark:text-white underline underline-offset-4"
                     >
                         Reset
                     </button>
@@ -80,7 +80,7 @@
                             class="h-5 w-5 rounded border-gray-300"
                         />
 
-                        <span class="text-sm font-medium text-gray-900 dark:text-white">
+                        <span class=" font-medium text-gray-900 dark:text-white">
                             In Stock (5+)
                         </span>
                         </label>
@@ -97,7 +97,7 @@
                             class="h-5 w-5 rounded border-gray-300"
                         />
 
-                        <span class="text-sm font-medium text-gray-900 dark:text-white">
+                        <span class=" font-medium text-gray-900 dark:text-white">
                             Pre Order (3+)
                         </span>
                         </label>
@@ -114,7 +114,7 @@
                             class="h-5 w-5 rounded border-gray-300"
                         />
 
-                        <span class="text-sm text-gray-900 dark:text-white">
+                        <span class=" text-gray-900 dark:text-white">
                             Out of Stock (10+)
                         </span>
                         </label>
@@ -130,7 +130,7 @@
                 <summary
                 class="flex cursor-pointer items-center gap-2 pb-1 text-gray-900 transition hover:border-gray-600"
                 >
-                <span class="text-sm text-gray-900 dark:text-white"> Price </span>
+                <span class=" text-gray-900 dark:text-white"> Price </span>
 
                 <span class="transition group-open:-rotate-180 text-gray-900 dark:text-white">
                     <svg
@@ -155,13 +155,13 @@
                 >
                 <div class="w-96 rounded border border-gray-200 bg-white">
                     <header class="flex items-center justify-between p-4">
-                    <span class="text-sm text-gray-900 dark:text-white">
+                    <span class=" text-gray-900 dark:text-white">
                         The highest price is $600
                     </span>
 
                     <button
                         type="button"
-                        class="text-sm text-gray-900 dark:text-white underline underline-offset-4"
+                        class=" text-gray-900 dark:text-white underline underline-offset-4"
                     >
                         Reset
                     </button>
@@ -173,24 +173,24 @@
                         for="FilterPriceFrom"
                         class="flex items-center gap-2"
                         >
-                        <span class="text-sm text-gray-900 dark:text-white">$</span>
+                        <span class=" text-gray-900 dark:text-white">$</span>
 
                         <input
                             type="number"
                             id="FilterPriceFrom"
                             placeholder="From"
-                            class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                            class="w-full rounded-md border-gray-200 shadow-sm sm:"
                         />
                         </label>
 
                         <label for="FilterPriceTo" class="flex items-center gap-2">
-                        <span class="text-sm text-gray-900 dark:text-white">$</span>
+                        <span class=" text-gray-900 dark:text-white">$</span>
 
                         <input
                             type="number"
                             id="FilterPriceTo"
                             placeholder="To"
-                            class="w-full rounded-md border-gray-200 shadow-sm sm:text-sm"
+                            class="w-full rounded-md border-gray-200 shadow-sm sm:"
                         />
                         </label>
                     </div>
@@ -204,7 +204,7 @@
         <div class="hidden sm:block">
             <label for="SortBy" class="sr-only">SortBy</label>
 
-            <select id="SortBy" class="h-10 rounded dark:bg-gray-900 dark:border-gray-900 dark:text-white border-white text-sm">
+            <select id="SortBy" class="h-10 rounded dark:bg-gray-900 dark:border-gray-900 dark:text-white border-white ">
             <option>Sort By</option>
             <option value="Title, DESC">Title, DESC</option>
             <option value="Title, ASC">Title, ASC</option>
@@ -214,15 +214,14 @@
         </div>
     </div>
     <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
-         lg:grid-cols-3  xl:gap-x-8">
+            lg:grid-cols-3  xl:gap-x-8">
         {% for course in object_list %}
-        <div class="group relative block overflow-hidden shadow-lg shadow-green-500/50  rounded-md hover:border-t-8 hover:border-r-8 hover:border-green-500">
+        <div class="group relative block overflow-hidden shadow-sm shadow-green-500/50  rounded-md">
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
                     <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-8 h-8 rounded-md shadow-sm dark:bg-gray-500 dark:border-gray-700">
                     <div class="-space-y-1">
                         <h2 class="text-lg text-gray-900 dark:text-white">leroy_jenkins72</h2>
-                        {% comment %} <span class="inline-block text-xs leading-none text-gray-900 dark:text-white">Somewhere</span> {% endcomment %}
                         <span class='text-base text-gray-900 dark:text-white'>Since : 6 min ago</span>
                     </div>
                 </div>
@@ -242,11 +241,11 @@
                     </button>
                 </div>
             </div>
-            <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden  lg:aspect-none">
+            <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden  lg:aspect-none px-3">
                 <img
                 src="{{ course.thumbnail.url }}"
                 alt=""
-                class="aspect-square rounded-xl  w-full object-cover transition duration-500 group-hover:scale-105 "
+                class="aspect-square rounded-xl  w-full object-cover transition duration-500 group-hover:scale-105"
                 />
             </div>
             <div class="relative p-3 text-center ">
@@ -256,35 +255,35 @@
                     </h1>
                 </a>
                 {% comment %} <div class="flex flex-wrap justify-between mt-2">
-                    <div class="flex items-center text-sm text-gray-900 dark:text-white">
+                    <div class="flex items-center  text-gray-900 dark:text-white">
                         <span class='text-lg'>Since : 6 min ago</span>
                     </div>
-                    <div class="flex space-x-2 text-sm text-gray-900 dark:text-white">
-                         <span class='ml-2 text-lg p-1 space-x-1.5'>Sales $30k</span>
+                    <div class="flex space-x-2  text-gray-900 dark:text-white">
+                            <span class='ml-2 text-lg p-1 space-x-1.5'>Sales $30k</span>
                         <span class='border-r-2 border-gray-300' ></span>
                         <span class='ml-2 text-lg p-1 space-x-1.5'>Likes 28k</span>
-                     </div>
+                        </div>
                 </div> {% endcomment %}
 
                     <div class="mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-3 text-gray-900 dark:text-white">
                         <div class="flex flex-col justify-start m-2">
-                            <p class="text-xl">50k</p>
-                            <p class="text-sm sm:text-base">Likes</p>
+                            <p class="text-2xl">50k</p>
+                            <p class="">Likes</p>
                         </div>
                         <div class="flex flex-col justify-start m-2">
-                            <p class="text-xl">3k</p>
-                            <p class="text-sm sm:text-base">Views</p>
+                            <p class="text-2xl">3k</p>
+                            <p class="">Views</p>
                         </div>
                         <div class="flex flex-col justify-start m-2">
-                            <p class="text-xl">$89K</p>
-                            <p class="text-sm sm:text-base">Sales</p>
+                            <p class="text-2xl">$89K</p>
+                            <p class="">Sales</p>
                         </div>
                     </div>
             </div>
         </div> 
         {% endfor %}  
     </div>
- </div>
+</div>
 
 
 
