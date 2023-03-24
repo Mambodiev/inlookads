@@ -1,13 +1,21 @@
-
-.alert-debug {
-  color: black;
-  background-color: white;
-  border-color: #d6e9c6;
-}
-
-.alert-error {
-  color: #b94a48;
-  background-color: #f2dede;
-  border-color: #eed3d7;
-}
-
+      /* Dropdown Content (Hidden by Default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+         min-width: 160px;
+         z-index: 1;
+        right: 0;
+      }
+      
+      /* Links inside the dropdown */
+      .dropdown-content a {
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      
+    
+      /* Show the dropdown menu on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }

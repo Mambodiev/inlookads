@@ -3,6 +3,8 @@
 {% block content %}
 
 <div class="mx-auto max-w-screen-xl px-2 pt-24">
+    
+    {% comment %} filter {% endcomment %}
     <div class="sm:flex sm:items-center sm:justify-between">
         <div class="block sm:hidden">
             <button
@@ -213,10 +215,12 @@
             </select>
         </div>
     </div>
+    {% comment %} end filter {% endcomment %}
+
     <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
             lg:grid-cols-3  xl:gap-x-8">
         {% for course in object_list %}
-        <div class="group relative block overflow-hidden shadow-sm shadow-green-500/50  rounded-md">
+        <div class="group relative block overflow-hidden shadow-lg shadow-green-500/50  rounded-md">
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
                     <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-8 h-8 rounded-md shadow-sm dark:bg-gray-500 dark:border-gray-700">
@@ -229,13 +233,14 @@
                 <div class="flex items-center space-x-3">
                     <button type="button" title="Like post" class="flex items-center justify-center dark:text-white
                     hover:bg-white hover:text-blue-500 hover:border hover:rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-facebook mt-1" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-facebook " viewBox="0 0 16 16">
                                 <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
                             </svg>
                     </button>
                     
-                    <button type="button" title="Share post" class="flex items-center justify-center mt-2 text-gray-900 dark:text-white hover:bg-blue-500 hover:text-white hover:border hover:rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                    <button type="button" title="Share post" class="flex items-center justify-center dark:text-white
+                    hover:bg-green-500 hover:text-white hover:border hover:rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                             </svg>
                     </button>

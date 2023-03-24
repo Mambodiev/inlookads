@@ -1,236 +1,132 @@
+<style>
 
-<nav class="bg-white   dark:bg-gray-900 fixed w-full z-20 top-0 left-0 shadow-sm shadow-green-500/50">
+</style>
+
+
+<nav class="shadow-sm shadow-green-500/50">
     <div class="mx-auto max-w-screen-xl p-2">
-        <div class="flex flex-wrap items-center justify-between mx-auto">
-            <a href="{% url 'content:course-list' %}" class="flex items-center ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-suit-diamond-fill dark:text-white" viewBox="0 0 16 16">
-                    <path d="M2.45 7.4 7.2 1.067a1 1 0 0 1 1.6 0L13.55 7.4a1 1 0 0 1 0 1.2L8.8 14.933a1 1 0 0 1-1.6 0L2.45 8.6a1 1 0 0 1 0-1.2z"/>
-                </svg>
-                <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Inlookads</span>
-            </a>
-            <div class="flex md:order-2">
-                
-                {% comment %} toggle dark and light mode {% endcomment %}
-                <button id="theme-toggle" type="button" class="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2.5">
-                    <svg id="theme-toggle-dark-icon" 
-                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill hidden" viewBox="0 0 16 16">
-                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-                    </svg>
-                    <svg id="theme-toggle-light-icon" 
-                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sun-fill hidden" viewBox="0 0 16 16">
-                        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-                    </svg>
-                </button>
-                {% comment %} end toggle dark and light mode {% endcomment %}
-
-                {% if user.is_authenticated %}
-                {% comment %} <div class="group inline-block relative">
-                    <button class="items-center block px-5 py-2 text-base font-medium text-center text-white bg-green-500 rounded-xl hover:bg-green-700 inline-flex items-center">
-                        <span class='mr-2' >{{user.username}}</span>
-                        <svg
-                        class="fill-current h-4 w-4"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        >
-                            <path
-                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                            />
-                        </svg>
+        <div class="flex justify-between ...">
+            {% comment %} Mobile menu button {% endcomment %}
+                <div class="flex items-center md:hidden">
+                    <button type="button" id="toggle-menu-button" 
+                        class="inline-flex items-center justify-center rounded-md  text-gray-900 " aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Toggle Menu</span>
+                            <div id="open" class="h-5 flex flex-col items-end justify-between">
+                                <span class="block h-0.5 w-8 bg-gray-900 dark:bg-white rounded-full"></span>
+                                <span class="block h-0.5 w-6 mr-2 bg-gray-900 dark:bg-white rounded-full"></span>
+                                <span class="block h-0.5 w-8 bg-gray-900 dark:bg-white rounded-full"></span>
+                            </div>
+                            <div  id="close" class="hidden h-7 flex flex-col items-end justify-between">
+                                <span class="block h-0.5 w-8 bg-gray-900 dark:bg-white  rounded-full origin-left transform rotate-45 translate-y-0.5"></span>
+                                <span class="block h-0.5 w-8 bg-gray-900 dark:bg-white  rounded-full origin-left transform -rotate-45 -translate-y-0.5"></span>
+                            </div>
                     </button>
-                    <ul class="absolute hidden text-gray-900 pt-1 group-hover:block">
-                    <li class="">
-                        <a
-                        class="rounded-t bg-gray-200 hover:bg-bg-indigo-800 py-2 hover:text-white px-4 block whitespace-no-wrap"
-                        href="#"
-                        >{{user.email}}</a
-                        >
-                    </li>
-                    <li class="">
-                        <a
-                        class="bg-gray-200 hover:bg-bg-indigo-800 hover:text-white py-2 px-4 block whitespace-no-wrap"
-                        href="#"
-                        >Mon ticket</a
-                        >
-                    </li>
-                    <li class="">
-                        <a
-                        class="rounded-b bg-gray-200 hover:bg-bg-indigo-800 hover:text-white py-2 px-4 block whitespace-no-wrap"
-                        href="{% url 'account_logout' %}"
-                        >Se deconnecter</a
-                        >
-                    </li>
-                    </ul>
-                </div>  {% endcomment %}
-
-                {% comment %} Use is user.is_authenticated {% endcomment %}
-                <div class="inline-block">
-                    <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="text-white px-1.5 ml-4 py-1.5 text-center inline-flex items-center border border-green-500  rounded-full" type="button">
-                         <span class='text-lg rounded-full bg-green-500 px-1.5'>U</span>
-                        <svg class="w-6 h-6 text-gray-900 dark:text-white" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </div>
+            {% comment %} Mobile menu button {% endcomment %}
+            
+            {% comment %} logo {% endcomment %}
+                <div>
+                    <a href="{% url 'content:course-list' %}" class="flex items-center mt-1.5 ">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-suit-diamond-fill text-green-500" viewBox="0 0 16 16">
+                        <path d="M2.45 7.4 7.2 1.067a1 1 0 0 1 1.6 0L13.55 7.4a1 1 0 0 1 0 1.2L8.8 14.933a1 1 0 0 1-1.6 0L2.45 8.6a1 1 0 0 1 0-1.2z"/>
                         </svg>
-                    </button>
-                     <div id="dropdownInformation" class="z-10 hidden bg-white divide-y divide-green-500 rounded-lg shadow  dark:bg-gray-700 dark:divide-green-500">
-                    
-                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                        <div>{{user.username}}</div>
-                        <div class="font-medium truncate">{{user.email}}</div>
-                        </div>
-                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                        </li>
-                        <li>
-                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                        </li>
-                        </ul>
-                        <div class="py-2">
-                        <a href="{% url 'account_logout' %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-                        </div>
+                         <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Icompeti</span>
+                    </a>
+                </div>
+            {% comment %} end logo {% endcomment %}
+
+            {% comment %} desktop menu links {% endcomment %}
+                <div class="hidden md:ml-6 md:block">
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-900 dark:text-white rounded-md px-3 py-2 text-lg hover:bg-green-500 hover-text-white font-medium" aria-current="page">Dashboard </a>
+            
+                        <a href="#" class="text-gray-900 hover:bg-green-500 dark:text-white hover:text-white rounded-md px-3 py-2 text-lg hover:bg-green-500 hover-text-white font-medium">Team</a>
+            
+                        <a href="#" class="text-gray-900 hover:bg-green-500 dark:text-white hover:text-white rounded-md px-3 py-2 text-lg hover:bg-green-500 hover-text-white font-medium">Projects</a>
+            
+                        <a href="#" class="text-gray-900 hover:bg-green-500 dark:text-white hover:text-white rounded-md px-3 py-2 text-lg hover:bg-green-500 hover-text-white font-medium">Calendar</a>
                     </div>
                 </div>
-                {% comment %} end Use is user.is_authenticated {% endcomment %} 
+             {% comment %} desktop menu links {% endcomment %}
+            
+            {% comment %} dark toggle, heart, my accoun icons {% endcomment %}
+                <div>
+                    {% comment %} toggle dark and light mode {% endcomment %}
+                        <button id="theme-toggle" type="button" class="text-gray-900 dark:text-white  rounded-lg p-2 mx-2">
+                            <svg id="theme-toggle-dark-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-moon-stars hidden" viewBox="0 0 16 16">
+                                <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
+                                <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+                            </svg>
+                            <svg id="theme-toggle-light-icon" 
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sun-fill hidden" viewBox="0 0 16 16">
+                                <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                            </svg>
+                        </button>
+                    {% comment %} end toggle dark and light mode {% endcomment %}
+                    
+                    {% comment %} heart save Products {% endcomment %}
+                        <button type="button" class="rounded-full p-1 text-gray-900 dark:text-white  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                            </svg> 
+                        </button>
+                    {% comment %} end heart save Products {% endcomment %}
 
-                {% else %}
-                {% comment %} login and signup for unauthenticated user {% endcomment %}
-                <a href="{% url 'account_login' %}">
-                    <button type="button" class="shadow-sm shadow-green-500/50 hover:bg-green-500 hover:text-white dark:text-white font-medium rounded-lg text-lg px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block text-gray-900">Login</button>
-                </a>
-                <a href="{% url 'account_signup' %}">
-                    <button type="button" class="text-white bg-green-500 hover:bg-green-700 font-medium rounded-lg text-lg px-5 ml-4 py-2 text-center mr-3 md:mr-0 dark:bg-green-500 hidden sm:block">Sign up</button>
-                {% comment %} </a>login and signup for unauthenticated user {% endcomment %}
-                {% endif %}
-                
+                    {% comment %} my account dropdown  {% endcomment %}
+                        <div class="dropdown inline-block relative">
+                            <button type="button" class="rounded-full p-1 text-gray-900 dark:text-white  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                            </button>
+                            <div class="dropdown-content bg-white">
+                            <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">Link 1</a>
+                            <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">Link 2</a>
+                            <a href="{% url 'account_logout' %}" class="hover:bg-green-500 text-gray-900 hover:text-white">Sign out</a>
+                            </div>
+                        </div>
+                    {% comment %} end my account dropdown  {% endcomment %}
+                </div>
+            {% comment %} dark toggle, heart, my account icons {% endcomment %}
 
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center text-sm text-gray-900 rounded-lg md:hidden hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="navbar-sticky" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-list dark:text-white" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-            <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                <a href="{% url 'content:course-list' %}" class="block py-2 pl-3 pr-4 dark:text-white hover:text-green-700 text-gray-900 dark:hover:text-green-500 rounded md:p-0 text-lg" aria-current="page">Products</a>
-                </li>
-                <li>
-                    <a href="{% url 'content:course-list' %}" class="block py-2 pl-3 pr-4 dark:text-white hover:text-green-700 text-gray-900 dark:hover:text-green-500 rounded md:p-0 text-lg" aria-current="page">Services</a>
-                </li>
-                <li>
-                    <a href="{% url 'content:course-list' %}" class="block py-2 pl-3 pr-4 dark:text-white hover:text-green-700 text-gray-900 dark:hover:text-green-500 rounded md:p-0 text-lg" aria-current="page">Pricing</a>
-                </li>
-                <li>
-                    <a href="{% url 'content:course-list' %}" class="block py-2 pl-3 pr-4 dark:text-white hover:text-green-700 text-gray-900 dark:hover:text-green-500 rounded md:p-0 text-lg" aria-current="page">Contact</a>
-                </li>
-            </ul>
-            </div>
+            
         </div>
     </div>
+    {% comment %} Mobile menu, show/hide based on menu state {% endcomment %}
+        <div class="hidden" id="toggle-menu">
+            <div class="space-y-1 px-2 pt-2 pb-3">
+                <a href="#" class="text-gray-900 dark:text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
+
+                <a href="#" class="text-gray-900 dark:text-white hover:bg-green-500 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
+
+                <a href="#" class="text-gray-900 dark:text-white hover:bg-green-500 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
+
+                <a href="#" class="text-gray-900 dark:text-white hover:bg-green-500 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+            </div>
+        </div>
+    {% comment %} Mobile menu, show/hide based on menu state {% endcomment %}
 </nav>
   
 
 
+   
+  
+  
+{% block javascript %}
+    <script>
+        // mobile menu
+        var button = document.querySelector('#toggle-menu-button');
+        var menu = document.querySelector('#toggle-menu');
+        var open = document.querySelector('#open');
+        var close = document.querySelector('#close');
 
+        button.addEventListener('click', (e)=>{
+        menu.classList.toggle('hidden');
+        open.classList.toggle('hidden');
+        close.classList.toggle('hidden');
+        });
 
-
-
-  {% comment %} <nav id="header" class="w-full z-30 top-0 py-1">
-    <div class="mx-auto max-w-screen-xl px-4 sm:px-6 py-3 lg:px-8 flex flex-wrap items-center justify-between">
-
-        <label for="menu-toggle" class="cursor-pointer md:hidden block">
-            <svg class="fill-current ttext-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                <title>menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-            </svg>
-        </label>
-        <input class="hidden" type="checkbox" id="menu-toggle" />
-
-        <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-2" id="menu">
-            <nav>
-                <ul class="md:flex items-center justify-between pt-4 md:pt-0">
-                    <li>
-                        <a class="inline-block no-underline hover:no-underline font-medium dark:text-white hover:bg-green-500 hover:text-white dark:hover:bg-green-500 hover:text-white block px-5 py-2 font-medium text-gray-900 rounded-lg" href="{% url 'content:course-list' %}">
-                            Product
-                        </a>
-                    </li>
-                    <li>
-                        <a class="inline-block no-underline hover:no-underline font-medium dark:text-white hover:bg-green-500 hover:text-white text-gray-900 dark:hover:bg-green-500 hover:text-white block px-5 py-2  rounded-lg" href="#">
-                            Pricing
-                        </a>
-                    </li>
-                    <li>
-                        <a class="inline-block no-underline hover:no-underline font-medium dark:text-white hover:bg-green-500 hover:text-white dark:hover:bg-green-500 hover:text-white block px-5 py-2 text-gray-900 rounded-lg" href="#">
-                            Enroll
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="order-1 md:order-1">
-            <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-900 dark:text-white hover:bg-green-500 hover:text-white dark:hover:bg-green-500 hover:text-white text-lg px-5 py-2  rounded-lg" href="{% url 'content:course-list' %}">
-                inlookads
-            </a>
-        </div>
-
-        <div class="order-2 md:order-3 flex items-center" id="nav-content">
-
-            <a class="inline-block no-underline" href="">
-                <button id="theme-toggle" type="button" class="text-gray-900 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
-                    <svg id="theme-toggle-dark-icon" 
-                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill hidden" viewBox="0 0 16 16">
-                        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-                        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-                    </svg>
-                  
-                    <svg id="theme-toggle-light-icon" 
-                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sun-fill hidden" viewBox="0 0 16 16">
-                        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-                    </svg>
-                </button>
-            </a>  
-            <a class="hidden sm:block inline-block text-gray-900 rounded-lg dark:text-white border border-green-500 hover:bg-green-500  hover:text-white px-5 py-2 text-sm font-medium  ml-2" href="#">
-                Login
-            </a>
-            <a class="hidden sm:block inline-block  text-white rounded-lg bg-green-500 hover:border hover:border-green-500 hover:bg-gray-900 px-5 py-2 text-sm font-medium  ml-2" href="#">
-                Sign up
-            </a>
-            <div class="sm:hidden inline-block">
-                <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation" class="dark:text-white text-gray-900 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill-lock" viewBox="0 0 16 16">
-                    <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5v-1a1.9 1.9 0 0 1 .01-.2 4.49 4.49 0 0 1 1.534-3.693C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm7 0a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2Zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z"/>
-                    </svg>
-                    <svg class="w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-
-                <div id="dropdownInformation" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                    <div>Bonnie Green</div>
-                    <div class="font-medium truncate">name@flowbite.com</div>
-                    </div>
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-                    </li>
-                    </ul>
-                    <div class="py-2">
-                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-  </nav>  {% endcomment %}
-
-
+        // profil user
+    </script>
+{% endblock %}
