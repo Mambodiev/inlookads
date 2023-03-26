@@ -111,10 +111,10 @@
     <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
             lg:grid-cols-3  xl:gap-x-8">
         {% for course in object_list %}
-        <div class="group relative block overflow-hidden shadow-lg shadow-green-500/50  ">
+        <div class="group relative block overflow-hidden shadow shadow-green-500/50  rounded-lg">
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
-                    <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-8 h-8 rounded-md shadow-sm dark:bg-gray-500 dark:border-gray-700">
+                    <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-12 h-12  rounded-lg">
                     <div class="-space-y-1">
                         <h2 class="text-lg text-gray-900 dark:text-white">leroy_jenkins72</h2>
                         <span class='text-base text-gray-900 dark:text-white'>Since : 6 min ago</span>
@@ -141,7 +141,7 @@
                 <img
                 src="{{ course.thumbnail.url }}"
                 alt=""
-                class="aspect-square rounded-xl  w-full object-cover transition duration-500 group-hover:scale-105"
+                class="aspect-square rounded-lg  w-full object-cover"
                 />
             </div>
             <div class="relative px-3 text-center ">
@@ -150,31 +150,23 @@
                         {{ course.name|title|truncatechars:26  }}
                     </h1>
                 </a>
-                {% comment %} <div class="flex flex-wrap justify-between mt-2">
-                    <div class="flex items-center  text-gray-900 dark:text-white">
-                        <span class='text-lg'>Since : 6 min ago</span>
+                <div class="grid text-center grid-cols-3 text-gray-900 dark:text-white gap-2 mb-4">
+                    <div class="flex shadow shadow-green-500/50 rounded-lg  flex-col justify-start p-2">
+                        <p class="text-2xl">50k</p>
+                        <p class="">Likes</p>
                     </div>
-                    <div class="flex space-x-2  text-gray-900 dark:text-white">
-                            <span class='ml-2 text-lg p-1 space-x-1.5'>Sales $30k</span>
-                        <span class='border-r-2 border-gray-300' ></span>
-                        <span class='ml-2 text-lg p-1 space-x-1.5'>Likes 28k</span>
-                        </div>
-                </div> {% endcomment %}
+                    <div class="flex shadow shadow-green-500/50 rounded-lg flex-col justify-start p-2">
+                        <p class="text-2xl">3k</p>
+                        <p class="">Views</p>
+                    </div>
+                    <div class="flex shadow shadow-green-500/50 rounded-lg flex-col justify-start p-2">
+                        <p class="text-2xl">$89K</p>
+                        <p class="">Sales</p>
+                    </div>
+                </div>
 
-                    <div class="mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-3 text-gray-900 dark:text-white">
-                        <div class="flex flex-col justify-start m-2">
-                            <p class="text-2xl">50k</p>
-                            <p class="">Likes</p>
-                        </div>
-                        <div class="flex flex-col justify-start m-2">
-                            <p class="text-2xl">3k</p>
-                            <p class="">Views</p>
-                        </div>
-                        <div class="flex flex-col justify-start m-2">
-                            <p class="text-2xl">$89K</p>
-                            <p class="">Sales</p>
-                        </div>
-                    </div>
+           
+            
             </div>
         </div> 
         {% endfor %}  
