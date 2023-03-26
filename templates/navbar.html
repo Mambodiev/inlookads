@@ -63,7 +63,7 @@
                             </svg>
                         </button>
                     {% comment %} end toggle dark and light mode {% endcomment %}
-                    
+                    {% if user.is_authenticated %}
                     {% comment %} heart save Products {% endcomment %}
                         <button type="button" class="rounded-full hover:bg-green-100 dark:hover:bg-green-700  bg-green-500 text-white  focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800  p-2 mx-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
@@ -81,11 +81,29 @@
                                 </svg>
                             </button>
                             <div class="dropdown-content bg-white">
-                            <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">Link 1</a>
-                            <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">Link 2</a>
+                            <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">
+                                {{user.email}}
+                            </a>
+                            <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">
+                                My account
+                            </a>
                             <a href="{% url 'account_logout' %}" class="hover:bg-green-500 text-gray-900 hover:text-white">Sign out</a>
                             </div>
                         </div>
+                    {% else %}
+                    <div class="dropdown inline-block relative">
+                        <button type="button" class="rounded-full hover:bg-green-100 dark:hover:bg-green-700  bg-green-500 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800  p-2 mx-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            </svg>
+                        </button>
+                        <div class="dropdown-content bg-white">
+                        <a href="{% url 'account_login' %}" class="hover:bg-green-500 text-gray-900 hover:text-white text-2xl">Login</a>
+                        <a href="{% url 'account_logout' %}" class="hover:bg-green-500 text-gray-900 hover:text-white text-2xl">Sign out</a>
+                        </div>
+                    </div>
+                    {% endif %}    
                     {% comment %} end my account dropdown  {% endcomment %}
                 </div>
             {% comment %} dark toggle, heart, my account icons {% endcomment %}

@@ -7,6 +7,7 @@ from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from allauth.account.signals import email_confirmed
 import stripe
+from  embed_video.fields  import  EmbedVideoField
 
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -17,6 +18,11 @@ class Pricing(models.Model):
 
     def __str__(self):
         return self.name
+
+class Meta:
+         verbose_name = ("Price")
+
+
 
 
 class Subscription(models.Model):
@@ -296,11 +302,12 @@ class Course(models.Model):
         ('ec-cube', 'EC-CUBE'),
     ]
    
-    store_domaine_url = models.CharField(max_length=1100,blank=False, unique=True)
+    shopify_url = models.CharField(max_length=1100,blank=False, unique=True)
     name = models.CharField(max_length=100)
     # description = models.TextField(blank=True, null=True)
     slug = models.SlugField(unique=True)
     thumbnail = models.ImageField(upload_to="thumbnails/", default='products/defaut_image_store_light_blue_bag.jpg')
+    product_video = EmbedVideoField(blank=True, null=True,)
     image_store = models.ImageField(upload_to="image_store/",default='products/defaut_image_store.png',
         blank=True)
     aliexpress_order = models.IntegerField(default=0, help_text = "Amount of aliexpress order generated")

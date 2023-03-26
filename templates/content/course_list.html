@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load embed_video_tags %}
 
 {% block content %}
 
@@ -137,13 +138,15 @@
                     </button>
                 </div>
             </div>
-            <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden  lg:aspect-none px-3">
+            {% comment %} <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden  lg:aspect-none px-3"> {% endcomment %}
                 <img
                 src="{{ course.thumbnail.url }}"
                 alt=""
                 class="aspect-square rounded-lg  w-full object-cover"
                 />
-            </div>
+
+                {% comment %} {% video course.product_video 'tiny' %} {% endcomment %}
+            {% comment %} </div> {% endcomment %}
             <div class="relative px-3 text-center ">
                 <a class="" href="{{ course.get_absolute_url }}">
                     <h1 class="text-2xl font-base text-gray-900 dark:text-white mt-2">

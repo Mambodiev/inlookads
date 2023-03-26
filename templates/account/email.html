@@ -1,23 +1,21 @@
 
 
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
 {% load i18n %}
 {% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
 {% load crispy_forms_tags %}
 
 
 {% block content %}
-
-<div class="flex items-center justify-center px-4 py-12 my-4 sm:px-6 lg:px-8">
-  <div class="w-full max-w-md space-y-8">
+  <div class="mx-auto max-w-screen-sm px-2 pt-6">
     <div>
-        <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900">
+        <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900 dark:text-white">
           {% trans "E-mail Addresses" %}
         </h2>
         
     </div>
     {% if user.emailaddress_set.all %}
-    <p class="mt-2 text-sm text-center text-gray-900">{% trans 'The following e-mail addresses are associated with your account:' %}</p>
+    <p class="mt-2 text-lg text-center text-gray-900 dark:text-white">{% trans 'The following e-mail addresses are associated with your account:' %}</p>
     
     <form action="{% url 'account_email' %}" class="email_list" method="post">
     {% csrf_token %}
@@ -31,11 +29,11 @@
     
     {{ emailaddress.email }}
         {% if emailaddress.verified %}
-        <span class="verified">{% trans "Verified" %}</span>
+        <span class="verified text-gray-900 dark:text-white">{% trans "Verified" %}</span>
         {% else %}
-        <span class="unverified">{% trans "Unverified" %}</span>
+        <span class="unverified text-gray-900 dark:text-white">{% trans "Unverified" %}</span>
         {% endif %}
-          {% if emailaddress.primary %}<span class="primary">{% trans "Primary" %}</span>{% endif %}
+          {% if emailaddress.primary %}<span class="primary text-gray-900 dark:text-white">{% trans "Primary" %}</span>{% endif %}
     </label>
     </div>
       {% endfor %}
@@ -43,19 +41,19 @@
     <div class="buttonHolder">
           <div class='mt-6'>
             <button type="submit"  name="action_primary" 
-                    class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    class="relative flex justify-center w-full px-4 py-2 text-lg font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                 {% trans 'Make Primary' %}
             </button>
           </div>
           <div class='mt-6'>
             <button type="submit"  name="action_send" 
-                    class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    class="relative flex justify-center w-full px-4 py-2 text-lg font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                     {% trans 'Re-send Verification' %}
             </button>
           </div>
           <div class='mt-6'>
             <button type="submit"  name="action_remove" 
-                    class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    class="relative flex justify-center w-full px-4 py-2 text-lg font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                     {% trans 'Remove' %}
             </button>
           </div>
@@ -77,14 +75,13 @@
             {{ form|crispy }}
             <div class='mt-6'>
               <button type="submit"  name="action_add" 
-                      class="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                      class="relative flex justify-center w-full px-4 py-2 text-lg font-medium text-white bg-red-600 border border-transparent border-solid rounded-md group hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                       {% trans 'Add E-mail' %}
               </button>
             </div>
         </form>
       {% endif %} 
   </div>
-</div>
 {% endblock %}
 
 {% block extra_body %}
