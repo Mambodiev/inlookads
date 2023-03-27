@@ -5,23 +5,22 @@
 {% block content %}
 {% load static i18n %}
 {% load cool_num %}
-  <div class="mx-auto max-w-screen-xl  p-6">
-    <div class="flex gap-4">
-      <div class="w-1/4 ...">
+   <div class="mx-auto max-w-screen-xl  p-6">
+    <div class="flex justify-between pb-4">
+      <h1 class="text-lg font-medium text-gray-900 dark:text-white ">
+        {{ object.name|title  }}
+      </h1>
+      <a href="{% url 'account_login' %}">
+        <button type="button" class="shadow-sm shadow-green-500/50 hover:bg-green-500 hover:text-white dark:text-white font-medium rounded-lg  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block text-gray-900">Save</button>
+      </a>
+  </div>
+    <div class="md:flex gap-4">
+      <div class="lg:w-1/3 w-full">
         <img src="{{ object.thumbnail.url }}" alt="" class="aspect-square rounded-lg w-full object-cover">
       </div>
-      <div class="w-3/4 ...">
+      <div class="lg:w-2/3 w-full">
 
-        <div class="flex justify-between pb-4">
-            <h1 class="text-lg text-gray-900 dark:text-white ">
-              {{ object.name }}
-            </h1>
-            <a href="{% url 'account_login' %}">
-              <button type="button" class="shadow-sm shadow-green-500/50 hover:bg-green-500 hover:text-white dark:text-white font-medium rounded-lg  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block text-gray-900">Save</button>
-            </a>
-        </div>
-
-        <div class="grid grid-cols-2 gap-2 md:grid-cols-4 shadow-sm shadow-green-500/50 rounded-lg">
+         <div class="grid grid-cols-2   gap-2  lg:grid-cols-4 shadow-sm shadow-green-500/50 rounded-lg">
             <div class="flex items-center gap-2 p-4">
               <span class="rounded-full bg-green-100 p-3 text-green-500">
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -160,6 +159,7 @@
   </div>  
   
 {% endblock content %}
+
 {% block javascript %}
   {% comment %} chart js scripts {% endcomment %}    
       <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
@@ -220,7 +220,7 @@
                       'rgba(153, 102, 255, 1)',
                       'rgba(255, 159, 64, 1)'
                   ],
-                  borderWidth: 1,
+                  borderWidth: 4,
                   fill: true,
                   //pointRadius: 0,
               }]
@@ -235,9 +235,9 @@
                 }],
                 yAxes: [{
                   display: true,
-                  gridLines: {
-                    display:false
-                }  
+                 // gridLines: {
+                  //  display:false
+                //}  
                 }]
                 
               },
