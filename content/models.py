@@ -378,6 +378,21 @@ class Course(models.Model):
         
         super().save(*args, **kwargs)
 
+
+class Sale(models.Model):
+
+
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    # month_name = models.CharField(max_length=50)
+    total_number_of_sale = models.IntegerField(blank=True, null=True, help_text = "")
+    time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-time']
+
+    def __str__(self):
+        return f' ({self.course.name}), {self.total_number_of_sale}'
+    
 class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='videos')
     vimeo_id = models.CharField(max_length=50)

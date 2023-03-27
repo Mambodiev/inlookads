@@ -3,6 +3,7 @@
 
 
 {% block content %}
+{% load static i18n %}
 {% load cool_num %}
   <div class="mx-auto max-w-screen-xl  p-6">
     <div class="flex gap-4">
@@ -123,7 +124,7 @@
           <ul id="tabs" class="inline-flex pt-2 px-1 w-full  shadow-sm shadow-green-500/50">
             <li class="bg-white dark:bg-gray-800 px-4
             text-gray-900 dark:text-white font-semibold py-2 rounded-t border-t border-r border-l border-green-500 -mb-px">
-              <a id="default-tab" href="#first">Tab 1</a>
+              <a id="default-tab" href="#first">Order Trend</a>
             </li>
             <li class="px-4 text-gray-900 dark:text-white 
               font-semibold py-2 rounded-t dark:bg-gray-800 border-green-500">
@@ -140,7 +141,7 @@
           <!-- Tab Contents -->
           <div id="tab-contents" class='text-gray-900 dark:text-white' >
             <div id="first" class="p-4">
-              First tab
+              <canvas id="myChart" ></canvas> 
             </div>
             <div id="second" class="hidden p-4">
               Second tab
@@ -160,33 +161,91 @@
   
 {% endblock content %}
 {% block javascript %}
+  {% comment %} chart js scripts {% endcomment %}    
+      <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static 'js/Chart-2.8.0.min.js' %}"></script>
+      <link  src="{% static 'css/Chart-2.8.0.min.css' %}"/>
+  {% comment %} end chart js scripts {% endcomment %}
   <script>
-    let tabsContainer = document.querySelector("#tabs");
+    {% comment %} tabs scripts {% endcomment %}
+      let tabsContainer = document.querySelector("#tabs");
+      let tabTogglers = tabsContainer.querySelectorAll("#tabs a");
+      console.log(tabTogglers);
+      tabTogglers.forEach(function(toggler) {
+        toggler.addEventListener("click", function(e) {
+          e.preventDefault();
 
-    let tabTogglers = tabsContainer.querySelectorAll("#tabs a");
+          let tabName = this.getAttribute("href");
 
-    console.log(tabTogglers);
+          let tabContents = document.querySelector("#tab-contents");
 
-    tabTogglers.forEach(function(toggler) {
-      toggler.addEventListener("click", function(e) {
-        e.preventDefault();
-
-        let tabName = this.getAttribute("href");
-
-        let tabContents = document.querySelector("#tab-contents");
-
-        for (let i = 0; i < tabContents.children.length; i++) {
-          
-          tabTogglers[i].parentElement.classList.remove("border-t", "border-r", "border-l", "-mb-px", "bg-white");  tabContents.children[i].classList.remove("hidden");
-          if ("#" + tabContents.children[i].id === tabName) {
-            continue;
+          for (let i = 0; i < tabContents.children.length; i++) {
+            
+            tabTogglers[i].parentElement.classList.remove("border-t", "border-r", "border-l", "-mb-px", "bg-white");  tabContents.children[i].classList.remove("hidden");
+            if ("#" + tabContents.children[i].id === tabName) {
+              continue;
+            }
+            tabContents.children[i].classList.add("hidden");
+            
           }
-          tabContents.children[i].classList.add("hidden");
-          
-        }
-        e.target.parentElement.classList.add("border-t", "border-r", "border-l", "-mb-px", "bg-white");
+          e.target.parentElement.classList.add("border-t", "border-r", "border-l", "-mb-px", "bg-white");
+        });
       });
-    });
+    {% comment %} tabs scripts {% endcomment %}
+
+    {% comment %} chart js script {% endcomment %} 
+      $(document).ready(function(){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+             // labels: [{% for sale in course.sale_set.all %}'',{%endfor%}],
+             labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+              datasets: [{
+                  label: '# sale chart',
+                  data: [{% for sale in course.sale_set.all %}{{sale.total_number_of_sale}},{%endfor%}],
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)', 
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1,
+                  fill: true,
+                  //pointRadius: 0,
+              }]
+          },
+          options: {
+              scales: {
+                xAxes: [{
+                  display: true,
+                  gridLines: {
+                    display:false
+                }
+                }],
+                yAxes: [{
+                  display: true,
+                  gridLines: {
+                    display:false
+                }  
+                }]
+                
+              },
+          },
+          
+        });
+      });
+    {% comment %} end chart js script {% endcomment %}
   </script>
 {% endblock javascript %}
 
