@@ -7,8 +7,7 @@ from django.shortcuts import reverse
 from django.contrib.auth import get_user_model
 from allauth.account.signals import email_confirmed
 import stripe
-from  embed_video.fields  import  EmbedVideoField
-
+ 
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
 User = get_user_model()
@@ -19,11 +18,8 @@ class Pricing(models.Model):
     def __str__(self):
         return self.name
 
-class Meta:
-         verbose_name = ("Price")
-
-
-
+    class Meta:
+        verbose_name = ("Price")
 
 class Subscription(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -50,6 +46,11 @@ class Subscription(models.Model):
 #     def get_absolute_url(self):
 #         return reverse("content:course-detail", kwargs={"slug": self.slug})
 
+class Store(models.Model):
+    name = models.CharField(max_length=100)    
+
+    def __str__(self):
+        return self.name 
 
 class Course(models.Model):
     option_ads = [
@@ -62,7 +63,6 @@ class Course(models.Model):
         ('photo', 'Photo'),
         ('both', 'Both'),
     ]
-
     gender_options = [
         ('male or Female', 'Male or Female'),
         ('male', 'Male'),
@@ -302,27 +302,24 @@ class Course(models.Model):
         ('ec-cube', 'EC-CUBE'),
     ]
    
-    shopify_url = models.CharField(max_length=1100,blank=False, unique=True)
-    name = models.CharField(max_length=100)
-    # description = models.TextField(blank=True, null=True)
-    slug = models.SlugField(unique=True)
-    thumbnail = models.ImageField(upload_to="thumbnails/", default='products/defaut_image_store_light_blue_bag.jpg')
-    product_video = EmbedVideoField(blank=True, null=True,)
-    image_store = models.ImageField(upload_to="image_store/",default='products/defaut_image_store.png',
+    name_of_store = models.ForeignKey(Store, related_name='store_name', blank=True, null=True, on_delete=models.CASCADE)
+    shopify_links = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
+    name_of_product = models.CharField(max_length=100)
+    shopify_price = models.IntegerField(default=0,blank=True, null=True, help_text = "Product price from shopify")
+    product_thumbnail = models.ImageField(upload_to="thumbnails/", default='products/defaut_image_store_light_blue_bag.jpg')
+    store_logo = models.ImageField(upload_to="image_store/",default='products/defaut_image_store.png',
         blank=True)
     aliexpress_order = models.IntegerField(default=0, help_text = "Amount of aliexpress order generated")
-    number_of_store_selling = models.IntegerField(default=0, help_text = "Amount of store selling the product")
-    number_of_suppliers_selling= models.IntegerField(default=0, help_text = "Amount of suppliers selling the product")
     aliexpress_total_sale = models.IntegerField(default=0, help_text = "Amount of aliexpress sale generated")
+    aliexpress_price = models.IntegerField(default=0, help_text = "Product price from aliexpress")
     likes = models.IntegerField(default=0, help_text = "Amount of likes generated")
     comment = models.IntegerField(default=0, help_text = "Amount of comment generated")
     views = models.IntegerField(default=0, help_text = "Amount of views generated")
-    shopify_price = models.IntegerField(default=0,blank=True, null=True, help_text = "Product price from shopify")
-    aliexpress_price = models.IntegerField(default=0, help_text = "Product price from aliexpress")
-    price_margin = models.IntegerField(default=0,blank=True, null=True, help_text = "Profit you get from this product")
-    product_vimeo_id = models.CharField(max_length=50, blank=True, null=True,) 
-    last_seen = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now_add=False)
+    links_to_ads = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to ads")
+    text_that_comes_with_ads = RichTextUploadingField(blank=True, null=True)
+    number_of_store_selling = models.IntegerField(default=0, help_text = "Amount of store selling the product")
+    number_of_suppliers_selling= models.IntegerField(default=0, help_text = "Amount of suppliers selling the product")
+    ads_run_since = models.DateTimeField(auto_now_add=False)
     countries = models.CharField(max_length=100, choices=country_choices, default='United States')
     ads_type = models.CharField(max_length=250, choices=option_ads_type, default='Video')
     media_type = models.CharField(max_length=250, choices=option_ads, default='video')
@@ -330,15 +327,16 @@ class Course(models.Model):
     technology = models.CharField(max_length=250, choices=technology_options, default='Shopify')
     language= models.CharField(max_length=250, choices=option_language, default='English')
     button = models.CharField(max_length=250, choices=option_button, default='Buy Now')
-    store_name = models.CharField(max_length=500, help_text = "store or ads name",  blank=True, null=True,)
-    links_to_ads = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to ads")
-    links_to_a_single_store = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
-    text_that_comes_with_ads = RichTextUploadingField(blank=True, null=True)
     links_to_others_stores = RichTextUploadingField(blank=True, null=True,help_text = "A link that will take to the store", )
     links_to_others_suppliers = RichTextUploadingField(blank=True, null=True,)
     is_faceBook = models.BooleanField(default=True)
     is_pinterest = models.BooleanField(default=False)
     is_tiktok = models.BooleanField(default=False)
+    slug = models.SlugField(unique=True)
+    price_margin = models.IntegerField(default=0,blank=True, null=True, help_text = "Profit you get from this product")
+    date_we_found = models.DateTimeField(auto_now_add=True)
+
+
     
 
     # def get_absolute_url(self):
@@ -366,7 +364,7 @@ class Course(models.Model):
         return url
 
     def __str__(self):
-        return f'{self.name} (${self.aliexpress_price})' 
+        return f'{self.name_of_product} (${self.aliexpress_price})' 
     
 
     def save(self, *args, **kwargs):

@@ -117,10 +117,10 @@
         <div class="group relative block overflow-hidden rounded-lg shadow-lg">
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
-                    <img src="{{ course.thumbnail.url }}" alt="" class="object-cover object-center w-10 h-10  rounded-lg">
+                    <img src="{{ course.store_logo.url }}" alt="" class="object-cover object-center w-10 h-10  rounded-lg">
                     <div class="-space-y-1">
                         <h2 class="text-lg text-gray-900 dark:text-white">leroy_jenkins72</h2>
-                        <span class='text-base text-gray-900 dark:text-white'>Created : {{ course.created_at|timesince    }} ago</span>
+                        <span class='text-base text-gray-900 dark:text-white'>Created : {{ course.ads_run_since|timesince    }} ago</span>
                     </div>
                 </div>
                 
@@ -162,7 +162,7 @@
             </div>
             <div class="px-3">
                 <img
-                src="{{ course.thumbnail.url }}"
+                src="{{ course.product_thumbnail.url }}"
                 alt=""
                 class="aspect-square rounded-lg  w-full object-cover"
                 />
@@ -171,7 +171,7 @@
             <div class="relative px-3 text-center ">
                 <a class="" href="{{ course.get_absolute_url }}">
                     <h1 class="text-lg font-medium text-gray-900 dark:text-white mt-2">
-                        {{ course.name|title|truncatechars:26  }}
+                        {{ course.name_of_product|title|truncatechars:26  }}
                     </h1>
                 </a>
                 <div class="grid grid-cols-3 text-gray-900 dark:text-white gap-2 ">
