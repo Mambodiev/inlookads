@@ -322,7 +322,7 @@ class Course(models.Model):
     price_margin = models.IntegerField(default=0,blank=True, null=True, help_text = "Profit you get from this product")
     product_vimeo_id = models.CharField(max_length=50, blank=True, null=True,) 
     last_seen = models.DateTimeField(auto_now_add=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=False)
     countries = models.CharField(max_length=100, choices=country_choices, default='United States')
     ads_type = models.CharField(max_length=250, choices=option_ads_type, default='Video')
     media_type = models.CharField(max_length=250, choices=option_ads, default='video')
@@ -337,7 +337,7 @@ class Course(models.Model):
     links_to_others_stores = RichTextUploadingField(blank=True, null=True,help_text = "A link that will take to the store", )
     links_to_others_suppliers = RichTextUploadingField(blank=True, null=True,)
     is_faceBook = models.BooleanField(default=True)
-    is_instagram = models.BooleanField(default=False)
+    is_pinterest = models.BooleanField(default=False)
     is_tiktok = models.BooleanField(default=False)
     
 
