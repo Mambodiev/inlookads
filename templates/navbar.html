@@ -9,6 +9,7 @@
             </a>
         {% comment %} end logo {% endcomment %}
         <div class="flex md:order-2 gap-4">
+            
             {% comment %} toggle dark and light mode {% endcomment %}
                 <button id="theme-toggle" type="button" class="hover:bg-green-100 dark:hover:bg-green-700    dark:text-white rounded-full p-2 mx-2">
                 <svg id="theme-toggle-dark-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-moon-stars hidden" viewBox="0 0 16 16">
@@ -36,6 +37,12 @@
                         </a>
                         <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">
                             My account
+                        </a>
+                        <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">
+                            {{ user.date_joined|timesince}} ago
+                        </a>
+                        <a href="#" class="hover:bg-green-500 text-gray-900 hover:text-white">
+                            {% comment %} {% user_display user %} {% endcomment %}
                         </a>
                         <a href="{% url 'account_logout' %}" class="hover:bg-green-500 text-gray-900 hover:text-white">Sign out</a>
                     </div>
@@ -79,7 +86,7 @@
             </ul>
         </div>
     </div>
-  </nav>
+</nav>
   
 
    

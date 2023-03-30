@@ -1,4 +1,25 @@
-{% extends "socialaccount/base.html" %}
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Social Network Login Failure" %}{% endblock %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+   <div class="mx-auto max-w-screen-sm px-2  pt-24">
+        <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900 dark:text-white">
+            {% trans "Social Network Login Failure" %}
+        </h2>
+        <p class="mt-6 text-center text-lg text-gray-900 dark:text-white">
+            {% trans "An error occurred while attempting to login via your social network account." %}
+        </p>
+      
+  </div>
+{% endblock content %}
+
+
+
+
+{% comment %} {% extends "socialaccount/base.html" %}
 
 {% load i18n %}
 
@@ -8,4 +29,4 @@
 <h1>{% trans "Social Network Login Failure" %}</h1>
 
 <p>{% trans "An error occurred while attempting to login via your social network account." %}</p>
-{% endblock %}
+{% endblock %} {% endcomment %}

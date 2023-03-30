@@ -37,7 +37,8 @@ THIRD_PARTY_APPS = [
     'storages',
     'tailwind',
     'theme',
-    'embed_video',
+    # 'embed_video',
+    'allauth.socialaccount.providers.google',
 ]
 
 INTERNAL_IPS = [
@@ -129,7 +130,6 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 ADMIN_URL = "admin/"
-SITE_ID = 1
 DJANGO_WYSIWYG_FLAVOR = "ckeditor"
 CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 CKEDITOR_RESTRICT_BY_USER = True
@@ -145,7 +145,7 @@ CKEDITOR_CONFIGS = {
 }
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-SITE_ID = 1
+SITE_ID = 2
 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
@@ -172,6 +172,25 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
 
+# Additional configuration google authentication settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+
 
 
 
@@ -191,3 +210,6 @@ ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # end local
 TAILWIND_MODE='watch'
+
+
+

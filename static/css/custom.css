@@ -20,5 +20,8 @@
         display: block;
       }
 
-
+/* keep footer down */
+#content {
+  min-height: calc(100vh - 40px);
+}
 

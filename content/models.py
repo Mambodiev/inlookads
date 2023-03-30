@@ -332,6 +332,8 @@ class Course(models.Model):
     is_faceBook = models.BooleanField(default=True)
     is_pinterest = models.BooleanField(default=False)
     is_tiktok = models.BooleanField(default=False)
+    has_video = models.BooleanField(default=True)
+    has_photo = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
     price_margin = models.IntegerField(default=0,blank=True, null=True, help_text = "Profit you get from this product")
     date_we_found = models.DateTimeField(auto_now_add=True)

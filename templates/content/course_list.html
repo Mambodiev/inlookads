@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% load embed_video_tags %}
-{% load rmv_hours_from_timesince_tags %}
+ {% load rmv_hours_from_timesince_tags %}
 {% load cool_num %}
 
 {% block content %}
-
 <div class="mx-auto max-w-screen-xl px-2  pt-24">
+<div class="container">
+
     
     {% comment %} filter {% endcomment %}
     <div class="sm:flex sm:items-center sm:justify-between">
@@ -117,10 +117,9 @@
         <div class="group relative block overflow-hidden rounded-lg shadow-lg">
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
-                    <img src="{{ course.store_logo.url }}" alt="" class="object-cover object-center w-10 h-10  rounded-lg">
                     <div class="-space-y-1">
-                        <h2 class="text-lg text-gray-900 dark:text-white">leroy_jenkins72</h2>
-                        <span class='text-base text-gray-900 dark:text-white'>Created : {{ course.ads_run_since|timesince    }} ago</span>
+                        <h2 class="text-lg text-gray-900 dark:text-white">{{ course.name_of_store|title}}</h2>
+                        <span class='text-base text-gray-900 dark:text-white'>Created : {{ course.ads_run_since|timesince}} ago</span>
                     </div>
                 </div>
                 
@@ -137,8 +136,8 @@
                     {% endif %}
                     {% if course.is_tiktok %}
                         <button type="button" title="Like post" 
-                            class="flex items-center justify-center text-gray-900 hover:text-white 
-                            bg-gradient-to-r from-[#EE1D52] from-10% via-[#69C9D0] via-30% from-10% via-[#69C9D0] via-30%  to-[#EE1D52] to-90% rounded-md">
+                            class="flex items-center justify-center hover:bg-white hover:text-[#ff0050] text-white
+                            bg-[#ff0050] rounded-md">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
                             <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/>
                             </svg>
@@ -160,7 +159,15 @@
                     
                 </div>
             </div>
-            <div class="px-3">
+            <div class="p-3 flex items-center justify-center">
+                {% if course.has_video %}
+                    <button
+                        class="absolute bg-gray-800 bg-opacity-30 hover:bg-opacity-30 p-4 rounded-full text-white hover:bg-white hover:text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                            <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                        </svg>
+                    </button>
+                {% endif %}
                 <img
                 src="{{ course.product_thumbnail.url }}"
                 alt=""
@@ -202,7 +209,7 @@
                     </div>
                 </div>
                 <button type="button" class="text-white bg-green-500 
-                    hover:bg-greeen-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 text-lg mt-2">
+                    hover:bg-white font-medium rounded-lg text-lg px-5 py-2.5 text-center inline-flex items-center mr-2 hover:border-4 hover:border-green-500  hover:text-gray-900 text-lg my-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart-fill mr-2" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                     </svg>
@@ -216,7 +223,7 @@
         {% endfor %}  
     </div>
 </div>
-
+</div>
 
 
 
