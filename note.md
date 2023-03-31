@@ -1,9 +1,10 @@
 
+
+source env/bin/activate
+python3 manage.py tailwind start
+
 source env/bin/activate
 python3 manage.py runserver 
-
-
-python3 manage.py tailwind start
 
 
 python manage.py makemigrations    

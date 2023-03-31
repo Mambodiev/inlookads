@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
 {% load i18n %}
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 {% load crispy_forms_tags %}
@@ -6,84 +6,81 @@
 
 
 {% block content %}
-   <div class="mx-auto max-w-screen-sm px-2  pt-24">
-    <div>
-        <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900 dark:text-white">
-            {% trans "Sign In" %}
-        </h2>
-        <p class="mt-6 text-center text-lg text-gray-900 dark:text-white">
-          Or
-          {% blocktrans %} Don't have an account yet?
-          Sign Up Now</a>{% endblocktrans %}
-        </p>
-    </div>
-    <form class="mt-8 space-y-6 text-gray-900 dark:text-white" id="signup_form" method="post" action="{% url 'account_login' %}">
-      {% csrf_token %}
-
-      {{ form|crispy }}
-
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <p class="mt-2 text-lg text-center text-green-500">
-        <a href="{% url 'account_reset_password' %}" class="font-medium text-green-500 hover:text-green-500">
-          {% trans "Forgot Password?" %}
-        </a>
-      </p>
+   <div class="mx-auto max-w-screen-sm px-2 pb-6 pt-24">
       <div>
-          <button type="submit"
-                  class="relative flex justify-center w-full px-4 py-2 text-lg font-medium text-white bg-green-500 border border-transparent border-solid rounded-md group hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900">
-              <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <svg class="w-5 h-5 text-white-500 group-hover:text-white-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true">
-                      <path fill-rule="evenodd"
-                            d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                            clip-rule="evenodd"/>
-                  </svg>
-              </span>
+          <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900 dark:text-white">
               {% trans "Sign In" %}
-          </button>
+          </h2>
+          <p class="mt-6 text-center text-lg text-gray-900 dark:text-white">
+            Or
+            {% blocktrans %} Don't have an account yet?
+            Sign Up Now</a>{% endblocktrans %}
+          </p>
       </div>
-    </form>
+      <form class="mt-8 space-y-6 text-gray-900 dark:text-white" id="signup_form" method="post" action="{% url 'account_login' %}">
+        {% csrf_token %}
 
- 
-    
-    <div class="mt-6">
-        <div class="relative my-4">
-          <div class="absolute inset-0 flex items-center">
-              <div class="w-full border-t border-gray-300"></div>
-          </div>
-          <div class="relative flex justify-center text-sm">
-              <span class="px-2 text-neutral-600 bg-white"> Or continue with </span>
-          </div>
-        </div>
-        <div>
-          <a href="{% provider_login_url 'google' %}">
-            <button type="submit" class="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 dark:text-white transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
-                <div class="flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" viewBox="0 0 48 48">
-                        <defs>
-                            <path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"></path>
-                        </defs>
-                        <clipPath id="b">
-                            <use xlink:href="#a" overflow="visible"></use>
-                        </clipPath>
-                        <path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"></path>
-                        <path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"></path>
-                        <path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
-                        <path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
-                    </svg>
-                    <span class="ml-4"> Log in with Google</span>
-                </div>
-            </button>
+        {{ form|crispy }}
+
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <p class="mt-2 text-lg text-center text-green-500">
+          <a href="{% url 'account_reset_password' %}" class="font-medium text-green-500 hover:text-green-500">
+            {% trans "Forgot Password?" %}
           </a>
+        </p>
+        <div>
+            <button type="submit"
+                    class="relative flex justify-center w-full px-4 py-2 text-lg font-medium text-white bg-green-500 border border-transparent border-solid rounded-md group hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-900">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <svg class="w-5 h-5 text-white-500 group-hover:text-white-400"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                          aria-hidden="true">
+                        <path fill-rule="evenodd"
+                              d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </span>
+                {% trans "Sign In" %}
+            </button>
         </div>
-    </div>
-
-  </div>
+        
+      </form>
+      <div class="mt-6">
+          <div class="relative my-4">
+            <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+                <span class="px-2 text-neutral-600 bg-white"> Or continue with </span>
+            </div>
+          </div>
+          <div>
+            <a href="{% provider_login_url 'google' %}">
+              <button type="submit" class="w-full items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 dark:text-white ease-in-out transform border-2 border-gray-900 dark:border-white shadow-md rounded-xl ">
+                  <div class="flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="w-6 h-6" viewBox="0 0 48 48">
+                          <defs>
+                              <path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"></path>
+                          </defs>
+                          <clipPath id="b">
+                              <use xlink:href="#a" overflow="visible"></use>
+                          </clipPath>
+                          <path clip-path="url(#b)" fill="#FBBC05" d="M0 37V11l17 13z"></path>
+                          <path clip-path="url(#b)" fill="#EA4335" d="M0 11l17 13 7-6.1L48 14V0H0z"></path>
+                          <path clip-path="url(#b)" fill="#34A853" d="M0 37l30-23 7.9 1L48 0v48H0z"></path>
+                          <path clip-path="url(#b)" fill="#4285F4" d="M48 48L17 24l-4-3 35-10z"></path>
+                      </svg>
+                      <span class="ml-4"> Log in with Google</span>
+                  </div>
+              </button>
+            </a>
+          </div>
+      </div>
+   </div>
 
 
 
@@ -92,7 +89,7 @@
 
 
 
-{% comment %} {% extends "pages/base.html" %}
+{% comment %} {% extends "base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 

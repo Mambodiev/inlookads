@@ -1,13 +1,10 @@
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
  {% load rmv_hours_from_timesince_tags %}
 {% load cool_num %}
 
 {% block content %}
-<div class="mx-auto max-w-screen-xl px-2  pt-24">
-<div class="container">
-
-    
-    {% comment %} filter {% endcomment %}
+ <div class="  mx-auto max-w-screen-xl px-2  pt-24">
+      {% comment %} filter {% endcomment %}
     <div class="sm:flex sm:items-center sm:justify-between">
         <div class=" ">
             <p class="text-2xl text-gray-900 dark:text-white">Over <strong class=""> {{ object_list|length }}</strong> products</p>
@@ -223,8 +220,7 @@
         {% endfor %}  
     </div>
 </div>
-</div>
-
+ 
 
 
 

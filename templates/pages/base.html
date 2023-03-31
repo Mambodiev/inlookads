@@ -13,76 +13,13 @@
     <meta name="author" content="Matthew Freire">
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
     {% block css %}
-      <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+      <link href="{% static 'css/flowbite.min.css' %}" rel="stylesheet" />
      {% tailwind_css %}
 
      <link href="{% static 'css/custom.css' %}" rel="stylesheet">
 
     {% endblock %}
-    <style>
-
-      .text-lg {
-        font-size: 1.125rem!important;
-        /* line-height: 1.75rem; */
-      }
-      .work-sans {
-          font-family: 'Work Sans', sans-serif;
-      }
-              
-      #menu-toggle:checked + #menu {
-          display: block;
-      }
-      
-      .hover\:grow {
-          transition: all 0.3s;
-          transform: scale(1);
-      }
-      
-      .hover\:grow:hover {
-          transform: scale(1.02);
-      }
-      
-      .carousel-open:checked + .carousel-item {
-          position: static;
-          opacity: 100;
-      }
-      
-      .carousel-item {
-          -webkit-transition: opacity 0.6s ease-out;
-          transition: opacity 0.6s ease-out;
-      }
-      
-      #carousel-1:checked ~ .control-1,
-      #carousel-2:checked ~ .control-2,
-      #carousel-3:checked ~ .control-3 {
-          display: block;
-      }
-      
-      .carousel-indicators {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          position: absolute;
-          bottom: 2%;
-          left: 0;
-          right: 0;
-          text-align: center;
-          z-index: 10;
-      }
-      
-      #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
-      #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
-      #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
-          color: #000;
-          /*Set to match the Tailwind colour you want the active one to be */
-      }
-    {% comment %} mobile profile toogleuser {% endcomment %}
-    #menu-toggle:checked + #menu_profile {
-        display: block;
-    }
-    {% comment %} mobile profile toogleuser {% endcomment %}
-      
-    </style>
+     
     <script>
       // On page load or when changing themes, best to add inline in `head` to avoid FOUC
       if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -96,7 +33,7 @@
 
   <body class="bg-white dark:bg-gray-900">
 
-    {% include 'navbar.html' %}
+    {% include 'pages/navbar.html' %}
 
     {% if messages %}
     {% for message in messages %}

@@ -3,6 +3,44 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Course, Video
 from .mixins import CoursePermissionMixin
+from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404, reverse
+from .forms import ContactForm 
+from django.conf import settings
+from django.contrib import messages
+from django.utils.translation import gettext as _
+
+
+class ContactView(generic.FormView):
+    form_class = ContactForm
+    template_name = 'pages/contact.html'
+
+    def get_success_url(self):
+        return reverse("content:course-list")
+
+    def form_valid(self, form):
+        messages.info(
+            self.request, "Thanks for getting in touch. We have received your message.")
+        name = form.cleaned_data.get(_('name'))
+        email = form.cleaned_data.get(_('email'))
+        message = form.cleaned_data.get(_('message'))
+
+        full_message = f"""
+            Received message below from {name}, {email}
+            ________________________
+
+
+            {message}
+            """
+        send_mail(
+            subject="Received contact form submission",
+            message=full_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.NOTIFY_EMAIL]
+        )
+        return super(ContactView, self).form_valid(form)
+
+
 
 class CourseListView(generic.ListView):
     template_name = "content/course_list.html"
