@@ -2,12 +2,14 @@
 {% block content %}
 {% load static i18n %}
 {% load cool_num %}
+{% load crispy_forms_tags %}
+
 
    <div class="mx-auto max-w-screen-xl pt-24">
       <div class="flex justify-between pb-4">
           <div>
               <h1 class="text-lg font-medium text-gray-900 dark:text-white ">
-                 {{ object.name_of_product|title  }}
+                 {{ course.name_of_product|title  }}
               </h1>
           </div>
           <div class='flex gap-4'>
@@ -20,14 +22,16 @@
               <a href="{% url 'account_login' %}">
                 <button type="button" class="border-4 border-green-500 hover:bg-green-500 hover:text-white dark:text-white font-medium rounded-full  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block text-gray-900 text-lg">Aliexpress</button>
               </a>
-              <a href="{% url 'account_login' %}">
-                  <button type="button" class="border-4 border-green-500 hover:bg-green-500 hover:text-white dark:text-white font-medium rounded-full  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block text-gray-900">Add to favorites</button>
-              </a>
+              <form method="POST">
+                  {% csrf_token %}
+                   {{ form|crispy }} 
+                  <button type="submit" class="border-4 border-green-500 hover:bg-green-500 hover:text-white dark:text-white font-medium rounded-full  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block text-gray-900">Add to favorites</button>
+              </form>
           </div>
       </div>
       <div class="md:flex gap-4">
         <div class="lg:w-1/3 w-full">
-            <img src="{{ object.product_thumbnail.url }}" alt="" class="rounded-lg w-full object-cover">
+            <img src="{{ course.product_thumbnail.url }}" alt="" class="rounded-lg w-full object-cover">
         </div>
         <div class="lg:w-2/3 w-full">
 
@@ -40,7 +44,7 @@
                   </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-900 dark:text-white"> {{ object.likes|cool_num }}</p>
+                  <p class="text-2xl font-medium text-gray-900 dark:text-white"> {{ course.likes|cool_num }}</p>
 
                   <p class=" text-gray-500 dark:text-white">Likes</p>
                 </div>
@@ -53,7 +57,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-900 dark:text-white">{{ object.comment|cool_num }}</p>
+                  <p class="text-2xl font-medium text-gray-900 dark:text-white">{{ course.comment|cool_num }}</p>
                   <p class=" text-gray-500 dark:text-white">Comments</p>
                 </div>
               </div>
@@ -66,7 +70,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-900 dark:text-white">{{ object.views|cool_num }}</p>
+                  <p class="text-2xl font-medium text-gray-900 dark:text-white">{{ course.views|cool_num }}</p>
 
                   <p class=" text-gray-500 dark:text-white">Views</p>
                 </div>
@@ -79,7 +83,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ object.aliexpress_total_sale|cool_num }}</p>
+                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ course.aliexpress_total_sale|cool_num }}</p>
 
                   <p class=" text-gray-500 dark:text-white">Sales</p>
                 </div>
@@ -93,7 +97,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ object.get_margin }}</p>
+                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ course.get_margin }}</p>
 
                   <p class=" text-gray-500 dark:text-white">Profits</p>
                 </div>
@@ -109,7 +113,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ object.get_shopify }}</p>
+                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ course.get_shopify }}</p>
 
                   <p class=" text-gray-500 dark:text-white">Price</p>
                 </div>
@@ -122,7 +126,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ object.get_aliexpres }}</p>
+                  <p class="text-2xl font-medium text-gray-900 dark:text-white">${{ course.get_aliexpres }}</p>
 
                   <p class=" text-gray-500 dark:text-white">Cost</p>
                 </div>

@@ -1,14 +1,14 @@
 from django.views import generic
-from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import get_object_or_404, reverse
 from .models import Course, Video
 from .mixins import CoursePermissionMixin
 from django.core.mail import send_mail
-from django.shortcuts import get_object_or_404, reverse
-from .forms import ContactForm 
+from .forms import ContactForm, AddToCartForm
 from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import gettext as _
+from .utils import get_or_set_order_session
 
 
 class ContactView(generic.FormView):
@@ -47,9 +47,47 @@ class CourseListView(generic.ListView):
     queryset = Course.objects.all()
 
 
-class CourseDetailView(generic.DetailView):
+class CourseDetailView(generic.FormView):
     template_name = "content/course_detail.html"
-    queryset = Course.objects.all()
+    form_class = AddToCartForm
+
+
+    def get_object(self):
+            return get_object_or_404(Course, slug=self.kwargs["slug"])
+
+    def get_success_url(self):
+        return reverse("content:course-list")
+
+    def get_form_kwargs(self):
+        kwargs = super(CourseDetailView, self).get_form_kwargs()
+        kwargs["course_id"] = self.get_object().id
+        return kwargs
+
+    def form_valid(self, form):
+        order = get_or_set_order_session(self.request)
+        course = self.get_object()
+
+        item_filter = order.items.filter(
+            course=course
+         )
+
+        if item_filter.exists():
+            item = item_filter.first()
+            item.quantity += int(form.cleaned_data['quantity'])
+            item.save()
+
+        else:
+            new_item = form.save(commit=False)
+            new_item.course = course
+            new_item.order = order
+            new_item.save()
+
+        return super(CourseDetailView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(CourseDetailView, self).get_context_data(**kwargs)
+        context['course'] = self.get_object()
+        return context
 
 
 class VideoDetailView(LoginRequiredMixin, generic.DetailView):
@@ -75,3 +113,6 @@ class VideoDetailView(LoginRequiredMixin, generic.DetailView):
     def get_queryset(self):
         course = self.get_course()
         return course.videos.all()
+
+
+    

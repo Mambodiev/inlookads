@@ -19,5 +19,5 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "google account authentification"
+git commit -m "contact page added"
 git push
