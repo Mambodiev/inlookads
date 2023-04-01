@@ -1,7 +1,8 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, reverse
-from .models import Course, Video
+from django.shortcuts import get_object_or_404, reverse, redirect, render
+from .models import Course, Video, OrderItem
 from .mixins import CoursePermissionMixin
 from django.core.mail import send_mail
 from .forms import ContactForm, AddToCartForm
@@ -9,6 +10,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from .utils import get_or_set_order_session
+from django.urls import reverse_lazy
 
 
 class ContactView(generic.FormView):
@@ -56,7 +58,11 @@ class CourseDetailView(generic.FormView):
             return get_object_or_404(Course, slug=self.kwargs["slug"])
 
     def get_success_url(self):
-        return reverse("content:course-list")
+        return reverse("content:saved-product")
+ 
+    
+    
+
 
     def get_form_kwargs(self):
         kwargs = super(CourseDetailView, self).get_form_kwargs()
@@ -83,6 +89,7 @@ class CourseDetailView(generic.FormView):
             new_item.save()
 
         return super(CourseDetailView, self).form_valid(form)
+   
 
     def get_context_data(self, **kwargs):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
@@ -115,4 +122,17 @@ class VideoDetailView(LoginRequiredMixin, generic.DetailView):
         return course.videos.all()
 
 
-    
+class SavedProductView(generic.TemplateView):
+    template_name = "content/saved_product.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(SavedProductView, self).get_context_data(**kwargs)
+        context["order"] = get_or_set_order_session(self.request)
+        return context
+
+
+class RemoveFromSavedView(generic.View):
+    def get(self, request, *args, **kwargs):
+        order_item = get_object_or_404(OrderItem, id=kwargs['pk'])
+        order_item.delete()
+        return redirect("content:saved-product")

@@ -29,6 +29,10 @@
 
 /* keep footer down */
 #content {
-  min-height: calc(100vh - 40px);
+  min-height: calc(100vh - 100px);
 }
 
+/*hide qty from to show up*/
+#div_id_quantity {
+  display: none!important;
+}

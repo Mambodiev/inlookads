@@ -1,11 +1,14 @@
- <nav class="bg-white p-2 sm:px-4 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+{% load cart_template_tags %}
+
+
+<nav class="bg-white p-2 sm:px-4 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
     <div class="mx-auto max-w-screen-xl flex flex-wrap items-center justify-between">
         {% comment %} logo {% endcomment %}
             <a href="{% url 'content:course-list' %}" class="flex items-center dark:text-white hover:text-gray-500">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-suit-diamond-fill mr-3" viewBox="0 0 16 16">
                     <path d="M2.45 7.4 7.2 1.067a1 1 0 0 1 1.6 0L13.55 7.4a1 1 0 0 1 0 1.2L8.8 14.933a1 1 0 0 1-1.6 0L2.45 8.6a1 1 0 0 1 0-1.2z"/>
                 </svg>
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:text-gray-500">Icompeti</span>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white hover:text-gray-500 hidden sm:block">Icompeti</span>
             </a>
         {% comment %} end logo {% endcomment %}
         <div class="flex md:order-2 gap-4">
@@ -26,11 +29,19 @@
             {% if user.is_authenticated %}
 
               {% comment %} saved object.name_of_product icon {% endcomment %}
-                <button id="theme-toggle" type="button" class="hover:bg-green-100 dark:hover:bg-green-700 dark:text-white rounded-full p-2 ">
+                {% comment %} <button id="theme-toggle" type="button" class="hover:bg-green-100 dark:hover:bg-green-700 dark:text-white rounded-full p-2 ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                       <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                     </svg>
+                </button> {% endcomment %}
+            <a href="{% url 'content:saved-product' %}">
+                <button type="button" class="relative inline-flex items-center p-2 text-sm font-medium text-center text-white bg-green-500 rounded-full hover:bg-green-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                      <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                    </svg>
+                  <div class="absolute inline-flex items-center justify-center w-6 h-6 text-lg font-bold text-white bg-red-500  rounded-full -top-2 -right-2 ">{{ request|cart_item_count}}</div>
                 </button>
+            </a>
             {% comment %} end saved object.name_of_product icon {% endcomment %}
 
             {% comment %} my account dropdown  {% endcomment %}
