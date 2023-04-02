@@ -19,5 +19,5 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "partially added addd to cart or add to favorite functionality "
+git commit -m "satar adding other features on product detail"
 git push

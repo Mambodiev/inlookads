@@ -1,4 +1,3 @@
-
 import os
 import environ
 env = environ.Env()
@@ -140,7 +139,8 @@ CKEDITOR_RESTRICT_BY_DATE = True
 CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': None,
+        'toolbar': 'none',
+        'height': 100,
     },
 }
 AUTH_USER_MODEL = 'users.User'
@@ -210,6 +210,3 @@ SOCIALACCOUNT_PROVIDERS = {
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # end local
 TAILWIND_MODE='watch'
-
-
-

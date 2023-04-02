@@ -315,7 +315,7 @@ class Course(models.Model):
     likes = models.IntegerField(default=0, help_text = "Amount of likes generated")
     comment = models.IntegerField(default=0, help_text = "Amount of comment generated")
     views = models.IntegerField(default=0, help_text = "Amount of views generated")
-    links_to_ads = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to ads")
+    links_to_ads = RichTextUploadingField(blank=True, null=True,  help_text = "A link that will take to ads")
     text_that_comes_with_ads = RichTextUploadingField(blank=True, null=True)
     number_of_store_selling = models.IntegerField(default=0, help_text = "Amount of store selling the product")
     number_of_suppliers_selling= models.IntegerField(default=0, help_text = "Amount of suppliers selling the product")
@@ -502,3 +502,4 @@ email_confirmed.connect(post_email_confirmed)
 
 pre_save.connect(pre_save_course, sender=Course)
 pre_save.connect(pre_save_video, sender=Video)
+
