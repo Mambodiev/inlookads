@@ -21,6 +21,23 @@
   display: block;
 }
 
+/*competition meter*/
+.outer {
+  position: relative;
+  width: 300px;
+  height: 200px;
+}
+canvas {
+  position: absolute;
+}
+.percent {
+ position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 80px;
+    bottom: 0;
+}
+
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {

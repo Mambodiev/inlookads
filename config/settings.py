@@ -140,9 +140,10 @@ CKEDITOR_IMAGE_BACKEND = "pillow"
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'none',
-        'height': 100,
+        # 'height': 100,
     },
 }
+
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SITE_ID = 2
