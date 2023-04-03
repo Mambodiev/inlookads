@@ -214,20 +214,20 @@
                   </svg>
               </span>
 
-              <div class="mt-4 md:mx-4 md:mt-0">
+              <div class="mt-4 md:mx-4 md:mt-0 w-full">
                   <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white">Competition</h1>
 
-                  <p class="mt-3 text-gray-900 dark:text-gray-300">
+                  <div class="mt-3 text-gray-900 dark:text-gray-300">
                       
                     <div class="flex justify-between mb-1">
-                      <span class="text-base font-medium text-blue-700 dark:text-white">Low</span>
-                      <span class="text-sm font-medium text-blue-700 dark:text-white">45%</span>
+                      <span class="text-base font-medium text-blue-700 dark:text-white text-xl">Low</span>
+                      <span class="text-xl font-medium text-blue-700 dark:text-white">45%</span>
                     </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                      <div class="bg-blue-600 h-2.5 rounded-full" style="width: 45%"></div>
+                    <div class="w-full bg-gray-200 rounded-md h-8 dark:bg-gray-700">
+                      <div class="bg-blue-600 h-8 rounded-md" style="width: 45%"></div>
                     </div>
 
-                  </p>
+                  </div>
               </div>
           </div>
       </div>
@@ -243,7 +243,7 @@
               <div class="mt-4 md:mx-4 md:mt-0">
                   <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white">Store links</h1>
 
-                  <div class="text-gray-900 dark:text-white">
+                  <div class="text-gray-900 dark:text-white ">
                         {{ course.links_to_others_stores|safe  }}
                   </div>
               </div>

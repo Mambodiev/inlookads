@@ -5,110 +5,35 @@
     {% comment %} filter {% endcomment %}
         <div class="sm:flex sm:items-center sm:justify-between">
             <div class=" ">
-                <p class="text-2xl text-gray-900 dark:text-white">Over <strong class=""> {{ object_list|length }}</strong> products</p>
+                <p class="text-2xl text-gray-900 dark:text-white">Over <strong class=""> {{ queryset.count }}</strong> products</p>
             </div>
             <div class="relative">
-                <details class="group [&_summary::-webkit-details-marker]:hidden">
-                    <summary
-                    class="flex cursor-pointer items-center gap-2  pb-1 text-gray-900 transition hover:border-gray-600"
-                    >
-                    <span class=" text-gray-900 dark:text-white"> Filters & Sorting </span>
-
-                    <span class="transition group-open:-rotate-180 text-gray-900 dark:text-white">
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="h-4 w-4"
-                        >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                        />
-                        </svg>
-                    </span>
-                    </summary>
-
-                    <div
-                    class="z-50 group-open:absolute group-open:top-auto group-open:mt-2 ltr:group-open:left-0"
-                    >
-                    <div class="w-96 rounded border border-gray-200 bg-white">
-                        <header class="flex items-center justify-between p-4">
-                        <span class=" text-gray-900 dark:text-white"> 0 Selected </span>
-
-                        <button
-                            type="button"
-                            class=" text-gray-900 dark:text-white underline underline-offset-4"
-                        >
-                            Reset
-                        </button>
-                        </header>
-
-                        <ul class="space-y-1 border-t border-gray-200 p-4">
-                        <li>
-                            <label
-                            for="FilterInStock"
-                            class="inline-flex items-center gap-2"
-                            >
-                            <input
-                                type="checkbox"
-                                id="FilterInStock"
-                                class="h-5 w-5 rounded border-gray-300"
-                            />
-
-                            <span class=" font-medium text-gray-900 dark:text-white">
-                                In Stock (5+)
-                            </span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <label
-                            for="FilterPreOrder"
-                            class="inline-flex items-center gap-2"
-                            >
-                            <input
-                                type="checkbox"
-                                id="FilterPreOrder"
-                                class="h-5 w-5 rounded border-gray-300"
-                            />
-
-                            <span class=" font-medium text-gray-900 dark:text-white">
-                                Pre Order (3+)
-                            </span>
-                            </label>
-                        </li>
-
-                        <li>
-                            <label
-                            for="FilterOutOfStock"
-                            class="inline-flex items-center gap-2"
-                            >
-                            <input
-                                type="checkbox"
-                                id="FilterOutOfStock"
-                                class="h-5 w-5 rounded border-gray-300"
-                            />
-
-                            <span class=" text-gray-900 dark:text-white">
-                                Out of Stock (10+)
-                            </span>
-                            </label>
-                        </li>
-                        </ul>
+                <form method="GET" action=".">
+                    <!-- <select id="category" class="text-gray-900 dark:text-white dark:bg-gray-900 border-0" data-te-select-init>
+                        <option class="py-2">All categories</option>
+                            {% for cat in categories %}
+                        <option class="py-2" value="{{ cat }}">{{ cat }}</option>
+                            {% endfor %}
+                     </select> -->
+                    <div class="form-group">
+                        <!-- <label for="category">Category</label> -->
+                        <select  onchange="this.form.submit()" id="category" class="form-control" name="category">
+                          <option selected>All categories</option>
+                          {% for cat in categories %}
+                          <option value="{{ cat }}">{{ cat }}</option>
+                          {% endfor %}
+                        </select>
                     </div>
-                    </div>
-                </details>
-            </div>
+                        <!-- <button type="submit" class="btn btn-primary">Search</button> -->
+                 </form>
+
+             </div>
         </div>
     {% comment %} end filter {% endcomment %}
 
     <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
             lg:grid-cols-3  xl:gap-x-8">
-        {% for course in object_list %}
+         {% for course in queryset %}
         <div class="group relative block overflow-hidden rounded-lg shadow-lg">
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
@@ -208,4 +133,11 @@
         {% endfor %}  
     </div>
 </div>
+{% block javascript %}
+<script>
+$('#something').click(function(){
+    $('#your_form').submit()
+});
+</script>script>
+{% endblock %}
 {% endblock content %}

@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, reverse, redirect, render
-from .models import Course, Video, OrderItem
+from .models import Course, Video, OrderItem, Category
 from .mixins import CoursePermissionMixin
 from django.core.mail import send_mail
 from .forms import ContactForm, AddToCartForm
@@ -11,7 +11,11 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 from .utils import get_or_set_order_session
 from django.urls import reverse_lazy
+from django.db.models import Q
 
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
 
 class ContactView(generic.FormView):
     form_class = ContactForm
@@ -44,9 +48,40 @@ class ContactView(generic.FormView):
 
 
 
-class CourseListView(generic.ListView):
-    template_name = "content/course_list.html"
-    queryset = Course.objects.all()
+# class CourseListView(generic.ListView):
+#     template_name = "content/course_list.html"
+#     # queryset = Course.objects.all()
+
+#     def get_queryset(self):
+#         qs = Course.objects.all()
+#         category = self.request.GET.get('category', None)
+#         if category:
+#             qs = qs.filter(Q(primary_category__name=category) |
+#                            Q(secondary_categories__name=category)).distinct()
+#         return qs
+
+#     def get_context_data(self, **kwargs):
+#         context = super(CourseListView, self).get_context_data(**kwargs)
+#         context.update({
+#             "categories": Category.objects.values("name")
+#         })
+#         return context
+
+
+def CourseListView(request):
+    qs = Course.objects.all()
+    categories = Category.objects.all()
+    category = request.GET.get('category')
+
+    if is_valid_queryparam(category) and category != 'Choose...':
+        qs = qs.filter(categories__name=category)
+        
+    context = {
+        'queryset': qs,
+        'categories': categories
+    }
+    return render(request, "content/course_list.html", context)
+
 
 
 class CourseDetailView(generic.FormView):

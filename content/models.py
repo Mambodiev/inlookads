@@ -12,6 +12,15 @@ import stripe
 
 User = get_user_model()
 
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)    
+    class Meta:
+        verbose_name_plural = "Categories"
+    def __str__(self):
+        return self.name
+
+
 class Pricing(models.Model):
     name = models.CharField(max_length=100)  # Basic / Pro / Premium
 
@@ -51,6 +60,7 @@ class Store(models.Model):
 
     def __str__(self):
         return self.name 
+
 
 class Course(models.Model):
     option_ads = [
@@ -312,6 +322,7 @@ class Course(models.Model):
     aliexpress_order = models.IntegerField(default=0, help_text = "Amount of aliexpress order generated")
     aliexpress_total_sale = models.IntegerField(default=0, help_text = "Amount of aliexpress sale generated")
     aliexpress_price = models.IntegerField(default=0, help_text = "Product price from aliexpress")
+    categories = models.ManyToManyField(Category)
     likes = models.IntegerField(default=0, help_text = "Amount of likes generated")
     comment = models.IntegerField(default=0, help_text = "Amount of comment generated")
     views = models.IntegerField(default=0, help_text = "Amount of views generated")
@@ -444,7 +455,7 @@ class Sale(models.Model):
         ordering = ['-time']
 
     def __str__(self):
-        return f' ({self.course.name}), {self.total_number_of_sale}'
+        return f' ({self.course.name_of_product}), {self.total_number_of_sale}'
     
 class Video(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='videos')

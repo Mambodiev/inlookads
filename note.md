@@ -1,4 +1,7 @@
-
+Beauty & Health
+Home & Garden
+Decoration
+Lights & Lighting
 
 source env/bin/activate
 python3 manage.py tailwind start
