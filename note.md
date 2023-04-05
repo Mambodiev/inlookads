@@ -1,11 +1,16 @@
-Beauty & Health
-Home & Garden
-Decoration
-Lights & Lighting
-
+cd djvideomem
 source env/bin/activate
 python3 manage.py tailwind start
 
+cd djvideomem
+source env/bin/activate
+python3 manage.py runserver 
+
+cd Videos
+cd Matts
+cd Build_a_Dynamic_Filter_Form
+cd djfilter
+cd src
 source env/bin/activate
 python3 manage.py runserver 
 
@@ -22,5 +27,5 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "satar adding other features on product detail"
+git commit -m "filter by category with success"
 git push

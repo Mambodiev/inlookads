@@ -3,32 +3,161 @@
 {% block content %}
  <div class="  mx-auto max-w-screen-xl px-2  pt-24">
     {% comment %} filter {% endcomment %}
-        <div class="sm:flex sm:items-center sm:justify-between">
-            <div class=" ">
-                <p class="text-2xl text-gray-900 dark:text-white">Over <strong class=""> {{ queryset.count }}</strong> products</p>
-            </div>
-            <div class="relative">
-                <form method="GET" action=".">
-                    <!-- <select id="category" class="text-gray-900 dark:text-white dark:bg-gray-900 border-0" data-te-select-init>
-                        <option class="py-2">All categories</option>
-                            {% for cat in categories %}
-                        <option class="py-2" value="{{ cat }}">{{ cat }}</option>
-                            {% endfor %}
-                     </select> -->
-                    <div class="form-group">
-                        <!-- <label for="category">Category</label> -->
-                        <select  onchange="this.form.submit()" id="category" class="form-control" name="category">
-                          <option selected>All categories</option>
-                          {% for cat in categories %}
-                          <option value="{{ cat }}">{{ cat }}</option>
-                          {% endfor %}
-                        </select>
-                    </div>
-                        <!-- <button type="submit" class="btn btn-primary">Search</button> -->
-                 </form>
+        {% comment %} product count {% endcomment %}
+            <p class="text-2xl text-gray-700 dark:text-white text-center">
+                Over 
+                <strong class="rounded-full bg-green-100 p-2 mx-2 text-gray-700 dark:text-white dark:bg-gray-700">    {{ queryset.count }}
+                </strong> 
+                 products
+            </p>
+        {% comment %} end product count {% endcomment %}
+        <form method="GET" action=".">
+            <div class="grid grid-cols-1 gap-2 mt-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div>
+                    <select  onchange="this.form.submit()" id="category" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="category">
+                      <option selected>All categories</option>
+                      {% for cat in categories %}
+                      <option value="{{ cat }}">{{ cat }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <select  onchange="this.form.submit()" id="technology" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="technology">
+                      <option selected>Site type</option>
+                      {% for cat in technologies %}
+                      <option value="{{ cat }}">{{ cat }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <select  onchange="this.form.submit()" id="country" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="country">
+                      <option selected>Country</option>
+                      {% for cat in countries %}
+                      <option value="{{ cat }}">{{ cat }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <select  onchange="this.form.submit()" id="button" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="button">
+                      <option selected>Button</option>
+                      {% for cat in buttons %}
+                      <option value="{{ cat }}">{{ cat }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <select  onchange="this.form.submit()" id="language" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="language">
+                      <option selected>Language</option>
+                      {% for cat in languages %}
+                      <option value="{{ cat }}">{{ cat }}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+                
 
-             </div>
-        </div>
+                 
+            </div>  
+            <div class="grid grid-cols-1 gap-2 mt-4 sm:grid-cols-2 lg:grid-cols-4 mb-4">
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="username">Min likes</label>
+                    <input type="number" min=0 id="likesCountMin" placeholder="0" name="likes_count_min"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                </div>
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="username">Max likes</label>
+                    <input type="number" min=0  id="likesCountMax" placeholder="10000?" name="likes_count_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                </div>
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="username">Date minimum</label>
+                    <input type="date" id="publishDateMin" name="date_min" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                </div>
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="username">Date maximum</label>
+                    <input onchange="this.form.submit()" type="date" id="publishDateMax" name="date_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                </div>
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="aliexpressPriceMin">Price min</label>
+                    <input  type="number" min=0  id="aliexpressPriceMin" placeholder="0" name="aliexpress_price_min" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                </div>
+                <div>
+                    <label class="text-gray-700 dark:text-gray-200" for="aliexpressPriceMax">Price max</label>
+                    <input  type="number" min=0  id="aliexpressPriceMax" placeholder="10000?" name="aliexpress_price_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                </div>
+            </div>
+            
+                <div class="flex justify-end mt-6">
+                    <button type="submit" class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+                        Search
+                    </button>
+                </div>
+            
+            {% comment %} checkbox filter {% endcomment %} 
+                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                    <input
+                      onchange="this.form.submit()"
+                      class="relative float-left mt-[0.15rem] mr-[6px] -ml-[1.5rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-[rgba(0,0,0,0.25)] bg-white before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:ml-[0.25rem] checked:after:-mt-px checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-t-0 checked:after:border-l-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:bg-white focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:ml-[0.25rem] checked:focus:after:-mt-px checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-t-0 checked:focus:after:border-l-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent"
+                      type="checkbox"
+                      id="has_video" 
+                      name="has_video" />
+                    <label
+                      class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
+                      for="inlineCheckbox1"
+                      >Video</label
+                    >
+                </div>
+                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                    <input
+                      onchange="this.form.submit()"
+                      class="relative float-left mt-[0.15rem] mr-[6px] -ml-[1.5rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-[rgba(0,0,0,0.25)] bg-white before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:ml-[0.25rem] checked:after:-mt-px checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-t-0 checked:after:border-l-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:bg-white focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:ml-[0.25rem] checked:focus:after:-mt-px checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-t-0 checked:focus:after:border-l-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent"
+                      type="checkbox"
+                      id="has_photo" 
+                      name="has_photo" />
+                    <label
+                      class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
+                      for="inlineCheckbox1"
+                      >Photo</label
+                    >
+                </div>
+                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                    <input
+                        onchange="this.form.submit()"
+                        class="
+                          relative float-left mt-[0.15rem] mr-[6px] -ml-[1.5rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-[rgba(0,0,0,0.25)] bg-white before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:ml-[0.25rem] checked:after:-mt-px checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-t-0 checked:after:border-l-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:bg-white focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:ml-[0.25rem] checked:focus:after:-mt-px checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-t-0 checked:focus:after:border-l-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent"
+                          type="checkbox"
+                          id="is_faceBook" 
+                          name="is_faceBook" />
+                    <label
+                      class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
+                      for="inlineCheckbox2"
+                      >FaceBook
+                    </label>
+                </div>
+                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                    <input
+                        onchange="this.form.submit()"
+                        class="relative float-left mt-[0.15rem] mr-[6px] -ml-[1.5rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-[rgba(0,0,0,0.25)] bg-white before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:ml-[0.25rem] checked:after:-mt-px checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-t-0 checked:after:border-l-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:bg-white focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:ml-[0.25rem] checked:focus:after:-mt-px checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-t-0 checked:focus:after:border-l-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent"
+                        type="checkbox"
+                        id="is_tiktok" 
+                        name="is_tiktok" />
+                    <label
+                      class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
+                      for="inlineCheckbox2"
+                      >Tiktok</label
+                    >
+                </div>
+                <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                    <input
+                        onchange="this.form.submit()"
+                        class="relative float-left mt-[0.15rem] mr-[6px] -ml-[1.5rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-[rgba(0,0,0,0.25)] bg-white before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:ml-[0.25rem] checked:after:-mt-px checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-t-0 checked:after:border-l-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:bg-white focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:ml-[0.25rem] checked:focus:after:-mt-px checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-t-0 checked:focus:after:border-l-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent"
+                        type="checkbox"
+                        id="is_pinterest" 
+                        name="is_pinterest"  />
+                    <label
+                    class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
+                    for="inlineCheckbox2"
+                    >Pinterest</label>
+                </div>
+            {% comment %} end checkbox filter {% endcomment %}          
+        </form>
     {% comment %} end filter {% endcomment %}
 
     <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
@@ -38,8 +167,8 @@
             <div class="flex items-center justify-between p-3">
                 <div class="flex items-center space-x-2">
                     <div class="-space-y-1">
-                        <h2 class="text-lg text-gray-900 dark:text-white">{{ course.name_of_store|title}}</h2>
-                        <span class='text-base text-gray-900 dark:text-white'>Created : {{ course.ads_run_since|timesince}} ago</span>
+                        <h2 class="text-lg text-gray-700 dark:text-white">{{ course.name_of_store|title}}</h2>
+                        <span class='text-base text-gray-700 dark:text-white'>Created : {{ course.ads_run_since|timesince}} ago</span>
                     </div>
                 </div>
                 
@@ -97,11 +226,11 @@
             </div>
             <div class="relative px-3 text-center ">
                 <a class="" href="{{ course.get_absolute_url }}">
-                    <h1 class="text-lg font-medium text-gray-900 dark:text-white mt-2">
+                    <h1 class="text-lg font-medium text-gray-700 dark:text-white mt-2">
                         {{ course.name_of_product|title|truncatechars:26  }}
                     </h1>
                 </a>
-                <div class="grid grid-cols-3 text-gray-900 dark:text-white gap-2 ">
+                <div class="grid grid-cols-3 text-gray-700 dark:text-white gap-2 ">
                     <div class="flex flex-col justify-start p-2">
                         <p class="flex mx-auto text-lg font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-thumbs-up-fill mr-2" viewBox="0 0 16 16">
@@ -135,9 +264,9 @@
 </div>
 {% block javascript %}
 <script>
-$('#something').click(function(){
-    $('#your_form').submit()
-});
-</script>script>
+// $('#something').click(function(){
+//     $('#your_form').submit()
+// });
+</script>
 {% endblock %}
 {% endblock content %}

@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, reverse, redirect, render
-from .models import Course, Video, OrderItem, Category
+from .models import Course, Video, OrderItem, Category, Technology, Country,Language, Button
 from .mixins import CoursePermissionMixin
 from django.core.mail import send_mail
 from .forms import ContactForm, AddToCartForm
@@ -70,15 +70,86 @@ class ContactView(generic.FormView):
 
 def CourseListView(request):
     qs = Course.objects.all()
-    categories = Category.objects.all()
-    category = request.GET.get('category')
 
-    if is_valid_queryparam(category) and category != 'Choose...':
+    categories = Category.objects.all()
+    technologies = Technology.objects.all()
+    countries = Country.objects.all()
+    languages = Language.objects.all()
+    buttons = Button.objects.all()
+    
+    category = request.GET.get('category')
+    technology = request.GET.get('technology')
+    country = request.GET.get('country')
+    language = request.GET.get('language')
+    button = request.GET.get('button')
+    aliexpress_price_min = request.GET.get('aliexpress_price_min')
+    aliexpress_price_max = request.GET.get('aliexpress_price_max')
+    likes_count_min = request.GET.get('likes_count_min')
+    likes_count_max = request.GET.get('likes_count_max')
+    date_min = request.GET.get('date_min')
+    date_max = request.GET.get('date_max')
+    is_faceBook = request.GET.get('is_faceBook')
+    is_pinterest = request.GET.get('is_pinterest')
+    is_tiktok = request.GET.get('is_tiktok')
+    has_video = request.GET.get('has_video')
+    has_photo = request.GET.get('has_photo')
+    
+
+    if is_valid_queryparam(category) and category != 'All categories':
         qs = qs.filter(categories__name=category)
-        
+
+    if is_valid_queryparam(technology) and technology != 'Site type':
+        qs = qs.filter(technologies__name=technology)
+
+    if is_valid_queryparam(country) and country != 'Country':
+        qs = qs.filter(countries__name=country)
+
+    if is_valid_queryparam(language) and language != 'Language':
+        qs = qs.filter(languages__name=language)
+
+    if is_valid_queryparam(button) and button != 'Button':
+        qs = qs.filter(buttons__name=button)
+
+    if is_valid_queryparam(aliexpress_price_min):
+        qs = qs.filter(aliexpress_price__gte=aliexpress_price_min)
+
+    if is_valid_queryparam(aliexpress_price_max):
+        qs = qs.filter(aliexpress_price__lt=aliexpress_price_max)
+
+    if is_valid_queryparam(likes_count_min):
+        qs = qs.filter(likes__gte=likes_count_min)
+
+    if is_valid_queryparam(likes_count_max):
+        qs = qs.filter(likes__lt=likes_count_max)
+
+    if is_valid_queryparam(date_min):
+        qs = qs.filter(ads_run_since__gte=date_min)
+
+    if is_valid_queryparam(date_max):
+        qs = qs.filter(ads_run_since__lt=date_max)
+
+    if is_faceBook == 'on':
+        qs = qs.filter(is_faceBook=True)
+
+    if is_pinterest == 'on':
+        qs = qs.filter(is_pinterest=True)
+
+    if is_tiktok == 'on':
+        qs = qs.filter(is_tiktok=True)
+
+    if has_video == 'on':
+        qs = qs.filter(has_video=True)
+
+    if has_photo == 'on':
+        qs = qs.filter(has_photo=True)
+
     context = {
         'queryset': qs,
-        'categories': categories
+        'categories': categories,
+        'technologies': technologies,
+        'countries': countries,
+        'buttons': buttons,
+        'languages': languages
     }
     return render(request, "content/course_list.html", context)
 
