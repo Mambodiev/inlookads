@@ -118,8 +118,8 @@
               </div>
               <div class="flex items-center gap-2 p-4">
                 <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.004-.001.274-.11a.75.75 0 0 1 .558 0l.274.11.004.001 6.971 2.789Zm-1.374.527L8 5.962 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339Z"/>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                    <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
                   </svg>
                 </span>
 
@@ -138,7 +138,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.get_margin }}</p>
+                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.price_margin }}</p>
 
                   <p class=" text-gray-700 dark:text-white">Profits</p>
                 </div>
@@ -154,7 +154,7 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.get_shopify }}</p>
+                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.shopify_price }}</p>
 
                   <p class=" text-gray-700 dark:text-white">Price</p>
                 </div>
@@ -167,9 +167,22 @@
                 </span>
 
                 <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.get_aliexpres }}</p>
+                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.aliexpress_price }}</p>
 
                   <p class=" text-gray-700 dark:text-white">Cost</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2 p-4">
+                <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                    <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                  </svg>
+                </span>
+
+                <div>
+                  <p class="text-2xl font-medium text-gray-700 dark:text-white">{{ course.aliexpress_order|cool_num }}</p>
+
+                  <p class=" text-gray-700 dark:text-white">Order</p>
                 </div>
               </div>
           </div>

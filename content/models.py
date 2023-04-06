@@ -102,17 +102,17 @@ class Button(models.Model):
         verbose_name_plural = ("Buttons")
 
 class Course(models.Model):
-    
+
+    aliexpress_total_sale = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Amount of aliexpress sale generated")
     name_of_store = models.ForeignKey(Store, related_name='store_name', blank=True, null=True, on_delete=models.CASCADE)
     shopify_links = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
     name_of_product = models.CharField(max_length=100)
-    shopify_price = models.IntegerField(default=0,blank=True, null=True, help_text = "Product price from shopify")
+    shopify_price = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Product price from shopify")
     product_thumbnail = models.ImageField(upload_to="thumbnails/", default='products/defaut_image_store_light_blue_bag.jpg')
     store_logo = models.ImageField(upload_to="image_store/",default='products/defaut_image_store.png',
         blank=True)
     aliexpress_order = models.IntegerField(default=0, help_text = "Amount of aliexpress order generated")
-    aliexpress_total_sale = models.IntegerField(default=0, help_text = "Amount of aliexpress sale generated")
-    aliexpress_price = models.IntegerField(default=0, help_text = "Product price from aliexpress")
+    aliexpress_price = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Product price from aliexpress")
     categories = models.ManyToManyField(Category)
     likes = models.IntegerField(default=0, help_text = "Amount of likes generated") 
     comment = models.IntegerField(default=0, help_text = "Amount of comment generated")
@@ -134,7 +134,7 @@ class Course(models.Model):
     has_video = models.BooleanField(default=False)
     has_photo = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
-    price_margin = models.IntegerField(default=0,blank=True, null=True, help_text = "Profit you get from this product")
+    price_margin = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Profit you get from this product")
     date_we_found = models.DateTimeField(auto_now_add=True)
 
 
@@ -146,14 +146,6 @@ class Course(models.Model):
     def get_absolute_url(self):
         return reverse("content:course-detail", kwargs={"slug": self.slug})
     
-    def get_margin(self):
-        return "{:.2f}".format(self.price_margin / 100)
-
-    def get_aliexpres(self):
-        return "{:.2f}".format(self.aliexpress_price / 100)
-
-    def get_shopify(self):
-        return "{:.2f}".format(self.shopify_price / 100)
 
     @property
     def imageURL(self):
@@ -169,12 +161,11 @@ class Course(models.Model):
     
 
     def save(self, *args, **kwargs):
-        aliexpress_price = self.shopify_price
-        shopify_price = self.aliexpress_price
-        if self.shopify_price:
-            diff = aliexpress_price - shopify_price
-            self.price_margin = round(diff, 2)
-        
+         
+        self.price_margin = self.shopify_price - self.aliexpress_price 
+
+        self.aliexpress_total_sale = self.aliexpress_order * self.shopify_price
+
         super().save(*args, **kwargs)
 
 

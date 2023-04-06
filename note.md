@@ -15,6 +15,7 @@ source env/bin/activate
 python3 manage.py runserver 
 
 {% comment %} {% endcomment %}  
+
 python manage.py makemigrations    
 python manage.py migrate 
 python3 manage.py runserver 
@@ -27,5 +28,5 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "filter by category with success"
+git commit -m "filter by price with success and getting total sale success"
 git push
