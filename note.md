@@ -28,7 +28,7 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "filter by price with success and getting total sale dynamically successed"
+git commit -m "product create, update, delete, list created "
 git push
 
 youtube-dl  -f 22 --no-playlist  -o  "~/home/diev/Videos/Django/django Yuksel/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=6RR8WrvshQA&list=PLIUezwWmVtFXaHcJ63ZM6uOJdhMrnZFFk&index=2&pp=iAQB"
