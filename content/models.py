@@ -103,7 +103,7 @@ class Button(models.Model):
 
 class Course(models.Model):
 
-    aliexpress_total_sale = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Amount of aliexpress sale generated")
+    
     name_of_store = models.ForeignKey(Store, related_name='store_name', blank=True, null=True, on_delete=models.CASCADE)
     shopify_links = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
     name_of_product = models.CharField(max_length=100)
@@ -136,6 +136,7 @@ class Course(models.Model):
     slug = models.SlugField(unique=True)
     price_margin = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Profit you get from this product")
     date_we_found = models.DateTimeField(auto_now_add=True)
+    aliexpress_total_sale = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Amount of aliexpress sale generated")
 
 
     
@@ -146,6 +147,11 @@ class Course(models.Model):
     def get_absolute_url(self):
         return reverse("content:course-detail", kwargs={"slug": self.slug})
     
+    def get_update_url(self):
+        return reverse("staff:product-update", kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse("staff:product-delete", kwargs={'pk': self.pk})
 
     @property
     def imageURL(self):

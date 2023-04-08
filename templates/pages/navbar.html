@@ -120,8 +120,16 @@
                 </li>
                 <li>
                  <li>
-                <a href="{% url 'content:contact' %}" class="block py-2 pl-3 pr-4 text-gray-700  dark:text-white md:p-0 hover:text-gray-500">Contact</a>
+                    <a href="{% url 'content:contact' %}" class="block py-2 pl-3 pr-4 text-gray-700  dark:text-white md:p-0 hover:text-gray-500">Contact</a>
                 </li>
+
+                {% comment %} staff things {% endcomment %}
+                    {% if request.user.is_staff %}
+                        <li>
+                            <a href="{% url 'staff:product-list' %}" class="block py-2 pl-3 pr-4 text-gray-700  dark:text-white md:p-0 hover:text-gray-500">Staff</a>
+                        </li>
+                    {% endif %}
+                    {% comment %} end staff things {% endcomment %}
             </ul>
         </div>
     </div>

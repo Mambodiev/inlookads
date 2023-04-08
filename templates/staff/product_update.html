@@ -1,0 +1,28 @@
+
+{% extends "pages/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Update product" %}{% endblock %}
+{% load crispy_forms_tags %}
+{% load socialaccount %}
+
+
+{% block content %}
+   <div class="mx-auto max-w-screen-sm px-2 pb-6">
+          <h2 class="mt-6 text-2xl font-extrabold text-center text-gray-900 dark:text-white">
+              {% trans "Update product" %}
+          </h2>
+          <a href="{% url 'staff:product-list' %}" class="text-gray-900 dark:text-white hover:text-gray-500">Go back to products</a>
+      <form class="mt-8 space-y-6 text-gray-900 dark:text-white" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.media}} 
+        {{ form|crispy }}
+        <div>
+            <button type="submit"
+                    class="relative flex justify-center w-full px-4 py-2 text-lg font-medium text-white bg-red-500 border border-transparent border-solid rounded-md group hover:bg-red-500">
+                {% trans "Submit" %}
+            </button>
+        </div>
+        
+      </form>
+   </div>
+{% endblock content %}
