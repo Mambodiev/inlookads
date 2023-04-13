@@ -154,6 +154,9 @@ SITE_ID = 2
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 TAILWIND_APP_NAME = 'theme'
 CRISPY_TEMPLATE_PACK = "tailwind"
+CRISPY_CLASS_CONVERTERS = {
+    'textinput': 'dark:text-white text-gray-700'
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #new
 EMAIL_HOST = 'smtp.gmail.com' #new
@@ -213,3 +216,4 @@ SOCIALACCOUNT_PROVIDERS = {
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # end local
 TAILWIND_MODE='watch'
+

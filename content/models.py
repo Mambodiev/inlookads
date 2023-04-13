@@ -13,12 +13,7 @@ import stripe
 User = get_user_model()
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)    
-    class Meta:
-        verbose_name_plural = "Categories"
-    def __str__(self):
-        return self.name
+
 
 
 class Pricing(models.Model):
@@ -60,60 +55,77 @@ class Store(models.Model):
 
     def __str__(self):
         return self.name
- 
 
-class Technology(models.Model):
-    name = models.CharField(max_length=100)    
+ 
+class Category(models.Model):
+
+    name = models.CharField(max_length=100)   
+
+    class Meta:
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
+
+
+class Technology(models.Model):
+
+    name = models.CharField(max_length=100)    
 
     class Meta:
         verbose_name_plural = ("Technologies")
 
-
-class Country(models.Model):
-    name = models.CharField(max_length=100)    
-
     def __str__(self):
         return self.name
+
+
+class Country(models.Model):
+
+    name = models.CharField(max_length=100)    
 
     class Meta:
         verbose_name_plural = ("Countries")
 
+    def __str__(self):
+        return self.name
+
 
 class Language(models.Model):
+
     name = models.CharField(max_length=100)    
+
+    class Meta:
+        verbose_name_plural = ("Languages")
 
     def __str__(self):
         return self.name
 
-    class Meta:
-        verbose_name_plural = ("Languages")
+    
 
 
 class Button(models.Model):
     name = models.CharField(max_length=100)    
 
+    class Meta:
+        verbose_name_plural = ("Buttons")
+
     def __str__(self):
         return self.name
 
-    class Meta:
-        verbose_name_plural = ("Buttons")
 
 class Course(models.Model):
 
     
-    name_of_store = models.ForeignKey(Store, related_name='store_name', blank=True, null=True, on_delete=models.CASCADE)
     shopify_links = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
+    name_of_store = models.ForeignKey(Store, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
     name_of_product = models.CharField(max_length=100)
     shopify_price = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Product price from shopify")
     product_thumbnail = models.ImageField(upload_to="thumbnails/", default='products/defaut_image_store_light_blue_bag.jpg')
     store_logo = models.ImageField(upload_to="image_store/",default='products/defaut_image_store.png',
         blank=True)
+    categories = models.ForeignKey(Category, blank=True, null=True, on_delete=models.CASCADE)
     aliexpress_order = models.IntegerField(default=0, help_text = "Amount of aliexpress order generated")
     aliexpress_price = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Product price from aliexpress")
-    categories = models.ManyToManyField(Category)
     likes = models.IntegerField(default=0, help_text = "Amount of likes generated") 
     comment = models.IntegerField(default=0, help_text = "Amount of comment generated")
     views = models.IntegerField(default=0, help_text = "Amount of views generated")
@@ -122,10 +134,10 @@ class Course(models.Model):
     number_of_store_selling = models.IntegerField(default=0, help_text = "Amount of store selling the product")
     number_of_suppliers_selling= models.IntegerField(default=0, help_text = "Amount of suppliers selling the product")
     ads_run_since = models.DateTimeField(auto_now_add=False)
-    countries = models.ManyToManyField(Country, max_length=100,)
-    technologies =  models.ManyToManyField(Technology)
-    languages = models.ManyToManyField(Language)
-    buttons = models.ManyToManyField(Button)
+    technologies = models.ForeignKey(Technology, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
+    languages = models.ForeignKey(Language, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
+    buttons = models.ForeignKey(Button, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
+    countries = models.ForeignKey(Country, blank=True, null=True, on_delete=models.PROTECT)
     links_to_others_stores = RichTextUploadingField(blank=True, null=True,help_text = "A link that will take to the store", )
     links_to_others_suppliers = RichTextUploadingField(blank=True, null=True,)
     is_faceBook = models.BooleanField(default=False)
@@ -134,9 +146,9 @@ class Course(models.Model):
     has_video = models.BooleanField(default=False)
     has_photo = models.BooleanField(default=False)
     slug = models.SlugField(unique=True)
-    price_margin = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Profit you get from this product")
+    price_margin = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Profit you get from this product", blank=True)
     date_we_found = models.DateTimeField(auto_now_add=True)
-    aliexpress_total_sale = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Amount of aliexpress sale generated")
+    aliexpress_total_sale = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Amount of aliexpress sale generated", blank=True)
 
 
     
@@ -297,5 +309,5 @@ email_confirmed.connect(post_email_confirmed)
 
 
 pre_save.connect(pre_save_course, sender=Course)
-pre_save.connect(pre_save_video, sender=Video)
+# pre_save.connect(pre_save_video, sender=Video)
 

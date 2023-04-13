@@ -1,7 +1,6 @@
 from django import forms
 
-from content.models import Course
-
+from content.models import Course, Category, Technology, Country, Language, Button
 
 class ProductForm(forms.ModelForm):
     class Meta:
@@ -37,3 +36,34 @@ class ProductForm(forms.ModelForm):
             'has_photo',
             'slug',
         ]
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name']
+
+
+class TechnologyForm(forms.ModelForm):
+    class Meta:
+        model = Technology
+        fields = ['name']
+
+
+class CountryForm(forms.ModelForm):
+    class Meta:
+        model = Country
+        fields = ['name']
+
+
+
+class LanguageForm(forms.ModelForm):
+    class Meta:
+        model = Language
+        fields = ['name']
+
+
+class ButtonForm(forms.ModelForm):
+    class Meta:
+        model = Button
+        fields = ['name']

@@ -52,17 +52,12 @@ canvas {
   min-height: calc(100vh - 100px);
 }
 
-/*hide qty from to show up*/
+/*hide qty from to show up in save product form*/
 #div_id_quantity {
   display: none!important;
 }
 
-/*end hide qty from to show up*/
-
-/*select field*/
-/*select {
-    background-position: right 0.5rem center!important;
-    background-size: 2em 2em!important;
-    padding-right: 1rem!important;
-}*/
-/*end select field*/
+/*dupplicate arrow in tailwind form*/
+select ~ .pointer-events-none {
+    display: none !important;
+}

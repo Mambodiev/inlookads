@@ -10,12 +10,15 @@ from django.utils.translation import gettext_lazy as _
 
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
+
+    # Core
+    path("", include("core.urls", namespace="core")),
+
 
     # Content
     path("courses/", include("content.urls", namespace="content")),

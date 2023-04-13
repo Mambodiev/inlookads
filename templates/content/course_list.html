@@ -12,7 +12,7 @@
             </p>
         {% comment %} end product count {% endcomment %}
         <form method="GET" action=".">
-            <div class="grid grid-cols-1 gap-2 mt-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid gap-2 mt-4  grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
                 <div>
                     <select  onchange="this.form.submit()" id="category" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="category">
                       <option selected>All categories</option>
@@ -57,7 +57,7 @@
 
                  
             </div>  
-            <div class="grid grid-cols-1 gap-2 mt-4 sm:grid-cols-2 lg:grid-cols-4 mb-4">
+            <div class="grid gap-2  my-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
                 <div>
                     <label class="text-gray-700 dark:text-gray-200" for="username">Min likes</label>
                     <input type="number" min=0 id="likesCountMin" placeholder="0" name="likes_count_min"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
@@ -83,13 +83,7 @@
                     <input  type="number" min=0  id="aliexpressPriceMax" placeholder="10000?" name="aliexpress_price_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
                 </div>
             </div>
-            
-                <div class="flex justify-end mt-6">
-                    <button type="submit" class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
-                        Search
-                    </button>
-                </div>
-            
+                        
             {% comment %} checkbox filter {% endcomment %} 
                 <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
                     <input
@@ -156,9 +150,19 @@
                     for="inlineCheckbox2"
                     >Pinterest</label>
                 </div>
-            {% comment %} end checkbox filter {% endcomment %}          
+            {% comment %} end checkbox filter {% endcomment %}   
+
+            <div class="flex justify-end mt-6">
+                <button type="submit" class="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+                    Search
+                </button>
+            </div>       
         </form>
-    {% comment %} end filter {% endcomment %}
+
+      
+
+
+        {% comment %} end filter {% endcomment %}
 
     <div class="mt-2 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2
             lg:grid-cols-3  xl:gap-x-8">

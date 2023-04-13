@@ -1,0 +1,24 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Contact" %}{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<div class="flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-4xl space-y-8">
+      <div>
+          <h2 class="mt-6 text-2xl font-extrabold dark:text-white text-gray-900">
+              {% trans "Privacy Policy Notice" %}
+          </h2>
+            <p class="my-4 text-lg dark:text-white text-gray-900">Updated : {{ privacy.last_update|timesince}} ago</p>
+            
+            <div class="dark:text-white text-gray-900">
+                {{ privacy.privacy_text|safe}}
+            </div> 
+       </div>
+      
+    </div>
+  </div>
+{% endblock content %}

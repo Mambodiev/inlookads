@@ -19,7 +19,7 @@ python3 manage.py runserver
 python manage.py makemigrations    
 python manage.py migrate 
 python3 manage.py runserver 
-
+M@diev2022
 python manage.py makemigrations    
 python manage.py migrate 
 python3 manage.py createsuperuser
@@ -27,8 +27,7 @@ python3 manage.py runserver
 
 
 git init
-git add .
-git commit -m "product create, update, delete, list created "
+git add "want change many tomany field to ForeignKey"
 git push
 
 youtube-dl  -f 22 --no-playlist  -o  "~/home/diev/Videos/Django/django Yuksel/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=6RR8WrvshQA&list=PLIUezwWmVtFXaHcJ63ZM6uOJdhMrnZFFk&index=2&pp=iAQB"
