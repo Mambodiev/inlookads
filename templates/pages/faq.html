@@ -1,6 +1,6 @@
 {% extends "pages/base.html" %}
 {% load i18n %}
-{% block head_title %}{% trans "Privacy Policy" %}{% endblock %}
+{% block head_title %}{% trans "Faq" %}{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -10,12 +10,12 @@
     <div class="w-full max-w-4xl space-y-8">
       <div>
           <h2 class="mt-6 text-2xl font-extrabold dark:text-white text-gray-900">
-              {% trans "Privacy Policy Notice" %}
+              {% trans "Faq" %}
           </h2>
-            <p class="my-4 text-lg dark:text-white text-gray-900">Updated : {{ privacy.last_update|timesince}} ago</p>
+            <p class="my-4 text-lg dark:text-white text-gray-900">Updated : {{ faq.last_update|timesince}} ago</p>
             
             <div class="dark:text-white text-gray-900">
-                {{ privacy.privacy_text|safe}}
+                {{ faq.faq_text|safe}}
             </div> 
        </div>
       

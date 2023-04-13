@@ -9,5 +9,7 @@ urlpatterns = [
     # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path('', views.home, name='home'),
     path('privacy/', views.privacy, name='privacy'),
+    path('terms/', views.terms, name='terms'),
+    path('faq/', views.faq, name='faq'),
     path('contact/', views.ContactView.as_view(), name='contact'),
 ]

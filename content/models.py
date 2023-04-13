@@ -23,7 +23,7 @@ class Pricing(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = ("Price")
+        verbose_name_plural = ("Prices")
 
 class Subscription(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
