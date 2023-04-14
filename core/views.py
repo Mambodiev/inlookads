@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import ContactForm
 from django.views import generic
-from .models import Privacy, Terms, Faq
+from .models import Privacy, Terms, Faq, Price, About, Affiliate
 from django.shortcuts import get_object_or_404
 
 # def privacy(request):
@@ -44,6 +44,35 @@ def faq(request):
     context={'faq':faq}
     return render(request,'pages/faq.html', context)
 
+
+def price(request):
+    price = Price.objects.get(pk=1)
+   
+    context={'price':price}
+    return render(request,'pages/price.html', context)
+
+
+
+def about(request):
+    about = About.objects.get(pk=1)
+   
+    context={'about':about}
+    return render(request,'pages/about.html', context)
+
+
+
+def blog(request):
+    # blog = Blog.objects.get(pk=1)
+   
+    context={}
+    return render(request,'pages/blog.html', context)
+
+
+def affiliate(request):
+    affiliate = Affiliate.objects.get(pk=1)
+   
+    context={'affiliate':affiliate}
+    return render(request,'pages/affiliate.html', context)
 
 
 class ContactView(generic.FormView):

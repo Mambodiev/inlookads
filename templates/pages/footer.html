@@ -1,15 +1,28 @@
 <footer  id="footer">
     <hr class="my-0 border-slate-200 border-slate-200" />
-    <div class="container px-6 py-8 mx-auto">
+    <div class="container px-6 pt-8 mx-auto">
         <div class="flex flex-col items-center sm:flex-row sm:justify-between">
             <p class="text-lg dark:text-white text-gray-900">© Copyright 2021. Tous droits réservés.</p>
 
             <div class="flex mt-3 -mx-2 sm:mt-0">
-                <a href="{% url 'core:privacy' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit"> Privacy </a>
-                <a href="{% url 'core:terms' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit"> Terms </a>
-                <a href="{% url 'core:faq' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit"> Faq </a>
-                <a href="{% url 'core:faq' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit"> About us </a>
-                <a href="#" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit"> Affiliate </a>
+                <a href="{% url 'core:privacy' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit">
+                    Privacy Policy
+                </a>
+                <a href="{% url 'core:terms' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit">
+                    Terms of Service
+                </a>
+                <a href="{% url 'core:faq' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit">
+                    FAQ 
+                </a>
+                <a href="{% url 'core:price' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit">
+                    Price
+                </a>
+                <a href="{% url 'core:contact' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit">
+                    Contact 
+                </a>
+                <a href="{% url 'core:affiliate' %}" class="mx-2 text-lg dark:text-white text-gray-900 transition-colors duration-300 dark:hover:text-gray-100 hover:text-gray-500" aria-label="Reddit">
+                    Affiliate
+                </a>
 
                 
             </div>

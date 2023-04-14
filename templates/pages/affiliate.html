@@ -1,6 +1,6 @@
 {% extends "pages/base.html" %}
 {% load i18n %}
-{% block head_title %}{% trans "About us" %}{% endblock %}
+{% block head_title %}{% trans "Affiliate" %}{% endblock %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -9,11 +9,11 @@
 <div class="flex items-center justify-center px-4 sm:px-6 lg:px-8">
     <div class="w-full max-w-4xl space-y-8">
       <div>
-          <h2 class="mt-6 text-2xl  text-center dark:text-white text-gray-900">
-              {% trans "About us" %}
+          <h2 class="my-4 text-2xl font-extrabold dark:text-white text-gray-900 text-center">
+              {% trans "Affiliate" %}
           </h2>
-            <div class="dark:text-white text-gray-900">
-                {{ about.about_text|safe}}
+          <div class="dark:text-white text-gray-900 text-center">
+                {{ affiliate.affiliate_text|safe}}
             </div> 
        </div>
       

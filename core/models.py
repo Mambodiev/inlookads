@@ -17,7 +17,7 @@ class Privacy(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = ("Privacies")
+        verbose_name_plural = ("Privacy")
 
 
 class Terms(models.Model):
@@ -44,3 +44,41 @@ class Faq(models.Model):
 
     class Meta:
         verbose_name_plural = ("Faq")
+
+
+class About(models.Model):
+
+    about_text = RichTextUploadingField(blank=True, null=True,  help_text = "about us")
+    name = models.CharField(max_length=100)  
+    last_update = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = ("About")
+
+
+class Price(models.Model):
+
+    price_text = RichTextUploadingField(blank=True, null=True,  help_text = "price")
+    name = models.CharField(max_length=100)  
+    last_update = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = ("Price")
+
+
+
+class Affiliate(models.Model):
+
+    affiliate_text = RichTextUploadingField(blank=True, null=True,  help_text = "Affiliate")
+    name = models.CharField(max_length=100)  
+    last_update = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+

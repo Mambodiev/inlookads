@@ -1,0 +1,22 @@
+{% extends "pages/base.html" %}
+{% load i18n %}
+{% block head_title %}{% trans "Price" %}{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+  <div class="flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-4xl space-y-8">
+      <div>
+          <h2 class="my-4 text-2xl font-extrabold dark:text-white text-gray-900 text-center">
+              {% trans "Choose your plan" %}
+          </h2>
+          <div class="dark:text-white text-gray-900 text-center">
+                {{ price.price_text|safe}}
+            </div> 
+       </div>
+      
+    </div>
+  </div>
+{% endblock content %}

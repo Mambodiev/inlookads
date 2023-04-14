@@ -5,34 +5,14 @@
 
 {% block content %}
 
-
-
-{% comment %} <div class="site-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-7">
-                <h2 class="h3 mb-3 text-black">{% trans "Get in touch" %}</h2>
-            </div>
-            <div class="col-md-7">
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value='{% trans "Submit message" %}
-                    ' />
-                </form>
-            </div>
-        </div>
-    </div>
-</div> {% endcomment %}
-
-<div class="flex items-center justify-center px-4 py-12 my-4 sm:px-6 lg:px-8">
-    <div class="w-full max-w-md space-y-8">
+<div class="flex items-center justify-center mb-4 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md">
       <div>
           <h2 class="mt-6 text-2xl font-extrabold text-center dark:text-white text-gray-900">
-              {% trans "Nous Contacter" %}
+              {% trans "Get in touch" %}
           </h2>
       </div>
-      <form class="mt-8 space-y-6" id="signup_form" method="post">
+      <form class="my-6" id="signup_form" method="post">
         {% csrf_token %}
   
         {{ form|crispy }}       
@@ -50,10 +30,10 @@
                               clip-rule="evenodd"/>
                     </svg>
                 </span>
-                {% trans "Envoyer message" %}
+                {% trans "Submit message" %}
             </button>
         </div>
       </form>
     </div>
-  </div>
+</div>
 {% endblock content %}
