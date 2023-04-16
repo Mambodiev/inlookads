@@ -16,7 +16,7 @@ class StaffView(LoginRequiredMixin, StaffUserMixin, generic.ListView):
 class ProductListView(LoginRequiredMixin, StaffUserMixin, generic.ListView):
     template_name = 'staff/product_list.html'
     queryset = Course.objects.all()
-    paginate_by = 20
+    paginate_by = 10
     context_object_name = 'courses'
 
 

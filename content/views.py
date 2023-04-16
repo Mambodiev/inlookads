@@ -12,6 +12,9 @@ from django.utils.translation import gettext as _
 from .utils import get_or_set_order_session
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
 
 
 def is_valid_queryparam(param):
@@ -38,7 +41,21 @@ def is_valid_queryparam(param):
 
 
 def CourseListView(request):
-    qs = Course.objects.all()
+    object_list = Course.objects.all()
+
+    page_num = request.GET.get('page', 1)
+
+    paginator = Paginator(object_list, 6) # 6 employees per page
+
+
+    try:
+        page_obj = paginator.page(page_num)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver the first page
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        # if the page is out of range, deliver the last page
+        page_obj = paginator.page(paginator.num_pages)
 
     categories = Category.objects.all()
     technologies = Technology.objects.all()
@@ -65,60 +82,62 @@ def CourseListView(request):
     
 
     if is_valid_queryparam(category) and category != 'All categories':
-        qs = qs.filter(categories__name=category)
+        object_list = object_list.filter(categories__name=category)
 
     if is_valid_queryparam(technology) and technology != 'Site type':
-        qs = qs.filter(technologies__name=technology)
+        object_list = object_list.filter(technologies__name=technology)
 
     if is_valid_queryparam(country) and country != 'Country':
-        qs = qs.filter(countries__name=country)
+        object_list = object_list.filter(countries__name=country)
 
     if is_valid_queryparam(language) and language != 'Language':
-        qs = qs.filter(languages__name=language)
+        object_list = object_list.filter(languages__name=language)
 
     if is_valid_queryparam(button) and button != 'Button':
-        qs = qs.filter(buttons__name=button)
+        object_list = object_list.filter(buttons__name=button)
 
     if is_valid_queryparam(aliexpress_price_min):
-        qs = qs.filter(aliexpress_price__gte=aliexpress_price_min)
+        object_list = object_list.filter(aliexpress_price__gte=aliexpress_price_min)
 
     if is_valid_queryparam(aliexpress_price_max):
-        qs = qs.filter(aliexpress_price__lt=aliexpress_price_max)
+        object_list = object_list.filter(aliexpress_price__lt=aliexpress_price_max)
 
     if is_valid_queryparam(likes_count_min):
-        qs = qs.filter(likes__gte=likes_count_min)
+        object_list = object_list.filter(likes__gte=likes_count_min)
 
     if is_valid_queryparam(likes_count_max):
-        qs = qs.filter(likes__lt=likes_count_max)
+        object_list = object_list.filter(likes__lt=likes_count_max)
 
     if is_valid_queryparam(date_min):
-        qs = qs.filter(ads_run_since__gte=date_min)
+        object_list = object_list.filter(ads_run_since__gte=date_min)
 
     if is_valid_queryparam(date_max):
-        qs = qs.filter(ads_run_since__lt=date_max)
+        object_list = object_list.filter(ads_run_since__lt=date_max)
 
     if is_faceBook == 'on':
-        qs = qs.filter(is_faceBook=True)
+        object_list = object_list.filter(is_faceBook=True)
 
     if is_pinterest == 'on':
-        qs = qs.filter(is_pinterest=True)
+        object_list = object_list.filter(is_pinterest=True)
 
     if is_tiktok == 'on':
-        qs = qs.filter(is_tiktok=True)
+        object_list = object_list.filter(is_tiktok=True)
 
     if has_video == 'on':
-        qs = qs.filter(has_video=True)
+        object_list = object_list.filter(has_video=True)
 
     if has_photo == 'on':
-        qs = qs.filter(has_photo=True)
+        object_list = object_list.filter(has_photo=True)
 
     context = {
-        'queryset': qs,
+        'count': Course.objects.count(),
+        # 'queryset': qs,
         'categories': categories,
         'technologies': technologies,
         'countries': countries,
         'buttons': buttons,
-        'languages': languages
+        'languages': languages,
+        'page_obj': page_obj
     }
     return render(request, "content/course_list.html", context)
 

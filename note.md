@@ -15,7 +15,7 @@ source env/bin/activate
 python3 manage.py runserver 
 
 {% comment %} {% endcomment %}  
-
+https://www.facebook.com/search
 python manage.py makemigrations    
 python manage.py migrate 
 python3 manage.py runserver 
@@ -30,5 +30,7 @@ git init
 git add .
 git commit -m "privacy page"
 git push
+Gray-900
+#111827
 
-youtube-dl  -f 22 --no-playlist  -o  "~/home/diev/Videos/Django/django Yuksel/%(title)s.%(ext)s" "https://www.youtube.com/watch?v=6RR8WrvshQA&list=PLIUezwWmVtFXaHcJ63ZM6uOJdhMrnZFFk&index=2&pp=iAQB"
+display: none!important;
