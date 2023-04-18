@@ -41,21 +41,9 @@ def is_valid_queryparam(param):
 
 
 def CourseListView(request):
-    object_list = Course.objects.all()
-
-    page_num = request.GET.get('page', 1)
-
-    paginator = Paginator(object_list, 6) # 6 employees per page
-
-
-    try:
-        page_obj = paginator.page(page_num)
-    except PageNotAnInteger:
-        # if page is not an integer, deliver the first page
-        page_obj = paginator.page(1)
-    except EmptyPage:
-        # if the page is out of range, deliver the last page
-        page_obj = paginator.page(paginator.num_pages)
+    qs = Course.objects.all()
+    product_count = qs.count()
+    
 
     categories = Category.objects.all()
     technologies = Technology.objects.all()
@@ -82,62 +70,75 @@ def CourseListView(request):
     
 
     if is_valid_queryparam(category) and category != 'All categories':
-        object_list = object_list.filter(categories__name=category)
+        qs = qs.filter(categories__name=category)
 
     if is_valid_queryparam(technology) and technology != 'Site type':
-        object_list = object_list.filter(technologies__name=technology)
+        qs = qs.filter(technologies__name=technology)
 
     if is_valid_queryparam(country) and country != 'Country':
-        object_list = object_list.filter(countries__name=country)
+        qs = qs.filter(countries__name=country)
 
     if is_valid_queryparam(language) and language != 'Language':
-        object_list = object_list.filter(languages__name=language)
+        qs = qs.filter(languages__name=language)
 
     if is_valid_queryparam(button) and button != 'Button':
-        object_list = object_list.filter(buttons__name=button)
+        qs = qs.filter(buttons__name=button)
 
     if is_valid_queryparam(aliexpress_price_min):
-        object_list = object_list.filter(aliexpress_price__gte=aliexpress_price_min)
+        qs = qs.filter(aliexpress_price__gte=aliexpress_price_min)
 
     if is_valid_queryparam(aliexpress_price_max):
-        object_list = object_list.filter(aliexpress_price__lt=aliexpress_price_max)
+        qs = qs.filter(aliexpress_price__lt=aliexpress_price_max)
 
     if is_valid_queryparam(likes_count_min):
-        object_list = object_list.filter(likes__gte=likes_count_min)
+        qs = qs.filter(likes__gte=likes_count_min)
 
     if is_valid_queryparam(likes_count_max):
-        object_list = object_list.filter(likes__lt=likes_count_max)
+        qs = qs.filter(likes__lt=likes_count_max)
 
     if is_valid_queryparam(date_min):
-        object_list = object_list.filter(ads_run_since__gte=date_min)
+        qs = qs.filter(ads_run_since__gte=date_min)
 
     if is_valid_queryparam(date_max):
-        object_list = object_list.filter(ads_run_since__lt=date_max)
+        qs = qs.filter(ads_run_since__lt=date_max)
 
     if is_faceBook == 'on':
-        object_list = object_list.filter(is_faceBook=True)
+        qs = qs.filter(is_faceBook=True)
 
     if is_pinterest == 'on':
-        object_list = object_list.filter(is_pinterest=True)
+        qs = qs.filter(is_pinterest=True)
 
     if is_tiktok == 'on':
-        object_list = object_list.filter(is_tiktok=True)
+        qs = qs.filter(is_tiktok=True)
 
     if has_video == 'on':
-        object_list = object_list.filter(has_video=True)
+        qs = qs.filter(has_video=True)
 
     if has_photo == 'on':
-        object_list = object_list.filter(has_photo=True)
+        qs = qs.filter(has_photo=True)
+
+    page_num = request.GET.get('page', 1)
+
+    paginator = Paginator(qs, 4) # 6 employees per page
+
+
+    try:
+        qs = paginator.page(page_num)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver the first page
+        qs = paginator.page(1)
+    except EmptyPage:
+        # if the page is out of range, deliver the last page
+        qs = paginator.page(paginator.num_pages)
 
     context = {
-        'count': Course.objects.count(),
-        # 'queryset': qs,
+        'queryset': qs,
         'categories': categories,
         'technologies': technologies,
         'countries': countries,
         'buttons': buttons,
         'languages': languages,
-        'page_obj': page_obj
+        'product_count': product_count,
     }
     return render(request, "content/course_list.html", context)
 
