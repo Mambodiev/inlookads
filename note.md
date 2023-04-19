@@ -28,7 +28,7 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "pagination done but messed with filter"
+git commit -m "sucess withpagination & filter"
 git push
 Gray-900
 #111827

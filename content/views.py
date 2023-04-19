@@ -119,8 +119,7 @@ def CourseListView(request):
 
     page_num = request.GET.get('page', 1)
 
-    paginator = Paginator(qs, 4) # 6 employees per page
-
+    paginator = Paginator(qs, 4) 
 
     try:
         qs = paginator.page(page_num)
