@@ -31,7 +31,7 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "sucess withpagination & filter"
+git commit -m "START MODEL TRANSLATION ACORDING TO YUKSEL"
 git push
 Gray-900
 #111827
