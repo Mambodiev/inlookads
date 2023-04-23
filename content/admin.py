@@ -1,13 +1,22 @@
+import admin_thumbnails
+from django.utils.html import format_html
+
 from django.contrib import admin
 from . import models
 
 from .models import Course, Video, Pricing, Subscription, Sale, Store , OrderItem, Order, Category, Country, Technology, Language, Button
-@admin.register(models.Course)
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ['name_of_product']
+
+
+
+@admin.register(Course) 
+class CourseAdmin(admin.ModelAdmin):
+    list_filter = ['buttons', 'countries' ]
+    list_display = ['name_of_product','categories', 'technologies', 'buttons', 'countries','img_preview']
+    readonly_fields = ['img_preview']
     prepopulated_fields = {'slug': ('name_of_product',), }
 
-# admin.site.register(Course)
+
+
 admin.site.register(Category)
 admin.site.register(Country)
 admin.site.register(Technology)

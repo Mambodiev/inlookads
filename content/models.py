@@ -7,6 +7,8 @@ from django.shortcuts import reverse, get_object_or_404
 from django.contrib.auth import get_user_model
 from allauth.account.signals import email_confirmed
 import stripe
+from django.utils.html import mark_safe
+
 
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -186,6 +188,11 @@ class Course(models.Model):
 
         super().save(*args, **kwargs)
 
+    def img_preview(self): #new
+        return mark_safe(f'<img src = "{self.product_thumbnail.url}" width = "50"/>')
+        
+    img_preview.short_description = 'Product Image'
+    img_preview.allow_tags = True
 
 class OrderItem(models.Model):
     order = models.ForeignKey(
