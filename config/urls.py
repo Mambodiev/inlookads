@@ -9,9 +9,20 @@ from rest_framework.authtoken.views import obtain_auth_token
 from django.utils.translation import gettext_lazy as _
 
 
+from core.views import (
+    selectlanguage,
+    )
+
+
 urlpatterns = [
+    path('selectlanguage/',selectlanguage,name='selectlanguage'),
+    path('i18n/', include('django.conf.urls.i18n')),
+]
+
+
+urlpatterns += i18n_patterns (
     path(
-        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
+        _("about/"), TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
@@ -21,7 +32,7 @@ urlpatterns = [
 
 
     # Content
-    path("courses/", include("content.urls", namespace="content")),
+    path(_("courses/"), include("content.urls", namespace="content")),
     # path("payment/", include("payment.urls", namespace="payment")),
 
     # tailwind
@@ -31,11 +42,12 @@ urlpatterns = [
     path('_ckeditor/', include('ckeditor_uploader.urls')),
 
     # User management
-    path("users/", include("users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
+    path(_("users/"), include("users.urls", namespace="users")),
+    path(_("accounts/"), include("allauth.urls")),
     # Your stuff: custom urls includes go here
     path(_('staff/'), include('staff.urls', namespace='staff')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    prefix_default_language=False,
+)+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS
 urlpatterns += [

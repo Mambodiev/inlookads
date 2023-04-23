@@ -1,99 +1,88 @@
 {% extends "pages/base.html" %}
+{% load static i18n %}
 {% load cool_num %}
 {% block content %}
- <div class="  mx-auto max-w-screen-xl px-2">
+<div class="container mx-auto px-4">
     {% comment %} filter {% endcomment %}
         {% comment %} product count {% endcomment %}
-            <p class="text-2xl text-gray-700 dark:text-white text-center">
-                Over 
+            <p class="text-2xl text-gray-700 dark:text-white text-center">    {% translate "Over" %}
+                 
                 <strong class="rounded-full bg-gray-500 p-2 mx-2 text-white">{{ product_count }}
                 </strong> 
-                 products
-            </p>
-            {% comment %} <p class="text-2xl text-gray-700 dark:text-white text-center">
-                Over 
-                <strong class="rounded-full bg-gray-500 p-2 mx-2 text-white">{{ queryset.count }}
-                </strong> 
-                 products
-            </p>{% endcomment %}
-            
+                {% translate "products." %}
+            </p>            
         {% comment %} end product count {% endcomment %}
             <form method="GET" action=".">
-                <div class="grid gap-2 mt-4  grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-                    <div>
-                        <select  onchange="this.form.submit()" id="category" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="category">
-                          <option selected>All categories</option>
+                <div class="grid gap-2 mt-4  grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                        <select  onchange="this.form.submit()" id="category" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600" name="category">
+                          <option selected>{% translate "All categories" %}</option>
                           {% for cat in categories  %}
                           <option value="{{ cat }}">{{ cat }}</option>
                           {% endfor %}
                         </select>
-                    </div>
                     <div>
-                        <select  onchange="this.form.submit()" id="technology" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="technology">
-                          <option selected>Site type</option>
+                        <select  onchange="this.form.submit()" id="technology" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600" name="technology">
+                          <option selected>{% translate "Site type" %}</option>
                           {% for cat in technologies %}
                           <option value="{{ cat }}">{{ cat }}</option>
                           {% endfor %}
                         </select>
                     </div>
                     <div>
-                        <select  onchange="this.form.submit()" id="country" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="country">
-                          <option selected>Country</option>
+                        <select  onchange="this.form.submit()" id="country" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600" name="country">
+                          <option selected>{% translate "Country" %}</option>
                           {% for cat in countries %}
                           <option value="{{ cat }}">{{ cat }}</option>
                           {% endfor %}
                         </select>
                     </div>
                     <div>
-                        <select  onchange="this.form.submit()" id="button" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="button">
-                          <option selected>Button</option>
+                        <select  onchange="this.form.submit()" id="button" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600" name="button">
+                          <option selected>{% translate "Button" %}</option>
                           {% for cat in buttons %}
                           <option value="{{ cat }}">{{ cat }}</option>
                           {% endfor %}
                         </select>
                     </div>
                     <div>
-                        <select  onchange="this.form.submit()" id="language" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600" name="language">
-                          <option selected>Language</option>
+                        <select  onchange="this.form.submit()" id="language" class="text-gray-700 dark:text-white dark:bg-gray-900 border-block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600" name="language">
+                          <option selected>{% translate "Language" %}</option>
                           {% for cat in languages %}
                           <option value="{{ cat }}">{{ cat }}</option>
                           {% endfor %}
                         </select>
-                    </div>
-                    
-
-                     
+                    </div> 
                 </div>  
-                <div class="grid gap-2  my-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+                <div class="grid gap-2  my-2 grid-cols-2 sm:grid-cols-3  md:grid-cols-4 lg:grid-cols-6">
                     <div>
-                        <label class="text-gray-700 dark:text-white" for="username">Min likes</label>
-                        <input type="number" min=0 id="likesCountMin" placeholder="0" name="likes_count_min"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                        <label class="text-gray-700 dark:text-white" for="username">{% translate "Min likes" %}</label>
+                        <input type="number" min=0 id="likesCountMin" placeholder="0" name="likes_count_min"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600">
                     </div>
                     <div>
-                        <label class="text-gray-700 dark:text-white" for="username">Max likes</label>
-                        <input type="number" min=0  id="likesCountMax" placeholder="10000?" name="likes_count_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                        <label class="text-gray-700 dark:text-white" for="username">{% translate "Max likes" %}</label>
+                        <input type="number" min=0  id="likesCountMax" placeholder="10000?" name="likes_count_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600">
                     </div>
                     <div>
-                        <label class="text-gray-700 dark:text-white" for="username">Date minimum</label>
-                        <input type="date" id="publishDateMin" name="date_min" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                        <label class="text-gray-700 dark:text-white" for="username">{% translate "Date min" %}</label>
+                        <input type="date" id="publishDateMin" name="date_min" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600">
                     </div>
                     <div>
-                        <label class="text-gray-700 dark:text-white" for="username">Date maximum</label>
-                        <input onchange="this.form.submit()" type="date" id="publishDateMax" name="date_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                        <label class="text-gray-700 dark:text-white" for="username">{% translate "Date max" %}</label>
+                        <input onchange="this.form.submit()" type="date" id="publishDateMax" name="date_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600">
                     </div>
                     <div>
-                        <label class="text-gray-700 dark:text-white" for="aliexpressPriceMin">Price min</label>
-                        <input  type="number" min=0  id="aliexpressPriceMin" placeholder="0" name="aliexpress_price_min" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                        <label class="text-gray-700 dark:text-white" for="aliexpressPriceMin">{% translate "Price min" %}</label>
+                        <input  type="number" min=0  id="aliexpressPriceMin" placeholder="0" name="aliexpress_price_min" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600">
                     </div>
                     <div>
-                        <label class="text-gray-700 dark:text-white" for="aliexpressPriceMax">Price max</label>
-                        <input  type="number" min=0  id="aliexpressPriceMax" placeholder="10000?" name="aliexpress_price_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600">
+                        <label class="text-gray-700 dark:text-white" for="aliexpressPriceMax">{% translate "Price max" %}</label>
+                        <input  type="number" min=0  id="aliexpressPriceMax" placeholder="10000?" name="aliexpress_price_max" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600">
                     </div>
                 </div>
-                <div class="md:flex gap-4">
-                    <div class="lg:w-2/3 w-full">
+
                         {% comment %} checkbox filter {% endcomment %} 
-                            <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
+                        <div class="w-full text-center py-2">
+                            <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem] text-center">
                                 <input
                                   onchange="this.form.submit()"
                                   class="relative float-left mt-[0.15rem] mr-[6px] -ml-[1.5rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-[rgba(0,0,0,0.25)] bg-white before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:ml-[0.25rem] checked:after:-mt-px checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-t-0 checked:after:border-l-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:bg-white focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:ml-[0.25rem] checked:focus:after:-mt-px checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-t-0 checked:focus:after:border-l-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent"
@@ -103,7 +92,7 @@
                                 <label
                                   class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
                                   for="inlineCheckbox1"
-                                  >Video</label
+                                  >{% translate "Video" %}</label
                                 >
                             </div>
                             <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
@@ -116,7 +105,7 @@
                                 <label
                                   class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
                                   for="inlineCheckbox1"
-                                  >Photo</label
+                                  >{% translate "Photo" %}</label
                                 >
                             </div>
                             <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
@@ -130,7 +119,7 @@
                                 <label
                                   class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
                                   for="inlineCheckbox2"
-                                  >FaceBook
+                                  >{% translate "FaceBook" %}
                                 </label>
                             </div>
                             <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
@@ -143,7 +132,7 @@
                                 <label
                                   class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
                                   for="inlineCheckbox2"
-                                  >Tiktok</label
+                                  >{% translate "Tiktok" %}</label
                                 >
                             </div>
                             <div class="mb-[0.125rem] mr-4 inline-block min-h-[1.5rem] pl-[1.5rem]">
@@ -156,23 +145,17 @@
                                 <label
                                 class="text-gray-700 dark:text-white inline-block pl-[0.15rem] hover:cursor-pointer"
                                 for="inlineCheckbox2"
-                                >Pinterest</label>
+                                >{% translate "Pinterest" %}</label>
                             </div>
+                        </div>
                         {% comment %} end checkbox filter {% endcomment %}
-                    </div>
-                    <div class="lg:w-1/3 w-full">
-                        <button type="submit" class="w-full block px-8 py-2 leading-5 text-white transition-colors duration-300 transform bg-gray-500 rounded-md hover:bg-gray-700">
-                                Search
+                    <div class="grid justify-items-end ...">
+                      <div class="w-64">
+                          <button type="submit" class="w-full block px-8 py-2 leading-5 text-white transition-colors duration-300 transform bg-gray-500 rounded-md hover:bg-gray-700">
+                                {% translate "Search" %}
                         </button>
+                      </div>
                     </div>
-                </div>
-                 
-                        
-                  
-
-                <div class="flex justify-end mt-6">
-                    
-                </div>       
             </form>
         {% comment %} end filter {% endcomment %}
 
@@ -180,11 +163,11 @@
             lg:grid-cols-3  xl:gap-x-8">
          {% for course in queryset %}
         <div class="group relative block overflow-hidden rounded-lg shadow-lg">
-            <div class="flex items-center justify-between p-3">
+            <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center space-x-2">
                     <div class="-space-y-1">
                         <h2 class="text-lg text-gray-700 dark:text-white">{{ course.name_of_store|title}}</h2>
-                        <span class='text-base text-gray-700 dark:text-white'>Created : {{ course.ads_run_since|timesince}} ago</span>
+                        <span class='text-base text-gray-700 dark:text-white'>{% translate "Created" %}: {{ course.ads_run_since|timesince}} {% translate "ago" %}</span>
                     </div>
                 </div>
                 
@@ -217,14 +200,9 @@
                             </svg>
                         </button>
                     {% endif %}
-                    
-
-                    
-
-                    
                 </div>
             </div>
-            <div class="p-3 flex items-center justify-center">
+            <div class="flex items-center justify-center">
                 {% if course.has_video %}
                     <button
                         class="absolute bg-gray-800 bg-opacity-30 hover:bg-opacity-30 p-4 rounded-full text-white hover:bg-white hover:text-gray-800">
@@ -238,9 +216,8 @@
                 alt=""
                 class="aspect-square rounded-lg  w-full object-cover"
                 />
-                 {% comment %} {% video course.product_video 'tiny' %} {% endcomment %}
             </div>
-            <div class="relative px-3 text-center ">
+            <div class="relative px-3">
                 <a class="" href="{{ course.get_absolute_url }}">
                     <h1 class="text-lg font-medium text-gray-700 dark:text-white mt-2">
                         {{ course.name_of_product|title|truncatechars:26  }}
@@ -248,7 +225,7 @@
                 </a>
                 <div class="grid grid-cols-3 text-gray-700 dark:text-white gap-2 ">
                     <div class="flex flex-col justify-start p-2">
-                        <p class="flex mx-auto text-lg font-medium">
+                        <p class="flex text-lg font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-thumbs-up-fill mr-2" viewBox="0 0 16 16">
                                 <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
                             </svg>
@@ -256,14 +233,14 @@
                         </p>
                     </div>
                     <div class="flex flex-col justify-start p-2">
-                        <p class="flex mx-auto text-lg font-medium">
+                        <p class="flex text-lg font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chat-dots-fill mr-2" viewBox="0 0 16 16">
                                 <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                               </svg>
                             {{ course.comment|cool_num }}
                          </p>
                     </div>
-                    <div class="flex mx-auto flex-col justify-start p-2">
+                    <div class="flex flex-col justify-start p-2">
                         <p class="flex text-lg font-medium">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-fill mr-2" viewBox="0 0 16 16">
                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -281,23 +258,23 @@
     {% comment %} paginator{% endcomment %} 
         <div class="flex items-center justify-center my-6">
             {% if queryset.has_previous %}
-                <a href="?page={{ queryset.previous_page_number }}" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md rtl:-scale-x-100 dark:bg-gray-800 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
+                <a href="?page={{ queryset.previous_page_number }}" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md rtl:-scale-x-100 dark:bg-gray-900 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                     </svg>
                 </a>
               {% if queryset.number > 3 %}
-                <a href="?page=1" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
+                <a href="?page=1" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-900 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
                     1
                 </a>
                 {% if queryset.number > 4 %}
-                  <span class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-white">
+                  <span class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-900 dark:text-white">
                         ...
                     </span>
                 {% endif %}
               {% endif %}
             {% else %}
-                <a href="#" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md cursor-not-allowed rtl:-scale-x-100 dark:bg-gray-800 dark:text-gray-600">
+                <a href="#" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md cursor-not-allowed rtl:-scale-x-100 dark:bg-gray-900 dark:text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                     </svg>
@@ -306,11 +283,11 @@
 
             {% for num in queryset.paginator.page_range %}
               {% if queryset.number == num %}
-                <a href="?page={{ num }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
+                <a href="?page={{ num }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-900 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
                     {{ num }}
                 </a>
               {% elif num > queryset.number|add:'-3' and num < queryset.number|add:'3' %}
-                <a href="?page={{ num }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
+                <a href="?page={{ num }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-900 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
                     {{ num }}
                 </a>
               {% endif %}
@@ -318,25 +295,25 @@
 
             {% if queryset.has_next %}
               {% if queryset.number < queryset.paginator.num_pages|add:'-3' %}
-                <span class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-white">
+                <span class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-900 dark:text-white">
                     ...
                 </span>
-                <a href="?page={{ queryset.paginator.num_pages }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
+                <a href="?page={{ queryset.paginator.num_pages }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-900 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
                     {{ queryset.paginator.num_pages }}
                 </a>
               {% elif queryset.number < queryset.paginator.num_pages|add:'-2' %}
-                <a href="?page={{ queryset.paginator.num_pages }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
+                <a href="?page={{ queryset.paginator.num_pages }}" class="hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-900 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
                     {{ queryset.paginator.num_pages }}
                 </a>
               {% endif %}
 
-                <a href="?page={{ queryset.next_page_number }}" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md rtl:-scale-x-100 dark:bg-gray-800 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
+                <a href="?page={{ queryset.next_page_number }}" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md rtl:-scale-x-100 dark:bg-gray-900 dark:text-white hover:bg-gray-500 dark:hover:bg-gray-500 hover:text-white dark:hover:text-gray-200">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                     </svg>
                 </a>
             {% else %}
-                <a href="#" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md cursor-not-allowed rtl:-scale-x-100 dark:bg-gray-800 dark:text-gray-600">
+                <a href="#" class="flex items-center justify-center px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md cursor-not-allowed rtl:-scale-x-100 dark:bg-gray-900 dark:text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                     </svg>

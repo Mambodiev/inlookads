@@ -5,7 +5,7 @@
 {% load crispy_forms_tags %}
 
 
-  <div class="mx-auto max-w-screen-xl">
+  <div class="container mx-auto">
       <div class="flex justify-between pb-6 px-4">
           <div>
               <h1 class="text-2xl font-medium text-gray-700 dark:text-white ">
@@ -30,300 +30,165 @@
               </form>
           </div>
       </div>
-      <div class="md:flex gap-4 px-4">
-        <div class="lg:w-1/3 w-full">
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3  ">
+        <div class="">
             <img src="{{ course.product_thumbnail.url }}" alt="" class="rounded-lg w-full object-cover mb-6">
-            <div class="p-6 border rounded-xl border-r-gray-200 dark:border-gray-700">
-              <div class="md:flex md:items-start md:-mx-4">
-                    {% if course.is_faceBook %}
-                        <button type="button" title="Like post" 
-                            class="flex     
-                            items-center justify-center dark:bg-white dark:text-blue-500 
-                            text-blue-500 hover:text-white hover:bg-blue-500 rounded-full p-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-facebook " viewBox="0 0 16 16">
-                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                            </svg>
-                        </button>
-                    {% endif %}
-                    {% if course.is_tiktok %}
-                        <button type="button" title="Like post" 
-                            class="flex items-center justify-center hover:bg-white hover:text-[#ff0050] text-white
-                            bg-[#ff0050] rounded-full p-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
-                                <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/>
-                            </svg>
-                        </button>
-                    {% endif %}
-                    {% if course.is_pinterest %}
-                        <button type="button" title="Like post" 
-                            class="flex items-center justify-center
-                            bg-[#E60023]  text-white hover:text-[#E60023] hover:bg-white rounded-full p-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z"/>
-                            </svg>
-                        </button>
-                    {% endif %}
-
-                  <div class="mt-4 md:mx-4 md:mt-0">
-                      <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white mb-3">Ads text</h1>
-
-                      <div class="text-gray-700 dark:text-white">
-                           {{ course.text_that_comes_with_ads|safe  }} 
-                      </div>
-                  </div>
-              </div>
-            </div>
         </div>
-        <div class="lg:w-2/3 w-full">
 
-          <div class="grid grid-cols-2   gap-2  lg:grid-cols-4 bg-neutral-50 dark:bg-gray-800 rounded-lg">
-              <div class="flex items-center gap-2 p-4">
+        <div class="grid grid-cols-3 gap-2 bg-neutral-50 dark:bg-gray-800 rounded-lg">
+                <div class="flex items-center gap-2 px-4">
+                    <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                        <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                      </svg>
+                    </span>
+
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white"> {{ course.likes|cool_num }}</p>
+
+                    <p class=" text-gray-700 dark:text-white">Likes</p>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2 px-4">
                   <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                      <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
+                      <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                     </svg>
                   </span>
 
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white"> {{ course.likes|cool_num }}</p>
-
-                  <p class=" text-gray-700 dark:text-white">Likes</p>
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white">{{ course.comment|cool_num }}</p>
+                    <p class=" text-gray-700 dark:text-white">Comments</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2 p-4">
-                <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chat-dots-fill" viewBox="0 0 16 16">
-                    <path d="M16 8c0 3.866-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.584.296-1.925.864-4.181 1.234-.2.032-.352-.176-.273-.362.354-.836.674-1.95.77-2.966C.744 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7zM5 8a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                  </svg>
-                </span>
+                <div class="flex items-center gap-2 px-4">
+                  <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                      <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                      <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                    </svg>
+                  </span>
 
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">{{ course.comment|cool_num }}</p>
-                  <p class=" text-gray-700 dark:text-white">Comments</p>
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white">{{ course.views|cool_num }}</p>
+
+                    <p class=" text-gray-700 dark:text-white">Views</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2 p-4">
-                <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                  </svg>
-                </span>
+                <div class="flex items-center gap-2 px-4">
+                  <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                      <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                    </svg>
+                  </span>
 
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">{{ course.views|cool_num }}</p>
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.aliexpress_total_sale|cool_num }}</p>
 
-                  <p class=" text-gray-700 dark:text-white">Views</p>
+                    <p class=" text-gray-700 dark:text-white">Sales</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2 p-4">
-                <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
-                    <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
-                  </svg>
-                </span>
+                <div class="flex items-center gap-2 px-4">
+                  <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
+                      <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                      <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z"/>
+                    </svg>
+                  </span>
 
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.aliexpress_total_sale|cool_num }}</p>
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.price_margin }}</p>
 
-                  <p class=" text-gray-700 dark:text-white">Sales</p>
+                    <p class=" text-gray-700 dark:text-white">Profits</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2 p-4">
-                <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wallet-fill" viewBox="0 0 16 16">
-                    <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542.637 0 .987-.254 1.194-.542.226-.314.306-.705.306-.958a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2h-13z"/>
-                    <path d="M16 6.5h-5.551a2.678 2.678 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5c-.963 0-1.613-.412-2.006-.958A2.679 2.679 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-6z"/>
-                  </svg>
-                </span>
+                <div class="flex items-center gap-2 px-4">
+                  <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+                      <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+                      <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+                      <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+                    </svg>
+                  </span>
 
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.price_margin }}</p>
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.shopify_price }}</p>
 
-                  <p class=" text-gray-700 dark:text-white">Profits</p>
+                    <p class=" text-gray-700 dark:text-white">Price</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2 p-4">
-                <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
-                    <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
-                    <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
-                    <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
-                  </svg>
-                </span>
+                <div class="flex items-center gap-2 px-4">
+                  <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
+                      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/>
+                    </svg>
+                  </span>
 
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.shopify_price }}</p>
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.aliexpress_price }}</p>
 
-                  <p class=" text-gray-700 dark:text-white">Price</p>
+                    <p class=" text-gray-700 dark:text-white">Cost</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2 p-4">
-                <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-credit-card-2-back-fill" viewBox="0 0 16 16">
-                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zM0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/>
-                  </svg>
-                </span>
+                <div class="flex items-center gap-2 px-4">
+                  <span class="rounded-full bg-green-100 p-3 text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
+                      <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+                    </svg>
+                  </span>
 
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">${{ course.aliexpress_price }}</p>
+                  <div>
+                    <p class="text-2xl font-medium text-gray-700 dark:text-white">{{ course.aliexpress_order|cool_num }}</p>
 
-                  <p class=" text-gray-700 dark:text-white">Cost</p>
+                    <p class=" text-gray-700 dark:text-white">Order</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex items-center gap-2 p-4">
-                <span class="rounded-full bg-green-100 p-3 text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16">
-                    <path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-                  </svg>
-                </span>
-
-                <div>
-                  <p class="text-2xl font-medium text-gray-700 dark:text-white">{{ course.aliexpress_order|cool_num }}</p>
-
-                  <p class=" text-gray-700 dark:text-white">Order</p>
-                </div>
-              </div>
-          </div>
-
-          <div class="rounded-lg mx-auto mt-4">
-            <!-- Tabs -->
-            <ul id="tabs" class="inline-flex pt-2 px-1 w-full  shadow-sm">
-              <li class="bg-neutral-50 dark:bg-gray-800 px-4
-              text-gray-700 dark:text-white py-2 shadow-lg border-r dark:border-gray-900">
-                <a id="default-tab" href="#first">Order Trend</a>
-              </li>
-              <li class="bg-neutral-50 px-4 text-gray-700 dark:text-white 
-                py-2 dark:bg-gray-800 shadow-lg border-r dark:border-gray-900">
-                <a href="#second">Saturation</a>
-              </li>
-            </ul>
-          
-            <!-- Tab Contents -->
-            <div id="tab-contents" class='text-gray-700 dark:text-white' >
-              <div id="first" class="py-4">
-                <canvas id="myChart" ></canvas> 
-              </div>
-              <div id="second" class="hidden p-4">
-                Saturation
-              </div>
             </div>
-          </div>
 
+        <div class="mt-4 md:mx-4 md:mt-0">
+            <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white mb-3">Ads text</h1>
+
+            <div class="text-gray-700 dark:text-white">
+                 {{ course.text_that_comes_with_ads|safe  }} 
+            </div>
         </div>
-      </div>
- 
-<div class=" ">
-  <div class="mx-auto max-w-2xl px-4 py-6 lg:max-w-7xl">
-    <h2 class="sr-only text-gray-700 dark:text-white">Products</h2>
+        <div class="mt-4 md:mx-4 md:mt-0">
+            <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white mb-3">Order Trend</h1>
 
-    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3  ">
-      <div class="p-6 border rounded-xl border-r-gray-200 dark:border-gray-700">
-          <div class="md:flex md:items-start md:-mx-4">
-              <span class="inline-block p-2 text-blue-500 bg-blue-100 rounded-xl md:mx-4 dark:text-white dark:bg-blue-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                  </svg>
-              </span>
+            <div class="text-gray-700 dark:text-white">
+                 <canvas id="myChart" ></canvas> 
+            </div>
+        </div>
+        
+        <div class="mt-4 md:mx-4 md:mt-0">
+            <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white mb-3">Store Links</h1>
 
-              <div class="mt-4 md:mx-4 md:mt-0 w-full">
-                  <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white">Competition</h1>
+            <div class="text-gray-700 dark:text-white">
+                 {{ course.links_to_others_stores|safe  }} 
+            </div>
+        </div>
 
-                  <div class="mt-3 text-gray-700 dark:text-gray-300">
-                      
-                    <div class="flex justify-between mb-1">
-                      <span class="text-base font-medium text-blue-700 dark:text-white text-xl">Low</span>
-                      <span class="text-xl font-medium text-blue-700 dark:text-white">45%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-md h-8 dark:bg-gray-700">
-                      <div class="bg-blue-600 h-8 rounded-md" style="width: 45%"></div>
-                    </div>
+        <div class="mt-4 md:mx-4 md:mt-0">
+            <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white mb-3">Suppliers Links</h1>
 
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="p-6 border rounded-xl border-r-gray-200 dark:border-gray-700">
-          <div class="md:flex md:items-start md:-mx-4">
-              <span class="inline-block p-2 rounded-full md:mx-4 text-blue-500 bg-blue-100 dark:text-white dark:bg-blue-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" width=40 height="40" fill="currentColor" class="bi bi-box-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.004-.001.274-.11a.75.75 0 0 1 .558 0l.274.11.004.001 6.971 2.789Zm-1.374.527L8 5.962 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339Z"/>
-                  </svg>
-              </span>
-
-              <div class="mt-4 md:mx-4 md:mt-0">
-                  <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white">Store links</h1>
-
-                  <div class="text-gray-700 dark:text-white ">
-                        {{ course.links_to_others_stores|safe  }}
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="p-6 border rounded-xl border-r-gray-200 dark:border-gray-700">
-          <div class="md:flex md:items-start md:-mx-4">
-                    {% if course.is_faceBook %}
-                        <button type="button" title="Like post" 
-                            class="flex     
-                            items-center justify-center dark:bg-white dark:text-blue-500 
-                            text-blue-500 hover:text-white hover:bg-blue-500 rounded-full p-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-facebook " viewBox="0 0 16 16">
-                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                            </svg>
-                        </button>
-                    {% endif %}
-                    {% if course.is_tiktok %}
-                        <button type="button" title="Like post" 
-                            class="flex items-center justify-center hover:bg-white hover:text-[#ff0050] text-white
-                            bg-[#ff0050] rounded-full p-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-tiktok" viewBox="0 0 16 16">
-                                <path d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3V0Z"/>
-                            </svg>
-                        </button>
-                    {% endif %}
-                    {% if course.is_pinterest %}
-                        <button type="button" title="Like post" 
-                            class="flex items-center justify-center
-                            bg-[#E60023]  text-white hover:text-[#E60023] hover:bg-white rounded-full p-1.5">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">
-                                <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z"/>
-                            </svg>
-                        </button>
-                    {% endif %}
-
-              <div class="mt-4 md:mx-4 md:mt-0">
-                  <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white">Ads links</h1>
-
-                  <div class="text-gray-700 dark:text-white">
-                        {{ course.links_to_ads|safe  }}
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="p-6 border rounded-xl border-r-gray-200 dark:border-gray-700">
-          <div class="md:flex md:items-start md:-mx-4">
-              <span class="inline-block p-2 text-blue-500 bg-blue-100 rounded-full md:mx-4 dark:text-white dark:bg-blue-500">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-houses-fill" viewBox="0 0 16 16">
-                    <path d="M7.207 1a1 1 0 0 0-1.414 0L.146 6.646a.5.5 0 0 0 .708.708L1 7.207V12.5A1.5 1.5 0 0 0 2.5 14h.55a2.51 2.51 0 0 1-.05-.5V9.415a1.5 1.5 0 0 1-.56-2.475l5.353-5.354L7.207 1Z"/>
-                    <path d="M8.793 2a1 1 0 0 1 1.414 0L12 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l1.854 1.853a.5.5 0 0 1-.708.708L15 8.207V13.5a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 13.5V8.207l-.146.147a.5.5 0 1 1-.708-.708L8.793 2Z"/>
-                  </svg>
-              </span>
-
-              <div class="mt-4 md:mx-4 md:mt-0">
-                  <h1 class="text-xl font-medium text-gray-700 capitalize dark:text-white">Suppliers links</h1>
-
-                  <div class="text-gray-700 dark:text-white">
-                        {{ course.links_to_others_suppliers|safe  }}
-                  </div>
-              </div>
-          </div>
-      </div>
-      </div>
-  </div>
+            <div class="text-gray-700 dark:text-white">
+                 {{ course.links_to_others_suppliers|safe  }} 
+            </div>
+        </div>
+    </div>
 </div>
 
 

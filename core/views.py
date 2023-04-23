@@ -1,10 +1,26 @@
 from django.shortcuts import render
 from .forms import ContactForm
 from django.views import generic
-from .models import Privacy, Terms, Faq, Price, About, Affiliate
+from .models import PrivacyTermsAbout, Faq, Price, Affiliate
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect, request
+from django.utils import translation
+from django.urls import reverse
+from django.conf import settings
 
-# def privacy(request):
+
+def selectlanguage(request):
+    if request.method == 'POST':  # check post
+        cur_language = translation.get_language()
+        lasturl= request.META.get('HTTP_REFERER')
+        lang = request.POST['language']
+        translation.activate(lang)
+        request.COOKIES[settings.LANGUAGE_COOKIE_NAME]=lang
+        #return HttpResponse(lang)
+        return HttpResponseRedirect("/"+lang)
+
+
+# def privacy(request): 
 #     qs = Privacy.objects.all()
 
 #     context = {
@@ -23,7 +39,7 @@ def home(request):
 
 
 def privacy(request):
-    privacy = Privacy.objects.get(pk=1)
+    PrivacyTermsAbout = Privacy.objects.get(pk=1)
    
     context={'privacy':privacy}
     return render(request,'pages/privacy.html', context)
@@ -31,7 +47,7 @@ def privacy(request):
 
 
 def terms(request):
-    terms = Terms.objects.get(pk=1)
+    PrivacyTermsAbout = Terms.objects.get(pk=1)
    
     context={'terms':terms}
     return render(request,'pages/terms.html', context)
@@ -54,7 +70,7 @@ def price(request):
 
 
 def about(request):
-    about = About.objects.get(pk=1)
+    PrivacyTermsAbout = About.objects.get(pk=1)
    
     context={'about':about}
     return render(request,'pages/about.html', context)

@@ -1,10 +1,13 @@
-cd djvideomem
+cd realadsnow
 source env/bin/activate
 python3 manage.py tailwind start
 
-cd djvideomem
+cd realadsnow
 source env/bin/activate
 python3 manage.py runserver 
+
+
+{% translate "" %}
 
 cd Videos
 cd Matts
