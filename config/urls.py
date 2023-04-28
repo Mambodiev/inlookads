@@ -41,6 +41,9 @@ urlpatterns += i18n_patterns (
     # ckeditor 
     path('_ckeditor/', include('ckeditor_uploader.urls')),
 
+    # translation
+    path(_('rosetta/'), include('rosetta.urls')),
+
     # User management
     path(_("users/"), include("users.urls", namespace="users")),
     path(_("accounts/"), include("allauth.urls")),

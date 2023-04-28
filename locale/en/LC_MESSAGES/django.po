@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-23 10:36+0300\n"
-"PO-Revision-Date: 2023-04-20 15:44+0300\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2023-04-24 15:37+0300\n"
+"PO-Revision-Date: 2023-04-24 22:55+0300\n"
+"Last-Translator: mambodieu@gmail.com\n"
 "Language-Team: \n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
 
 #: config/settings.py:118
 msgid "English"
@@ -70,16 +71,47 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: core/views.py:105
+#: core/models.py:13
+msgid "privacy_text"
+msgstr ""
+
+#: core/models.py:14 core/models.py:27 core/models.py:40 core/models.py:53 core/models.py:66 core/models.py:80
+msgid "name"
+msgstr ""
+
+#: core/models.py:15 core/models.py:28 core/models.py:41 core/models.py:54 core/models.py:67 core/models.py:81
+msgid "last_update"
+msgstr ""
+
+#: core/models.py:26
+msgid "terms_text"
+msgstr ""
+
+#: core/models.py:39
+msgid "faq_text"
+msgstr ""
+
+#: core/models.py:52
+msgid "about_text"
+msgstr ""
+
+#: core/models.py:65
+msgid "price_text"
+msgstr ""
+
+#: core/models.py:79
+msgid "affiliate_text"
+msgstr ""
+
+#: core/views.py:95
 msgid "email"
 msgstr ""
 
-#: core/views.py:106
+#: core/views.py:96
 msgid "message"
 msgstr ""
 
-#: templates/account/account_inactive.html:3
-#: templates/account/account_inactive.html:11
+#: templates/account/account_inactive.html:3 templates/account/account_inactive.html:11
 msgid "Account Inactive"
 msgstr ""
 
@@ -124,9 +156,7 @@ msgid "Warning:"
 msgstr ""
 
 #: templates/account/email.html:66
-msgid ""
-"You currently do not have any e-mail address set up. You should really add "
-"an e-mail address so you can receive notifications, reset your password, etc."
+msgid "You currently do not have any e-mail address set up. You should really add an e-mail address so you can receive notifications, reset your password, etc."
 msgstr ""
 
 #: templates/account/email.html:71
@@ -144,16 +174,13 @@ msgstr ""
 #: templates/account/email/account_already_exists_message.txt:4
 #, python-format
 msgid ""
-"You are receiving this e-mail because you or someone else tried to signup "
-"for an\n"
+"You are receiving this e-mail because you or someone else tried to signup for an\n"
 "account using e-mail address:\n"
 "\n"
 "%(email)s\n"
 "\n"
-"However, an account using that e-mail address already exists.  In case you "
-"have\n"
-"forgotten about this, please use the password forgotten procedure to "
-"recover\n"
+"However, an account using that e-mail address already exists.  In case you have\n"
+"forgotten about this, please use the password forgotten procedure to recover\n"
 "your account:\n"
 "\n"
 "%(password_reset_url)s"
@@ -178,8 +205,7 @@ msgstr ""
 #: templates/account/email/email_confirmation_message.txt:5
 #, python-format
 msgid ""
-"You're receiving this e-mail because user %(user_display)s has given your e-"
-"mail address to register an account on %(site_domain)s.\n"
+"You're receiving this e-mail because user %(user_display)s has given your e-mail address to register an account on %(site_domain)s.\n"
 "\n"
 "To confirm this is correct, go to %(activate_url)s"
 msgstr ""
@@ -190,10 +216,8 @@ msgstr ""
 
 #: templates/account/email/password_reset_key_message.txt:4
 msgid ""
-"You're receiving this e-mail because you or someone else has requested a "
-"password for your user account.\n"
-"It can be safely ignored if you did not request a password reset. Click the "
-"link below to reset your password."
+"You're receiving this e-mail because you or someone else has requested a password for your user account.\n"
+"It can be safely ignored if you did not request a password reset. Click the link below to reset your password."
 msgstr ""
 
 #: templates/account/email/password_reset_key_message.txt:9
@@ -201,8 +225,7 @@ msgstr ""
 msgid "In case you forgot, your username is %(username)s."
 msgstr ""
 
-#: templates/account/email/password_reset_key_subject.txt:3
-#: templates/account/email/unknown_account_subject.txt:3
+#: templates/account/email/password_reset_key_subject.txt:3 templates/account/email/unknown_account_subject.txt:3
 msgid "Password Reset E-mail"
 msgstr ""
 
@@ -210,8 +233,7 @@ msgstr ""
 #, python-format
 msgid ""
 "You are receiving this e-mail because you or someone else has requested a\n"
-"password for your user account. However, we do not have any record of a "
-"user\n"
+"password for your user account. However, we do not have any record of a user\n"
 "with email %(email)s in our database.\n"
 "\n"
 "This mail can be safely ignored if you did not request a password reset.\n"
@@ -219,16 +241,13 @@ msgid ""
 "If it was you, you can sign up for an account using the link below."
 msgstr ""
 
-#: templates/account/email_confirm.html:3
-#: templates/account/email_confirm.html:12
+#: templates/account/email_confirm.html:3 templates/account/email_confirm.html:12
 msgid "Confirm E-mail Address"
 msgstr ""
 
 #: templates/account/email_confirm.html:17
 #, python-format
-msgid ""
-"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
-"address for user %(user_display)s."
+msgid "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail address for user %(user_display)s."
 msgstr ""
 
 #: templates/account/email_confirm.html:26
@@ -237,13 +256,10 @@ msgstr ""
 
 #: templates/account/email_confirm.html:33
 #, python-format
-msgid ""
-"This e-mail confirmation link expired or is invalid. Please <a "
-"href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgid "This e-mail confirmation link expired or is invalid. Please <a href=\"%(email_url)s\">issue a new e-mail confirmation request</a>."
 msgstr ""
 
-#: templates/account/login.html:3 templates/account/login.html:12
-#: templates/account/login.html:47 templates/socialaccount/login.html:3
+#: templates/account/login.html:3 templates/account/login.html:12 templates/account/login.html:47 templates/socialaccount/login.html:3
 msgid "Sign In"
 msgstr ""
 
@@ -257,8 +273,7 @@ msgstr ""
 msgid "Forgot Password?"
 msgstr ""
 
-#: templates/account/logout.html:4 templates/account/logout.html:11
-#: templates/account/logout.html:27
+#: templates/account/logout.html:4 templates/account/logout.html:11 templates/account/logout.html:27
 msgid "Sign Out"
 msgstr ""
 
@@ -311,28 +326,19 @@ msgstr ""
 msgid "Your primary e-mail address must be verified."
 msgstr ""
 
-#: templates/account/password_change.html:3
-#: templates/account/password_change.html:10
-#: templates/account/password_change.html:35
-#: templates/account/password_reset_from_key.html:6
-#: templates/account/password_reset_from_key.html:11
-#: templates/account/password_reset_from_key_done.html:3
-#: templates/account/password_reset_from_key_done.html:8
-#: templates/account/signup_closed.html:5
+#: templates/account/password_change.html:3 templates/account/password_change.html:10 templates/account/password_change.html:35
+#: templates/account/password_reset_from_key.html:6 templates/account/password_reset_from_key.html:11 templates/account/password_reset_from_key_done.html:3
+#: templates/account/password_reset_from_key_done.html:8 templates/account/signup_closed.html:5
 msgid "Change Password"
 msgstr ""
 
-#: templates/account/password_reset.html:3
-#: templates/account/password_reset.html:10
-#: templates/account/password_reset_done.html:3
+#: templates/account/password_reset.html:3 templates/account/password_reset.html:10 templates/account/password_reset_done.html:3
 #: templates/account/password_reset_done.html:11
 msgid "Password Reset"
 msgstr ""
 
 #: templates/account/password_reset.html:18
-msgid ""
-"Forgotten your password? Enter your e-mail address below, and we'll send you "
-"an e-mail allowing you to reset it."
+msgid "Forgotten your password? Enter your e-mail address below, and we'll send you an e-mail allowing you to reset it."
 msgstr ""
 
 #: templates/account/password_reset.html:30
@@ -344,9 +350,7 @@ msgid "Please contact us if you have any trouble resetting your password."
 msgstr ""
 
 #: templates/account/password_reset_done.html:17
-msgid ""
-"We have sent you an e-mail. If you have not received it please check your "
-"spam folder. Otherwise contact us if you do not receive it in a few minutes."
+msgid "We have sent you an e-mail. If you have not received it please check your spam folder. Otherwise contact us if you do not receive it in a few minutes."
 msgstr ""
 
 #: templates/account/password_reset_from_key.html:11
@@ -355,10 +359,7 @@ msgstr ""
 
 #: templates/account/password_reset_from_key.html:14
 #, python-format
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
-"a>."
+msgid "The password reset link was invalid, possibly because it has already been used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</a>."
 msgstr ""
 
 #: templates/account/password_reset_from_key.html:19
@@ -369,8 +370,7 @@ msgstr ""
 msgid "Your password is now changed."
 msgstr ""
 
-#: templates/account/password_set.html:3 templates/account/password_set.html:9
-#: templates/account/password_set.html:29
+#: templates/account/password_set.html:3 templates/account/password_set.html:9 templates/account/password_set.html:29
 msgid "Set Password"
 msgstr ""
 
@@ -395,9 +395,7 @@ msgstr ""
 msgid "you are already logged in as %(user_display)s."
 msgstr ""
 
-#: templates/account/verification_sent.html:3
-#: templates/account/verification_sent.html:10
-#: templates/account/verified_email_required.html:3
+#: templates/account/verification_sent.html:3 templates/account/verification_sent.html:10 templates/account/verified_email_required.html:3
 #: templates/account/verified_email_required.html:10
 msgid "Verify Your E-mail Address"
 msgstr ""
@@ -405,25 +403,20 @@ msgstr ""
 #: templates/account/verified_email_required.html:13
 msgid ""
 "This part of the site requires us to verify that\n"
-"            you are who you claim to be. For this purpose, we require that "
-"you\n"
+"            you are who you claim to be. For this purpose, we require that you\n"
 "            verify ownership of your e-mail address."
 msgstr ""
 
 #: templates/account/verified_email_required.html:17
 msgid ""
 "We have sent an e-mail to you for\n"
-"            verification. Please click on the link inside that e-mail. If "
-"you do not see the verification e-mail in your main inbox, check your spam "
-"folder. Otherwise\n"
+"            verification. Please click on the link inside that e-mail. If you do not see the verification e-mail in your main inbox, check your spam folder. Otherwise\n"
 "            contact us if you do not receive it within a few minutes."
 msgstr ""
 
 #: templates/account/verified_email_required.html:21
 #, python-format
-msgid ""
-"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
-"mail address</a>."
+msgid "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-mail address</a>."
 msgstr ""
 
 #: templates/content/course_list.html:10
@@ -454,59 +447,59 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: templates/content/course_list.html:64
+#: templates/content/course_list.html:61
 msgid "Min likes"
 msgstr ""
 
-#: templates/content/course_list.html:68
+#: templates/content/course_list.html:65
 msgid "Max likes"
 msgstr ""
 
-#: templates/content/course_list.html:72
+#: templates/content/course_list.html:69
 msgid "Date min"
 msgstr ""
 
-#: templates/content/course_list.html:76
+#: templates/content/course_list.html:73
 msgid "Date max"
 msgstr ""
 
-#: templates/content/course_list.html:80
+#: templates/content/course_list.html:77
 msgid "Price min"
 msgstr ""
 
-#: templates/content/course_list.html:84
+#: templates/content/course_list.html:81
 msgid "Price max"
 msgstr ""
 
-#: templates/content/course_list.html:102
+#: templates/content/course_list.html:99
 msgid "Video"
 msgstr ""
 
-#: templates/content/course_list.html:115
+#: templates/content/course_list.html:112
 msgid "Photo"
 msgstr ""
 
-#: templates/content/course_list.html:129
+#: templates/content/course_list.html:126
 msgid "FaceBook"
 msgstr ""
 
-#: templates/content/course_list.html:142 templates/pages/footer.html:29
+#: templates/content/course_list.html:139 templates/pages/footer.html:29
 msgid "Tiktok"
 msgstr ""
 
-#: templates/content/course_list.html:155 templates/pages/footer.html:32
+#: templates/content/course_list.html:152 templates/pages/footer.html:32
 msgid "Pinterest"
 msgstr ""
 
-#: templates/content/course_list.html:163
+#: templates/content/course_list.html:160
 msgid "Search"
 msgstr ""
 
-#: templates/content/course_list.html:186
+#: templates/content/course_list.html:176
 msgid "Created"
 msgstr ""
 
-#: templates/content/course_list.html:186
+#: templates/content/course_list.html:176
 msgid "ago"
 msgstr ""
 
@@ -538,8 +531,7 @@ msgstr ""
 msgid "Blog"
 msgstr ""
 
-#: templates/pages/contact.html:3 templates/pages/footer.html:56
-#: templates/pages/navbar.html:149
+#: templates/pages/contact.html:3 templates/pages/footer.html:47 templates/pages/footer.html:59 templates/pages/navbar.html:149
 msgid "Contact"
 msgstr ""
 
@@ -551,7 +543,7 @@ msgstr ""
 msgid "Submit message"
 msgstr ""
 
-#: templates/pages/faq.html:3 templates/pages/footer.html:44
+#: templates/pages/faq.html:3 templates/pages/footer.html:35
 msgid "Faq"
 msgstr ""
 
@@ -571,27 +563,27 @@ msgstr ""
 msgid "Facebook"
 msgstr ""
 
-#: templates/pages/footer.html:38
+#: templates/pages/footer.html:41
 msgid "Links"
 msgstr ""
 
-#: templates/pages/footer.html:41
+#: templates/pages/footer.html:44
 msgid "Pricing"
 msgstr ""
 
-#: templates/pages/footer.html:47 templates/pages/terms.html:3
+#: templates/pages/footer.html:50 templates/pages/terms.html:3
 msgid "Terms"
 msgstr ""
 
-#: templates/pages/footer.html:50
+#: templates/pages/footer.html:53
 msgid "Privacy"
 msgstr ""
 
-#: templates/pages/footer.html:100
+#: templates/pages/footer.html:103
 msgid "© 2023 Copyright:"
 msgstr ""
 
-#: templates/pages/footer.html:109
+#: templates/pages/footer.html:112
 msgid "Find us on:"
 msgstr ""
 
@@ -604,17 +596,19 @@ msgid "Hand Picked Winning Products"
 msgstr ""
 
 #: templates/pages/home.html:14
-msgid ""
-"We analyze hundreds of thousands of examples of  ads and discover the most "
-"viral products and videos every day"
+msgid "We analyze hundreds of thousands of examples of  ads and discover the most viral products and videos every day"
 msgstr ""
 
-#: templates/pages/home.html:17
-msgid "Get bundle"
+#: templates/pages/home.html:19
+msgid "Browse Produits"
 msgstr ""
 
-#: templates/pages/home.html:20
-msgid "See features"
+#: templates/pages/home.html:25 templates/pages/navbar.html:152
+msgid "Login"
+msgstr ""
+
+#: templates/pages/home.html:30 templates/pages/navbar.html:109 templates/pages/navbar.html:155 templates/socialaccount/signup.html:11 templates/socialaccount/signup.html:42
+msgid "Sign Up"
 msgstr ""
 
 #: templates/pages/navbar.html:78
@@ -633,14 +627,8 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: templates/pages/navbar.html:107 templates/pages/navbar.html:152
-msgid "Login"
-msgstr ""
-
-#: templates/pages/navbar.html:109 templates/pages/navbar.html:155
-#: templates/socialaccount/signup.html:11
-#: templates/socialaccount/signup.html:42
-msgid "Sign Up"
+#: templates/pages/navbar.html:107
+msgid "Login1"
 msgstr ""
 
 #: templates/pages/navbar.html:140
@@ -671,18 +659,15 @@ msgstr ""
 msgid "Terms and Conditions"
 msgstr ""
 
-#: templates/socialaccount/authentication_error.html:3
-#: templates/socialaccount/authentication_error.html:10
+#: templates/socialaccount/authentication_error.html:3 templates/socialaccount/authentication_error.html:10
 msgid "Social Network Login Failure"
 msgstr ""
 
 #: templates/socialaccount/authentication_error.html:13
-msgid ""
-"An error occurred while attempting to login via your social network account."
+msgid "An error occurred while attempting to login via your social network account."
 msgstr ""
 
-#: templates/socialaccount/connections.html:3
-#: templates/socialaccount/connections.html:11
+#: templates/socialaccount/connections.html:3 templates/socialaccount/connections.html:11
 msgid "Account Connections"
 msgstr ""
 
@@ -690,15 +675,12 @@ msgstr ""
 #, python-format
 msgid ""
 " Don't have an account yet?\n"
-"            <a href=\"%(signup_url)s\" class=\"font-medium text-green-500 "
-"hover:text-green-700 ml-2\">\n"
+"            <a href=\"%(signup_url)s\" class=\"font-medium text-green-500 hover:text-green-700 ml-2\">\n"
 "            Sign Up Now</a>"
 msgstr ""
 
 #: templates/socialaccount/connections.html:23
-msgid ""
-"You can sign in to your account using any of the following third party "
-"accounts:"
+msgid "You can sign in to your account using any of the following third party accounts:"
 msgstr ""
 
 #: templates/socialaccount/connections.html:74
@@ -731,8 +713,7 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#: templates/socialaccount/login_cancelled.html:3
-#: templates/socialaccount/signup.html:3
+#: templates/socialaccount/login_cancelled.html:3 templates/socialaccount/signup.html:3
 msgid "Sign up"
 msgstr ""
 
@@ -742,10 +723,7 @@ msgstr ""
 
 #: templates/socialaccount/login_cancelled.html:13
 #, python-format
-msgid ""
-"You decided to cancel logging in to our site using one of your existing "
-"accounts. If this was a mistake, please proceed to <a "
-"href=\"%(login_url)s\">sign in</a>."
+msgid "You decided to cancel logging in to our site using one of your existing accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s\">sign in</a>."
 msgstr ""
 
 #: templates/socialaccount/messages/account_connected.txt:2
@@ -765,8 +743,7 @@ msgstr ""
 msgid ""
 "   You are about to use your %(provider_name)s\n"
 "            account to login to\n"
-"            %(site_name)s. As a final step, please complete the following "
-"form:\n"
+"            %(site_name)s. As a final step, please complete the following form:\n"
 "          "
 msgstr ""
 
@@ -774,20 +751,13 @@ msgstr ""
 msgid "Add Button"
 msgstr ""
 
-#: templates/staff/button_create.html:21
-#: templates/staff/category_create.html:21
-#: templates/staff/country_create.html:21
-#: templates/staff/language_create.html:21
-#: templates/staff/product_create.html:22
-#: templates/staff/product_delete.html:19
-#: templates/staff/product_update.html:22 templates/staff/store.html:21
+#: templates/staff/button_create.html:21 templates/staff/category_create.html:21 templates/staff/country_create.html:21 templates/staff/language_create.html:21
+#: templates/staff/product_create.html:22 templates/staff/product_delete.html:19 templates/staff/product_update.html:22 templates/staff/store.html:21
 #: templates/staff/technology_create.html:21
 msgid "Submit"
 msgstr ""
 
-#: templates/staff/category_create.html:4
-#: templates/staff/category_create.html:12
-#: templates/staff/country_create.html:12
+#: templates/staff/category_create.html:4 templates/staff/category_create.html:12 templates/staff/country_create.html:12
 msgid "Add Category"
 msgstr ""
 
@@ -795,8 +765,7 @@ msgstr ""
 msgid "Add Country"
 msgstr ""
 
-#: templates/staff/language_create.html:4
-#: templates/staff/language_create.html:12
+#: templates/staff/language_create.html:4 templates/staff/language_create.html:12
 msgid "Add Language"
 msgstr ""
 
@@ -824,8 +793,7 @@ msgstr ""
 msgid "Add Store Name"
 msgstr ""
 
-#: templates/staff/technology_create.html:4
-#: templates/staff/technology_create.html:12
+#: templates/staff/technology_create.html:4 templates/staff/technology_create.html:12
 msgid "Add Technology"
 msgstr ""
 

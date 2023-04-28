@@ -34,12 +34,13 @@ THIRD_PARTY_APPS = [
     "corsheaders",
     'django_filters',
     'widget_tweaks',
-    'django_browser_reload',
     "django.forms",
     'storages',
     'tailwind',
     'theme',
-    # 'embed_video',
+    'django_browser_reload',
+    'rosetta',
+    'parler',
     'allauth.socialaccount.providers.google',
 ]
 
@@ -83,18 +84,24 @@ TEMPLATES = [
     },
 ]
 WSGI_APPLICATION = 'config.wsgi.application'
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': env('POSTGRES_DB'),
+#             'USER': env('POSTGRES_USER'),
+#             'PASSWORD': env('POSTGRES_PASSWORD'),
+#             'HOST': env('POSTGRES_HOST'),
+#             'PORT': env('POSTGRES_PORT'),
+#             'keepalives':1,
+#             'keepalives_idle':130,
+#             'keepalives_interval':10,
+#             'keepalives_count':15
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': env('POSTGRES_DB'),
-            'USER': env('POSTGRES_USER'),
-            'PASSWORD': env('POSTGRES_PASSWORD'),
-            'HOST': env('POSTGRES_HOST'),
-            'PORT': env('POSTGRES_PORT'),
-            'keepalives':1,
-            'keepalives_idle':130,
-            'keepalives_interval':10,
-            'keepalives_count':15
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 # import dj_database_url
@@ -114,6 +121,17 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+PARLER_LANGUAGES = {
+    1: (
+        {'code': 'en',}, # English
+        {'code': 'fr',}, # French
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
@@ -162,7 +180,8 @@ CKEDITOR_CONFIGS = {
 
 AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-SITE_ID = 2
+
+SITE_ID = 1
 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"

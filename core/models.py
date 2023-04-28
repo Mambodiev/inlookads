@@ -2,83 +2,65 @@ from django.db import models
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
+from parler.models import TranslatableModel, TranslatedFields
 
 
 User = get_user_model()
 
 
-class Language(models.Model):
-    name= models.CharField(max_length=20)
-    code= models.CharField(max_length=5)
-    status=models.BooleanField()
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
+class PrivacyTermsAbout(TranslatableModel):
 
+    STATUS = (
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+
+
+    translations = TranslatedFields(
+
+        privacy_text = RichTextUploadingField(_('privacy_text'), blank=True, null=True,  help_text = "Privacy Policy Notice"),
+        terms_text = RichTextUploadingField(_('terms_text'), blank=True, null=True,  help_text = "terms text"),
+        about_text = RichTextUploadingField(_('About_text'), blank=True, null=True,  help_text = "About text"),
+        name = models.CharField(_('name'), max_length=100), 
+        status=models.CharField(_('status'), max_length=10,choices=STATUS),
+        update_at=models.DateTimeField(_('update_at'), auto_now=True),
+        last_update = models.DateTimeField(_('last_update'), auto_now_add=True),
+        )
     def __str__(self):
-        return self.name
-
-
-llist = Language.objects.filter(status=True)
-list1 = []
-for rs in llist:
-    list1.append((rs.code,rs.name))
-langlist = (list1)
-
-
-
-class PrivacyTermsAbout(models.Model):
-
-    privacy_text = RichTextUploadingField(blank=True, null=True,  help_text = "Privacy Policy Notice")
-    Terms_text = RichTextUploadingField(blank=True, null=True,  help_text = "Privacy Policy Notice")
-    About_text = RichTextUploadingField(blank=True, null=True,  help_text = "Privacy Policy Notice")
-    name = models.CharField(max_length=100)  
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
-
-
-    def __str__(self):
-        return self.name
-
+            return self.name
+    
     class Meta:
         verbose_name_plural = ("PrivacyTermsAbout")
 
 
-# class Terms(models.Model):
-
-#     terms_text = RichTextUploadingField(blank=True, null=True,  help_text = "User Terms and Conditions")
-#     name = models.CharField(max_length=100)  
-#     create_at=models.DateTimeField(auto_now_add=True)
-    # update_at=models.DateTimeField(auto_now=True)
 
 
-#     def __str__(self):
-#         return self.name
 
-#     class Meta:
-#         verbose_name_plural = ("Terms")
+class Faq(models.Model):
+    STATUS = (
+        ('True', 'True'),
+        ('False', 'False'),
+    )
+    ordernumber = models.IntegerField(null=True,)
+    question = models.CharField(max_length=200, null=True,)
+    answer = RichTextUploadingField(blank=True, null=True,)
+    status=models.CharField(max_length=10, choices=STATUS, null=True,)
+    create_at=models.DateTimeField(auto_now_add=True, null=True, )
+    update_at=models.DateTimeField(auto_now=True, null=True, )
 
-# class About(models.Model):
+    def __str__(self):
+        return self.question
 
-    # about_text = RichTextUploadingField(blank=True, null=True,  help_text = "about us")
-    # name = models.CharField(max_length=100)  
-    # create_at=models.DateTimeField(auto_now_add=True)
-    # update_at=models.DateTimeField(auto_now=True)
-
-
-    # def __str__(self):
-    #     return self.name
-
-    # class Meta:
-    #     verbose_name_plural = ("About")
+    class Meta:
+        verbose_name_plural = ("Faq")
 
 
 class Price(models.Model):
 
-    price_text = RichTextUploadingField(blank=True, null=True,  help_text = "price")
-    name = models.CharField(max_length=100)  
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
-
+    price_text = RichTextUploadingField(_('price_text'), blank=True, null=True,  help_text = "price")
+    name = models.CharField(_('name'), max_length=100)  
+    last_update = models.DateTimeField(_('last_update'), auto_now_add=True)
 
     def __str__(self):
         return self.name
@@ -90,80 +72,9 @@ class Price(models.Model):
 
 class Affiliate(models.Model):
 
-    affiliate_text = RichTextUploadingField(blank=True, null=True,  help_text = "Affiliate")
-    name = models.CharField(max_length=100)  
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
-
+    affiliate_text = RichTextUploadingField(_('affiliate_text'), blank=True, null=True,  help_text = "Affiliate")
+    name = models.CharField(_('name'), max_length=100)  
+    last_update = models.DateTimeField(_('last_update'), auto_now_add=True)
 
     def __str__(self):
         return self.name
-
-
-# internationalization
-
-
-class PrivacyTermsAboutLang(models.Model):
-    privacy_terms_about = models.ForeignKey(PrivacyTermsAbout, on_delete=models.CASCADE) 
-    lang =  models.CharField(max_length=6, choices=langlist)
-    privacy_text = RichTextUploadingField(blank=True, null=True,  help_text = "Privacy Policy Notice")
-    Terms_text = RichTextUploadingField(blank=True, null=True,  help_text = "Privacy Policy Notice")
-    About_text = RichTextUploadingField(blank=True, null=True,  help_text = "Privacy Policy Notice")
-    name = models.CharField(max_length=100) 
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
- 
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = ("PrivacyTermsAboutLang")
-
-
-
-
-class AffiliateLang(models.Model):
-    affiliate = models.ForeignKey(Affiliate, on_delete=models.CASCADE) 
-    lang =  models.CharField(max_length=6, choices=langlist)
-    affiliate_text = RichTextUploadingField(blank=True, null=True,  help_text = "Affiliate")
-    name = models.CharField(max_length=100)  
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
-
-
-    def __str__(self):
-        return self.name
-
-
-class PriceLang(models.Model):
-    price = models.ForeignKey(Price, on_delete=models.CASCADE) 
-    lang =  models.CharField(max_length=6, choices=langlist)
-    price_text = RichTextUploadingField(blank=True, null=True,  help_text = "price")
-    name = models.CharField(max_length=100)  
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
-
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name_plural = ("PriceLang")
-
-
-class Faq(models.Model):
-    STATUS = (
-        ('True', 'True'),
-        ('False', 'False'),
-    )
-    lang =  models.CharField(max_length=6, choices=langlist, blank=True, null=True)
-    ordernumber = models.IntegerField(blank=True, null=True, )
-    question = models.CharField(blank=True, null=True, max_length=200)
-    answer = RichTextUploadingField(blank=True, null=True, )
-    status=models.CharField(blank=True, null=True, max_length=10, choices=STATUS)
-    create_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.question

@@ -18,7 +18,7 @@ source env/bin/activate
 python3 manage.py runserver 
 
 {% comment %} {% endcomment %}  
-https://www.facebook.com/search
+
 python manage.py makemigrations    
 python manage.py migrate 
 python3 manage.py runserver 
@@ -37,3 +37,7 @@ Gray-900
 #111827
 
 display: none!important;
+
+
+django-admin makemessages --all --ignore=env
+django-admin compilemessages --ignore=env

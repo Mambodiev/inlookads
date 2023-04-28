@@ -1,8 +1,9 @@
 from django import forms
+from parler.admin import TranslatableModelForm
 
 from content.models import Course, Category, Technology, Country, Language, Button
 
-class ProductForm(forms.ModelForm):
+class ProductForm(TranslatableModelForm):
     class Meta:
         model = Course
         fields = [
@@ -22,7 +23,7 @@ class ProductForm(forms.ModelForm):
             'text_that_comes_with_ads',
             'number_of_store_selling',
             'number_of_suppliers_selling',
-            'ads_run_since',
+            'created_at',
             'countries',
             'technologies',
             'languages',
@@ -38,32 +39,32 @@ class ProductForm(forms.ModelForm):
         ]
 
 
-class CategoryForm(forms.ModelForm):
+class CategoryForm(TranslatableModelForm):
     class Meta:
         model = Category
         fields = ['name']
 
 
-class TechnologyForm(forms.ModelForm):
+class TechnologyForm(TranslatableModelForm):
     class Meta:
         model = Technology
         fields = ['name']
 
 
-class CountryForm(forms.ModelForm):
+class CountryForm(TranslatableModelForm):
     class Meta:
         model = Country
         fields = ['name']
 
 
 
-class LanguageForm(forms.ModelForm):
+class LanguageForm(TranslatableModelForm):
     class Meta:
         model = Language
         fields = ['name']
 
 
-class ButtonForm(forms.ModelForm):
+class ButtonForm(TranslatableModelForm):
     class Meta:
         model = Button
         fields = ['name']

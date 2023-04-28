@@ -20,25 +20,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def is_valid_queryparam(param):
     return param != '' and param is not None
 
-# class CourseListView(generic.ListView):
-#     template_name = "content/course_list.html"
-#     # queryset = Course.objects.all()
-
-#     def get_queryset(self):
-#         qs = Course.objects.all()
-#         category = self.request.GET.get('category', None)
-#         if category:
-#             qs = qs.filter(Q(primary_category__name=category) |
-#                            Q(secondary_categories__name=category)).distinct()
-#         return qs
-
-#     def get_context_data(self, **kwargs):
-#         context = super(CourseListView, self).get_context_data(**kwargs)
-#         context.update({
-#             "categories": Category.objects.values("name")
-#         })
-#         return context
-
 
 def CourseListView(request):
     qs = Course.objects.all()
