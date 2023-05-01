@@ -19,6 +19,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
+    "modeltranslation",
     "django.contrib.admin",
 ]
 THIRD_PARTY_APPS = [
@@ -40,7 +41,7 @@ THIRD_PARTY_APPS = [
     'theme',
     'django_browser_reload',
     'rosetta',
-    'parler',
+    
     'allauth.socialaccount.providers.google',
 ]
 
@@ -122,20 +123,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-PARLER_LANGUAGES = {
-    1: (
-        {'code': 'en',}, # English
-        {'code': 'fr',}, # French
-    ),
-    'default': {
-        'fallbacks': ['en'],
-        'hide_untranslated': False,
-    }
-}
+gettext = lambda s: s
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('fr', gettext('French')),
+)
+
 LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
 ]
+
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )

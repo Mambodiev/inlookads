@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
+from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, reverse, redirect, render
 from .models import Course, Video, OrderItem, Category, Technology, Country,Language, Button
@@ -13,6 +14,7 @@ from .utils import get_or_set_order_session
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from parler.views import TranslatableSlugMixin
 
 
 
@@ -124,7 +126,7 @@ def CourseListView(request):
 
 
 
-class CourseDetailView(generic.FormView):
+class CourseDetailView(TranslatableSlugMixin, DetailView):
     template_name = "content/course_detail.html"
     form_class = AddToCartForm
 

@@ -1,12 +1,11 @@
 from django import forms
-from parler.admin import TranslatableModelForm
 
 from content.models import Course, Category, Technology, Country, Language, Button
 
-class ProductForm(TranslatableModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = [
+        fields = (
             'name_of_store',
             'shopify_links',
             'name_of_product',
@@ -36,35 +35,35 @@ class ProductForm(TranslatableModelForm):
             'has_video',
             'has_photo',
             'slug',
-        ]
+        )
 
 
-class CategoryForm(TranslatableModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = ['name']
 
 
-class TechnologyForm(TranslatableModelForm):
+class TechnologyForm(forms.ModelForm):
     class Meta:
         model = Technology
         fields = ['name']
 
 
-class CountryForm(TranslatableModelForm):
+class CountryForm(forms.ModelForm):
     class Meta:
         model = Country
         fields = ['name']
 
 
 
-class LanguageForm(TranslatableModelForm):
+class LanguageForm(forms.ModelForm):
     class Meta:
         model = Language
         fields = ['name']
 
 
-class ButtonForm(TranslatableModelForm):
+class ButtonForm(forms.ModelForm):
     class Meta:
         model = Button
         fields = ['name']

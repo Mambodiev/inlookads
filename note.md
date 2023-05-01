@@ -6,6 +6,8 @@ cd realadsnow
 source env/bin/activate
 python3 manage.py runserver 
 
+python manage.py makemigrations content --empty
+
 
 {% translate "" %}
 
@@ -31,7 +33,7 @@ python3 manage.py runserver
 
 git init
 git add .
-git commit -m "START MODEL TRANSLATION ACORDING TO YUKSEL"
+git commit -m "MODEL TRANSLATION ACORDING TO PARLER PARTIALLY DONE"
 git push
 Gray-900
 #111827

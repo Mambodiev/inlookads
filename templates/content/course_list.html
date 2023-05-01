@@ -167,7 +167,7 @@
                 <div class="flex items-center space-x-2">
                     <div class="-space-y-1">
                         <h2 class="text-lg text-gray-700 dark:text-white">{{ course.name_of_store|title}}</h2>
-                        <span class='text-base text-gray-700 dark:text-white'>{% translate "Created" %}: {{ course.ads_run_since|timesince}} {% translate "ago" %}</span>
+                        <span class='text-base text-gray-700 dark:text-white'>{% translate "Created" %}: {{ course.created_at|timesince}} {% translate "ago" %}</span>
                     </div>
                 </div>
                 
