@@ -10,7 +10,6 @@ import stripe
 from django.utils.html import mark_safe
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
-
 # stripe.api_key = settings.STRIPE_SECRET_KEY
 
 User = get_user_model()
@@ -133,7 +132,9 @@ class Course(models.Model):
     shopify_links = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
     name_of_store = models.ForeignKey(Store, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
     categories = models.ForeignKey(Category, blank=True, null=True, on_delete=models.CASCADE)
-    technologies = models.ForeignKey(Technology, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
+    # otherShopifyLinks = models.ForeignKey(OtherShopifyLinks, related_name='other_shopify_links',  blank=True, null=True, on_delete=models.PROTECT)
+    # OtherAliexpressSuppliersLinks = models.ForeignKey(OtherAliexpressSuppliersLinks, related_name='OtherAliexpressSuppliersLinks',  blank=True, null=True, on_delete=models.PROTECT)
+    technologies = models.ForeignKey(Technology, related_name='technologies', blank=True, null=True, on_delete=models.PROTECT)
     shopify_price = models.DecimalField(max_digits=10, decimal_places=2, help_text = "Product price from shopify")
     product_thumbnail = models.ImageField(upload_to="thumbnails/", default='products/defaut_image_store_light_blue_bag.jpg')
     store_logo = models.ImageField(upload_to="image_store/",default='products/defaut_image_store.png',
@@ -143,16 +144,17 @@ class Course(models.Model):
     likes = models.IntegerField(default=0, help_text = "Amount of likes generated")
     comment = models.IntegerField(default=0, help_text = "Amount of comment generated")
     views = models.IntegerField(default=0, help_text = "Amount of views generated")
-    links_to_ads = RichTextUploadingField(blank=True, null=True,  help_text = "A link that will take to ads")
+    # links_to_ads = RichTextUploadingField(blank=True, null=True,  help_text = "A link that will take to ads")
+    # links_to_others_stores = RichTextUploadingField(blank=True, null=True,help_text = "A link that will take to the store", )
+    # links_to_others_suppliers = RichTextUploadingField(blank=True, null=True,)
     text_that_comes_with_ads = RichTextUploadingField(blank=True, null=True)
     number_of_store_selling = models.IntegerField(default=0, help_text = "Amount of store selling the product")
     number_of_suppliers_selling= models.IntegerField( default=0, help_text = "Amount of suppliers selling the product")
     created_at = models.DateField(default=timezone.now)
-    languages = models.ForeignKey(Language, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
-    buttons = models.ForeignKey(Button, related_name='store_name', blank=True, null=True, on_delete=models.PROTECT)
+    languages = models.ForeignKey(Language,  related_name='languages', blank=True, null=True, on_delete=models.PROTECT)
+    buttons = models.ForeignKey(Button, related_name='buttons', blank=True, null=True, on_delete=models.PROTECT)
     countries = models.ForeignKey(Country, blank=True, null=True, on_delete=models.PROTECT)
-    links_to_others_stores = RichTextUploadingField(blank=True, null=True,help_text = "A link that will take to the store", )
-    links_to_others_suppliers = RichTextUploadingField(blank=True, null=True,)
+    
     is_faceBook = models.BooleanField(default=False)
     is_pinterest = models.BooleanField(default=False)
     is_tiktok = models.BooleanField(default=False)
@@ -213,6 +215,50 @@ class Course(models.Model):
     img_preview.allow_tags = True
 
 
+
+class OtherAliexpressSuppliersLinks(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.PROTECT)
+    name = models.CharField(max_length=300)
+    links = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
+    price = models.DecimalField(blank=True, null=True, max_digits=10, decimal_places=2, help_text = "Product price from aliexpress suppliers")
+    country = models.CharField(max_length=30)
+
+
+    class Meta:
+        verbose_name_plural = ("Other Aliexpress Suppliers Links")
+
+    def __str__(self):
+        return self.name
+
+
+class OtherShopifyLinks(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.PROTECT)
+    name = models.CharField(max_length=30)
+    links = models.CharField(blank=True, null=True, max_length=500, help_text = "A link that will take to a single the store")
+    country = models.CharField(max_length=30)
+
+    class Meta:
+        verbose_name_plural = ("Other Shopify Links")
+
+    def __str__(self):
+        return self.course.name_of_product + " - " + self.name
+
+
+
+
+class City(models.Model):
+    name = models.CharField(max_length=30)
+    course = models.ForeignKey(Course, on_delete=models.PROTECT)
+    population = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name_plural = ("Cities")
+
+    def __str__(self):
+        return self.name
+
+
+
 class Order(models.Model):
     user = models.ForeignKey(
         User, blank=True, null=True, on_delete=models.CASCADE)
@@ -268,12 +314,13 @@ class OrderItem(models.Model):
 
 class Sale(models.Model):
 
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    total_number_of_sale = models.IntegerField(blank=True, null=True, help_text = "")
+    course = models.ForeignKey(Course, on_delete=models.PROTECT)
+    total_number_of_sale = models.PositiveIntegerField(blank=True, null=True, help_text = "")
+    time = models.DateField( default=timezone.now,  blank=True, null=True, help_text = "time, date, mois, june 30, dec 30...")
     created_at = models.DateField(default=timezone.now)
     updated_at = AutoDateTimeField(default=timezone.now)
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['id']
 
     def __str__(self):
         return f' ({self.course.name_of_product}), {self.total_number_of_sale}'

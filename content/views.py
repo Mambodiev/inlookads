@@ -3,7 +3,7 @@ from django.views import generic
 from django.views.generic.detail import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, reverse, redirect, render
-from .models import Course, Video, OrderItem, Category, Technology, Country,Language, Button
+from .models import Course, Video, OrderItem, Category, Technology, Country,Language, Button, City
 from .mixins import CoursePermissionMixin
 from django.core.mail import send_mail
 from .forms import AddToCartForm
@@ -15,8 +15,10 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from parler.views import TranslatableSlugMixin
-
-
+from django.db.models import F
+from django.shortcuts import render
+from django.db.models import Sum
+from django.http import JsonResponse
 
 
 def is_valid_queryparam(param):
@@ -53,7 +55,10 @@ def CourseListView(request):
     
 
     if is_valid_queryparam(category) and category != 'All categories':
-        qs = qs.filter(categories__name=category)
+        # qs = qs.filter(categories__name=category)
+        # qs = qs.filter(Q(categories__name=category) | Q(categories__name_fr=category))
+        qs = qs.filter(categories__name__contains=category) | qs.filter(categories__name_fr__contains=category)
+
 
     if is_valid_queryparam(technology) and technology != 'Site type':
         qs = qs.filter(technologies__name=technology)
@@ -172,6 +177,21 @@ class CourseDetailView(TranslatableSlugMixin, DetailView):
         context = super(CourseDetailView, self).get_context_data(**kwargs)
         context['course'] = self.get_object()
         return context
+
+
+def product_chart(request):
+    labels = []
+    data = []
+
+    queryset = City.objects.all()
+    for city in queryset:
+        labels.append(city.name)
+        data.append(city.population)
+    
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data,
+    })
 
 
 class VideoDetailView(LoginRequiredMixin, generic.DetailView):

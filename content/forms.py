@@ -8,7 +8,7 @@ from .models import (
 
 
 class AddToCartForm(forms.ModelForm):
-    quantity = forms.IntegerField(min_value=1, initial=1, label=_('Quantity'))
+    # quantity = forms.IntegerField(min_value=1, initial=1, label=_('Quantity'))
 
     class Meta:
         model = OrderItem
