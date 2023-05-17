@@ -19,6 +19,7 @@ from django.db.models import F
 from django.shortcuts import render
 from django.db.models import Sum
 from django.http import JsonResponse
+from django.db.models import Count
 
 
 def is_valid_queryparam(param):
@@ -134,6 +135,7 @@ def CourseListView(request):
 class CourseDetailView(TranslatableSlugMixin, DetailView):
     template_name = "content/course_detail.html"
     form_class = AddToCartForm
+    
 
 
     def get_object(self):

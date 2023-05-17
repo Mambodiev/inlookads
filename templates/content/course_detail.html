@@ -11,14 +11,18 @@
             <h1 class="text-2xl font-medium text-gray-700 dark:text-white ">
                {{ course.name_of_product|title  }}
             </h1>
-            <span class="text-gray-700 dark:text-white">Created : {{ course.ads_run_since|timesince}} ago</span>
+            <span class="text-gray-700 dark:text-white">Created : {{ course.created_at|timesince}} ago</span>
         </div>
         <div class=''>
+          <div class='flex inline-flex gap-4'>
+            <a href="" class="border-2 border-gray-700 hover:text-gray-500 dark:text-white text-gray-700 font-medium rounded-full  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block">See the ads</a>
+            <a href="" class="border-2 border-gray-700 hover:text-gray-500 dark:text-white text-gray-700 font-medium rounded-full  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block">See the Shop</a>
             <form method="POST">
                 {% csrf_token %}
                  {{ form|crispy }} 
                 <button type="submit" class="border-2 border-gray-700 hover:text-gray-500 dark:text-white text-gray-700 font-medium rounded-full  px-5 pl-3 py-2 text-center mr-3 md:mr-0 hidden sm:block">Add to favorites</button>
             </form>
+          </div>
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6 mb-6">
@@ -145,8 +149,98 @@
       <div>
           <div class="col-span-2 text-gray-700 dark:text-white">
                <h2 class="mb-2 text-2xl text-gray-700 dark:text-white">Ads text</h2>
-              <div class="text-gray-700 dark:text-white">
+              <div class="text-gray-700 dark:text-white mb-4">
                    {{ course.text_that_comes_with_ads|safe  }} 
+              </div>
+              <h2 class="mb-2 text-2xl text-gray-700 dark:text-white">Informations</h2>
+              <div class="grid grid-cols-6 gap-2 ">
+                  <div class="grid justify-center">
+                      <span class="rounded-full bg-blue-600 p-1 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hand-thumbs-up-fill m-2"     viewBox="0 0 16 16">
+                            <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                        </svg>
+                      </span>
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+                  <div class="grid justify-center">
+                      <img src="{% static 'images/facebook/Wow_facebook.png' %}" alt="" class="w-11 h-11 mx-auto rounded-full dark:bg-gray-500 aspect-square">
+
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+                  <div class="grid justify-center">
+                      <span class="rounded-full bg-red-600 p-1 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-heart-fill m-2" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg>
+                      </span>
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+                  <div class="grid justify-center">
+                      <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 1500 1500" width="45" height="45">
+                        <style>.st0{fill:#fff}.st1{fill:#ffda6b}.st2{fill:none;stroke:#262c38;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}.st3{fill:#262c38}.st4{fill:#f05266}.st5{fill:none;stroke:#262c38;stroke-width:60;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}</style>
+                          <path class="st0" d="M542.7 1092.6H377.6c-13 0-23.6-10.6-23.6-23.6V689.9c0-13 10.6-23.6 23.6-23.6h165.1c13 0 23.6 10.6 23.6 23.6V1069c0 13-10.6 23.6-23.6 23.6zM624 1003.5V731.9c0-66.3 18.9-132.9 54.1-189.2 21.5-34.4 69.7-89.5 96.7-118 6-6.4 27.8-25.2 27.8-35.5 0-13.2 1.5-34.5 2-74.2.3-25.2 20.8-45.9 46-45.7h1.1c44.1 1 58.3 41.7 58.3 41.7s37.7 74.4 2.5 165.4c-29.7 76.9-35.7 83.1-35.7 83.1s-9.6 13.9 20.8 13.3c0 0 185.6-.8 192-.8 13.7 0 57.4 12.5 54.9 68.2-1.8 41.2-27.4 55.6-40.5 60.3-2.6.9-2.9 4.5-.5 5.9 13.4 7.8 40.8 27.5 40.2 57.7-.8 36.6-15.5 50.1-46.1 58.5-2.8.8-3.3 4.5-.8 5.9 11.6 6.6 31.5 22.7 30.3 55.3-1.2 33.2-25.2 44.9-38.3 48.9-2.6.8-3.1 4.2-.8 5.8 8.3 5.7 20.6 18.6 20 45.1-.3 14-5 24.2-10.9 31.5-9.3 11.5-23.9 17.5-38.7 17.6l-411.8.8c-.2 0-22.6 0-22.6-30z"/><path class="st0" d="M750 541.9C716.5 338.7 319.5 323.2 319.5 628c0 270.1 430.5 519.1 430.5 519.1s430.5-252.3 430.5-519.1c0-304.8-397-289.3-430.5-86.1z"/><ellipse class="st1" cx="750.2" cy="751.1" rx="750" ry="748.8"/><g><path id="mond" class="st3" d="M755.3 784.1H255.4s13.2 431.7 489 455.8c6.7.3 11.2.1 11.2.1 475.9-24.1 489-455.9 489-455.9H755.3z"/><path id="tong" class="st4" d="M312.1 991.7s174.8-83.4 435-82.6c129 .4 282.7 12 439.2 83.4 0 0-106.9 260.7-436.7 260.7-329 0-437.5-261.5-437.5-261.5z"/><path id="linker_1_" class="st5" d="M1200.2 411L993 511.4l204.9 94.2"/><path id="linker_4_" class="st5" d="M297.8 411L505 511.4l-204.9 94.2"/></g>
+                        </svg>
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+                  
+                  <div class="grid justify-center">
+                      <img src="{% static 'images/facebook/Sad_facebook.png' %}" alt="" class="w-11 h-11 mx-auto rounded-full dark:bg-gray-500 aspect-square">
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+                  <div class="grid justify-center">
+                      <img src="{% static 'images/facebook/Angry_facebook.png' %}" alt="" class="w-11 h-11 mx-auto rounded-full dark:bg-gray-500 aspect-square">
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+              </div>
+              <div class="flex justify-center gap-2 mt-4">
+                  <div class="grid justify-center">
+                      <p class="text-lg font-medium text-center">
+                        Comments
+                      </p>
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+                  <div class="grid justify-center">
+                      <p class="text-lg font-medium text-center">
+                        Shares
+                      </p>
+                      <p class="text-lg font-medium text-center">
+                        {{ course.likes|cool_num }}
+                      </p>
+                  </div>
+              </div>
+
+              <div class="flex justify-center gap-6 mt-4">
+                  <div class="grid justify-center">
+                      <p class="text-lg font-medium text-center">
+                        Found
+                      </p>
+                      <p class="text-2xl font-medium text-center">
+                        Jan 27, 2023
+                      </p>
+                  </div>
+                  <div class="grid justify-center">
+                      <p class="text-lg font-medium text-center">
+                        Last updates
+                      </p>
+                      <p class="text-2xl font-medium text-center">
+                        May 17, 2023
+                      </p>
+                  </div>
               </div>
           </div>
       </div>
@@ -165,7 +259,7 @@
       </div>
       <div >
         <div class="text-gray-700 dark:text-white">
-          <h2 class="mb-2 text-2xl text-gray-700 dark:text-white ">Shopify Links (41)</h2>
+          <h2 class="mb-2 text-2xl text-gray-700 dark:text-white ">Shopify Links</h2>
           <ol class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
             {% for othershopifylinks in course.othershopifylinks_set.all %}
               <li>
@@ -182,7 +276,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
       <div>
           <div class="text-gray-700 dark:text-white">
-            <h2 class="mb-2 text-2xl text-gray-700 dark:text-white">Aliexpress Links (41)</h2>
+            <h2 class="mb-2 text-2xl text-gray-700 dark:text-white">Aliexpress Links</h2>
             {% for otheraliexpresssupplierslinks in course.otheraliexpresssupplierslinks_set.all %}
             <ol class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
                 <li>
